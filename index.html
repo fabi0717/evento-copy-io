@@ -49,19 +49,9 @@
         </header>
 
         <main class="w-full max-w-4xl mx-auto flex-grow flex flex-col justify-center">
-            <div class="text-center mb-8">
+            <div class="text-center mb-12">
                 <h2 id="main-title" class="text-4xl md:text-5xl font-extrabold mb-4">Generate Your Event Marketing in Seconds</h2>
                 <p id="main-subtitle" class="text-lg text-gray-600 max-w-2xl mx-auto">Stop wasting time with writer's block. Enter your event details and our AI will instantly create persuasive copy.</p>
-            </div>
-
-            <!-- Video Section with CSS Gradient -->
-            <div class="mb-12">
-                <div id="video-placeholder" class="relative w-full max-w-2xl mx-auto rounded-xl shadow-lg cursor-pointer aspect-video flex items-center justify-center group border-2 border-transparent hover:border-indigo-500 transition-all overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600">
-                    <div class="relative w-20 h-20 bg-white bg-opacity-30 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
-                        <div style="width: 0; height: 0; border-top: 16px solid transparent; border-bottom: 16px solid transparent; border-left: 28px solid white; margin-left: 6px;"></div>
-                    </div>
-                    <p id="video-text" class="absolute bottom-4 text-white font-semibold bg-black bg-opacity-20 px-3 py-1 rounded-full text-sm">See how it works in 30 seconds</p>
-                </div>
             </div>
 
             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
@@ -237,7 +227,7 @@
                 document.documentElement.lang = lang;
                 document.getElementById('main-title').textContent = t.mainTitle;
                 document.getElementById('main-subtitle').textContent = t.mainSubtitle;
-                document.getElementById('video-text').textContent = t.videoText;
+                
                 document.getElementById('label-eventName').textContent = t.labelEventName;
                 document.getElementById('label-targetAudience').textContent = t.labelTargetAudience;
                 document.getElementById('label-eventTopic').textContent = t.labelEventTopic;
@@ -353,7 +343,8 @@
 
             chatBubble.addEventListener('click', () => {
                 toggleChat(true);
-                if(chatLog.children.length === 0) {
+                if(chatLog.children.length === 0)
+                {
                     addBotMessage(translations[currentLang].chatWelcome);
                 }
             });
