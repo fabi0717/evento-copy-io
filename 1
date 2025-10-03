@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYYQ8GLWRF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EYYQ8GLWRF');
+    </script>
+    <!-- End Google Analytics -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento-Copy AI - Event Marketing Copy Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glowing-shadow { box-shadow: 0 0 15px rgba(79, 70, 229, 0.5), 0 0 5px rgba(79, 70, 229, 0.3); }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .language-selector button.active {
+            background-color: #4f46e5;
+            color: white;
+        }
+        #chat-bubble {
+            transition: transform 0.2s ease-in-out;
+        }
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        .chat-window {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div id="app" class="min-h-screen flex flex-col items-center p-4">
+        
+        <header class="w-full max-w-4xl mx-auto flex justify-between items-center py-4">
+            <h1 class="text-2xl font-bold text-indigo-600">Evento-Copy AI</h1>
+            <div class="language-selector bg-gray-200 rounded-lg p-1 flex space-x-1">
+                <button id="lang-es" class="px-3 py-1 text-sm font-medium rounded-md transition-colors">ES</button>
+                <button id="lang-en" class="px-3 py-1 text-sm font-medium rounded-md transition-colors">EN</button>
+            </div>
+        </header>
+
+        <main class="w-full max-w-4xl mx-auto flex-grow flex flex-col justify-center">
+            <div class="text-center mb-12">
+                <h2 id="main-title" class="text-4xl md:text-5xl font-extrabold mb-4">Generate Your Event Marketing in Seconds</h2>
+                <p id="main-subtitle" class="text-lg text-gray-600 max-w-2xl mx-auto">Stop wasting time with writer's block. Enter your event details and our AI will instantly create persuasive copy.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <label for="eventName" id="label-eventName" class="block text-sm font-medium text-gray-700 mb-1">Event Name</label>
+                        <input type="text" id="eventName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="Ex: AI Masterclass">
+                    </div>
+                    <div>
+                        <label for="targetAudience" id="label-targetAudience" class="block text-sm font-medium text-gray-700 mb-1">Target Audience</label>
+                        <input type="text" id="targetAudience" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="Ex: Marketing Directors">
+                    </div>
+                    <div>
+                        <label for="eventTopic" id="label-eventTopic" class="block text-sm font-medium text-gray-700 mb-1">Event Topic</label>
+                        <input type="text" id="eventTopic" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="Ex: The future of advertising">
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button id="generate-btn" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 glowing-shadow flex items-center justify-center mx-auto">
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.672-2.672L11.25 18l1.938-.648a3.375 3.375 0 002.672-2.672L16.25 13.5l.648 1.938a3.375 3.375 0 002.672 2.672L21.75 18l-1.938.648a3.375 3.375 0 00-2.672 2.672z" /></svg>
+                        <span id="generate-btn-text">Generate Copy</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="results" class="mt-12 hidden">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 fade-in">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 id="email-title" class="text-2xl font-bold">📧 Invitation Email</h3>
+                            <button onclick="copyToClipboard('email-output', 'copy-email-btn')" id="copy-email-btn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition-colors text-sm">
+                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v3.042m-7.416 0v3.042c0 .212.03.418.084.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" /></svg>
+                                <span class="btn-copy-text">Copy Text</span>
+                            </button>
+                        </div>
+                        <div id="email-output" class="prose max-w-none text-gray-700 bg-gray-50 p-4 rounded-lg"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 fade-in" style="animation-delay: 0.1s;">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 id="social-title" class="text-2xl font-bold">📱 Social Media Posts</h3>
+                            <button onclick="copyToClipboard('social-output', 'copy-social-btn')" id="copy-social-btn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition-colors text-sm">
+                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v3.042m-7.416 0v3.042c0 .212.03.418.084.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" /></svg>
+                                <span class="btn-copy-text">Copy All Posts</span>
+                           </button>
+                        </div>
+                        <div id="social-output" class="space-y-4"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="text-center py-6 text-sm text-gray-500">
+            <p id="footer-text">&copy; 2025 Evento-Copy AI. A project to accelerate VirtuAvent OS.</p>
+        </footer>
+    </div>
+    
+    <!-- Chatbot UI -->
+    <div id="chatbot-container" class="fixed bottom-5 right-5 z-50">
+        <div id="chat-window" class="chat-window w-80 h-96 bg-white rounded-2xl shadow-2xl flex flex-col hidden opacity-0 transform translate-y-2">
+            <div id="chat-header" class="bg-indigo-600 text-white p-4 rounded-t-2xl flex justify-between items-center">
+                <h3 id="chat-title" class="font-bold text-lg">AI Assistant</h3>
+                <button id="close-chat" class="text-white">&times;</button>
+            </div>
+            <div id="chat-log" class="flex-grow p-4 overflow-y-auto">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="p-4 border-t border-gray-200">
+                <form id="chat-form" class="flex space-x-2">
+                    <input type="text" id="chat-input" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Type your question...">
+                    <button type="submit" class="bg-indigo-600 text-white p-2 rounded-lg hover:bg-indigo-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <button id="chat-bubble" class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-2xl">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 5.523-4.477 10-10 10S1 17.523 1 12 5.477 2 11 2s10 4.477 10 10z"></path></svg>
+        </button>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                es: {
+                    mainTitle: "Genera el Marketing de tu Evento en Segundos",
+                    mainSubtitle: "Deja de perder tiempo con el bloqueo del escritor. Introduce los detalles de tu evento y nuestra IA creará textos persuasivos al instante.",
+                    videoText: "Ver cómo funciona en 30 segundos",
+                    labelEventName: "Nombre del Evento",
+                    labelTargetAudience: "Público Objetivo",
+                    labelEventTopic: "Tema del Evento",
+                    generateBtnText: "Generar Textos",
+                    generatingBtnText: "Generando...",
+                    emailTitle: "📧 Email de Invitación",
+                    socialTitle: "📱 Redes Sociales",
+                    copyEmailBtn: "Copiar Texto",
+                    copySocialBtn: "Copiar Textos",
+                    copied: "¡Copiado!",
+                    error: "Por favor, completa todos los campos.",
+                    footerText: "&copy; 2025 Evento-Copy AI. Un proyecto para acelerar VirtuAvent OS.",
+                    chatTitle: "Asistente AI",
+                    chatPlaceholder: "Escribe tu pregunta...",
+                    chatWelcome: "¡Hola! Soy el asistente de IA. ¿En qué puedo ayudarte hoy?",
+                    chatResponsePrice: "¡Buena pregunta! Ofrecemos acceso ilimitado de por vida por un pago único de $29.99. Pero date prisa, ¡esta oferta especial solo dura 72 horas después del lanzamiento!",
+                    chatResponseHow: "¡Es muy fácil! Simplemente introduce el nombre, público y tema de tu evento en los campos de arriba, y yo generaré al instante textos de marketing profesionales para ti.",
+                    chatResponseSupport: "Entendido. Por favor, describe tu problema y haré todo lo posible por ayudarte.",
+                    chatResponseDefault: "Gracias por tu pregunta. Soy un asistente de IA especializado en este producto. ¿Podrías reformular tu pregunta sobre el generador de textos para eventos?",
+                    emailContent: (eventName, targetAudience, eventTopic) => ({
+                        subject: `Asunto: ¡Invitación Exclusiva! ${eventName}`,
+                        body: `Hola [Nombre],<br><br>¿Te gustaría dominar <strong>${eventTopic}</strong>? Te invitamos a nuestra masterclass exclusiva, <strong>"${eventName}"</strong>, diseñada especialmente para ${targetAudience} como tú.<br><br>En este evento, descubrirás las claves para [Beneficio 1], aprenderás a [Beneficio 2] y obtendrás las herramientas para [Beneficio 3].<br><br>No te pierdas esta oportunidad única de transformar tu conocimiento.<br><br><strong>Fecha:</strong> [Fecha del evento]<br><strong>Hora:</strong> [Hora del evento]<br><br><a href="#" class="text-indigo-600 font-bold">¡Reserva tu plaza ahora!</a><br><br>Saludos,<br>[Tu Nombre]`
+                    }),
+                    socialPosts: (eventName, targetAudience, eventTopic) => [
+                        `🚀 ¿Listo para revolucionar tu forma de entender ${eventTopic}? Únete a nuestro evento "${eventName}", creado para ${targetAudience} que buscan ir un paso por delante. ¡Plazas limitadas! #evento #${eventName.replace(/\s+/g, '')} #masterclass`,
+                        `💡 Atención ${targetAudience}! Descubre los secretos de ${eventTopic} en nuestro próximo evento online: "${eventName}". Aprende de los expertos y lleva tus habilidades al siguiente nivel. ¿Te apuntas? #webinar #formacion #${eventTopic.replace(/\s+/g, '')}`,
+                        `⏰ ¡La cuenta atrás ha comenzado! No te quedes fuera de "${eventName}", el evento definitivo sobre ${eventTopic}. Si eres ${targetAudience}, esto te interesa. Regístrate ahora 👉 [Enlace de registro] #innovacion #tecnologia #oportunidad`
+                    ]
+                },
+                en: {
+                    mainTitle: "Generate Your Event Marketing in Seconds",
+                    mainSubtitle: "Stop wasting time with writer's block. Enter your event details and our AI will instantly create persuasive copy.",
+                    videoText: "See how it works in 30 seconds",
+                    labelEventName: "Event Name",
+                    labelTargetAudience: "Target Audience",
+                    labelEventTopic: "Event Topic",
+                    generateBtnText: "Generate Copy",
+                    generatingBtnText: "Generating...",
+                    emailTitle: "📧 Invitation Email",
+                    socialTitle: "📱 Social Media Posts",
+                    copyEmailBtn: "Copy Text",
+                    copySocialBtn: "Copy All Posts",
+                    copied: "Copied!",
+                    error: "Please fill in all fields.",
+                    footerText: "&copy; 2025 Evento-Copy AI. A project to accelerate VirtuAvent OS.",
+                    chatTitle: "AI Assistant",
+                    chatPlaceholder: "Type your question...",
+                    chatWelcome: "Hello! I'm the AI assistant. How can I help you today?",
+                    chatResponsePrice: "Great question! We offer lifetime unlimited access for a one-time payment of $29.99. But hurry, this special offer only lasts for 72 hours after launch!",
+                    chatResponseHow: "It's super easy! Just enter your event's name, audience, and topic in the fields above, and I'll instantly generate professional marketing copy for you.",
+                    chatResponseSupport: "I understand. Please describe your issue, and I'll do my best to assist you.",
+                    chatResponseDefault: "Thank you for your question. I am an AI assistant specializing in this product. Could you please rephrase your question about the event copy generator?",
+                    emailContent: (eventName, targetAudience, eventTopic) => ({
+                        subject: `Subject: Exclusive Invitation! ${eventName}`,
+                        body: `Hi [Name],<br><br>Would you like to master <strong>${eventTopic}</strong>? We invite you to our exclusive masterclass, <strong>"${eventName}"</strong>, designed especially for ${targetAudience} like you.<br><br>In this event, you'll discover the keys to [Benefit 1], learn how to [Benefit 2], and get the tools to [Benefit 3].<br><br>Don't miss this unique opportunity to transform your knowledge.<br><br><strong>Date:</strong> [Event Date]<br><strong>Time:</strong> [Event Time]<br><br><a href="#" class="text-indigo-600 font-bold">Reserve your spot now!</a><br><br>Best regards,<br>[Your Name]`
+                    }),
+                    socialPosts: (eventName, targetAudience, eventTopic) => [
+                        `🚀 Ready to revolutionize how you understand ${eventTopic}? Join our event "${eventName}", created for ${targetAudience} looking to stay ahead. Limited spots! #event #${eventName.replace(/\s+/g, '')} #masterclass`,
+                        `💡 Attention ${targetAudience}! Discover the secrets of ${eventTopic} in our upcoming online event: "${eventName}". Learn from the experts and take your skills to the next level. Are you in? #webinar #training #${eventTopic.replace(/\s+/g, '')}`,
+                        `⏰ The countdown has begun! Don't miss out on "${eventName}", the ultimate event on ${eventTopic}. If you're a ${targetAudience}, this is for you. Register now 👉 [Registration Link] #innovation #technology #opportunity`
+                    ]
+                }
+            };
+
+            let currentLang = 'en';
+
+            const langEsBtn = document.getElementById('lang-es');
+            const langEnBtn = document.getElementById('lang-en');
+            const generateBtn = document.getElementById('generate-btn');
+            const resultsDiv = document.getElementById('results');
+
+            // --- Chatbot elements ---
+            const chatBubble = document.getElementById('chat-bubble');
+            const chatWindow = document.getElementById('chat-window');
+            const closeChatBtn = document.getElementById('close-chat');
+            const chatLog = document.getElementById('chat-log');
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+
+
+            function setLanguage(lang) {
+                currentLang = lang;
+                const t = translations[lang];
+
+                document.documentElement.lang = lang;
+                document.getElementById('main-title').textContent = t.mainTitle;
+                document.getElementById('main-subtitle').textContent = t.mainSubtitle;
+                
+                document.getElementById('label-eventName').textContent = t.labelEventName;
+                document.getElementById('label-targetAudience').textContent = t.labelTargetAudience;
+                document.getElementById('label-eventTopic').textContent = t.labelEventTopic;
+                document.getElementById('generate-btn-text').textContent = t.generateBtnText;
+                document.getElementById('email-title').textContent = t.emailTitle;
+                document.getElementById('social-title').textContent = t.socialTitle;
+                document.querySelector('#copy-email-btn .btn-copy-text').textContent = t.copyEmailBtn;
+                document.querySelector('#copy-social-btn .btn-copy-text').textContent = t.copySocialBtn;
+
+                document.getElementById('footer-text').innerHTML = t.footerText;
+
+                // Chatbot translations
+                document.getElementById('chat-title').textContent = t.chatTitle;
+                chatInput.placeholder = t.chatPlaceholder;
+
+
+                langEsBtn.classList.toggle('active', lang === 'es');
+                langEnBtn.classList.toggle('active', lang === 'en');
+                
+                if (!resultsDiv.classList.contains('hidden')) {
+                    generateContent(false);
+                }
+            }
+
+            langEsBtn.addEventListener('click', () => setLanguage('es'));
+            langEnBtn.addEventListener('click', () => setLanguage('en'));
+
+            generateBtn.addEventListener('click', () => {
+                 generateContent(true);
+            });
+
+            function generateContent(showLoader = true) {
+                const eventName = document.getElementById('eventName').value.trim();
+                const targetAudience = document.getElementById('targetAudience').value.trim();
+                const eventTopic = document.getElementById('eventTopic').value.trim();
+
+                if (!eventName || !targetAudience || !eventTopic) {
+                    if (showLoader) alert(translations[currentLang].error);
+                    return;
+                }
+
+                const btnText = document.getElementById('generate-btn-text');
+                const originalBtnText = translations[currentLang].generateBtnText;
+                if(showLoader) {
+                    btnText.textContent = translations[currentLang].generatingBtnText;
+                    generateBtn.disabled = true;
+                }
+
+                const process = () => {
+                    const t = translations[currentLang];
+                    const email = t.emailContent(eventName, targetAudience, eventTopic);
+                    const posts = t.socialPosts(eventName, targetAudience, eventTopic);
+
+                    const emailOutput = document.getElementById('email-output');
+                    emailOutput.innerHTML = `<strong>${email.subject}</strong><br><br>${email.body}`;
+
+                    const socialOutput = document.getElementById('social-output');
+                    socialOutput.innerHTML = posts.map(post => `
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <p class="text-gray-700">${post.replace(/\n/g, '<br>')}</p>
+                        </div>
+                    `).join('');
+
+                    resultsDiv.classList.remove('hidden');
+                    
+                    if(showLoader) {
+                        btnText.textContent = originalBtnText;
+                        generateBtn.disabled = false;
+                    }
+                }
+                
+                if (showLoader) {
+                    setTimeout(process, 1000);
+                } else {
+                    process();
+                }
+            }
+            
+            window.copyToClipboard = function(elementId, btnId) {
+                const container = document.getElementById(elementId);
+                const textToCopy = container.innerText || container.textContent;
+                
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.value = textToCopy;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempTextArea);
+                
+                const copyBtn = document.getElementById(btnId);
+                const textSpan = copyBtn.querySelector('.btn-copy-text');
+                const originalText = textSpan.textContent;
+                textSpan.textContent = translations[currentLang].copied;
+                setTimeout(() => {
+                    textSpan.textContent = originalText;
+                }, 2000);
+            }
+
+            // --- Chatbot Logic ---
+            function toggleChat(show) {
+                if (show) {
+                    chatWindow.classList.remove('hidden');
+                    setTimeout(() => {
+                        chatWindow.classList.remove('opacity-0', 'translate-y-2');
+                    }, 10);
+                } else {
+                    chatWindow.classList.add('opacity-0', 'translate-y-2');
+                     setTimeout(() => {
+                        chatWindow.classList.add('hidden');
+                    }, 300);
+                }
+            }
+
+            chatBubble.addEventListener('click', () => {
+                toggleChat(true);
+                if(chatLog.children.length === 0)
+                {
+                    addBotMessage(translations[currentLang].chatWelcome);
+                }
+            });
+            closeChatBtn.addEventListener('click', () => toggleChat(false));
+            
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const userInput = chatInput.value.trim();
+                if (userInput) {
+                    addUserMessage(userInput);
+                    getBotResponse(userInput);
+                    chatInput.value = '';
+                }
+            });
+
+            function addMessage(message, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.className = `w-full flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+                messageElement.innerHTML = `<div class="max-w-[80%] p-3 rounded-lg ${sender === 'user' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-800'}">${message}</div>`;
+                chatLog.appendChild(messageElement);
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }
+
+            function addUserMessage(message) {
+                addMessage(message, 'user');
+            }
+
+            function addBotMessage(message) {
+                 setTimeout(() => {
+                    addMessage(message, 'bot');
+                }, 500);
+            }
+            
+            function getBotResponse(input) {
+                const lowerInput = input.toLowerCase();
+                const t = translations[currentLang];
+                
+                if (lowerInput.includes('precio') || lowerInput.includes('price') || lowerInput.includes('cost')) {
+                    addBotMessage(t.chatResponsePrice);
+                } else if (lowerInput.includes('cómo') || lowerInput.includes('how') || lowerInput.includes('funciona')) {
+                    addBotMessage(t.chatResponseHow);
+                } else if (lowerInput.includes('ayuda') || lowerInput.includes('soporte') || lowerInput.includes('help') || lowerInput.includes('support')) {
+                     addBotMessage(t.chatResponseSupport);
+                } else if (lowerInput.includes('hola') || lowerInput.includes('hello')) {
+                    addBotMessage(t.chatWelcome);
+                }
+                else {
+                    addBotMessage(t.chatResponseDefault);
+                }
+            }
+
+            setLanguage('en');
+        });
+    </script>
+</body>
+</html>
+
