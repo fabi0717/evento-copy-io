@@ -444,7 +444,7 @@
 
         // --- GEMINI API & OFFLINE DATA ---
         async function callGeminiAPI(prompt, isJson = false) {
-            const apiKey = "AIzaSyAVSVkl0Wt1NtOvVcuoe1gUB8MjUp6PMH8"; 
+            const apiKey = ""; 
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
             const payload = {
@@ -1252,16 +1252,15 @@
         
         function handlePayment(plan) {
             const stripeLinks = {
-                monthly: "https://buy.stripe.com/test_YOUR_MONTHLY_LINK",
-                quarterly: "https://buy.stripe.com/test_YOUR_QUARTERLY_LINK",
-                annual: "https://buy.stripe.com/test_YOUR_ANNUAL_LINK"
+                monthly: "https://buy.stripe.com/5kQ00c6PG9Yi78pekWeAg00",
+                quarterly: "https://buy.stripe.com/eVq4gsei80nI64l3GieAg01",
+                annual: "https://buy.stripe.com/cNi3cob5W7QadwN7WyeAg02"
             };
             const url = stripeLinks[plan];
-            if (url && !url.includes("YOUR_")) {
+            if (url) {
                 window.location.href = url;
             } else {
-                showMessageModal(`This is a demo. In a real app, you would be redirected to Stripe for the ${plan} plan.`);
-                console.warn(`Please replace placeholder Stripe URL for '${plan}' plan.`);
+                console.warn(`No Stripe URL found for '${plan}' plan.`);
             }
         }
         
@@ -1280,7 +1279,7 @@
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
-                const userDocRef = doc(db, `artifacts/${appId}/users/${user.uid}`);
+                const userDocRef = doc(db, `artifacts/${appId}/users/${user.uid}/data/profile`);
                 await setDoc(userDocRef, {
                     freeGenerations: 1,
                     email: user.email,
@@ -1380,7 +1379,7 @@
                         unsubscribeUserSnapshot(); // Detach old listener
                     }
                     if (user && !user.isAnonymous) {
-                        const userDocRef = doc(db, 'artifacts', appId, 'users', user.uid);
+                        const userDocRef = doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'profile');
                         unsubscribeUserSnapshot = onSnapshot(userDocRef, (docSnap) => {
                             if (docSnap.exists()) {
                                 const userData = docSnap.data();
