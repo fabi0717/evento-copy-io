@@ -122,6 +122,13 @@
 
                     <div class="mt-10 text-center"><button id="generate-btn" class="bg-indigo-600 text-white font-bold py-4 px-10 text-lg rounded-xl hover:bg-indigo-700 transition-transform transform hover:scale-105 glowing-shadow flex items-center justify-center mx-auto"><svg class="w-6 h-6 mr-3" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.672-2.672L11.25 18l1.938-.648a3.375 3.375 0 002.672-2.672L16.25 13.5l.648 1.938a3.375 3.375 0 002.672 2.672L21.75 18l-1.938.648a3.375 3.375 0 00-2.672 2.672z" /></svg><span id="generate-btn-text">Build My Strategy</span></button></div>
                 </div>
+
+                 <div id="demo-section" class="text-center">
+                     <button id="demo-btn" class="bg-indigo-600 text-white font-bold py-4 px-10 text-lg rounded-xl hover:bg-indigo-700 transition-transform transform hover:scale-105 glowing-shadow flex items-center justify-center mx-auto">
+                        <svg class="w-6 h-6 mr-3" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z"></path></svg>
+                        <span>Explore Interactive Demo</span>
+                    </button>
+                </div>
             </div>
             
             <!-- Login Page -->
@@ -141,6 +148,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-10 text-lg rounded-xl hover:bg-indigo-700 transition-transform transform hover:scale-105 glowing-shadow">Log In</button>
+                            <p class="text-xs text-slate-500 mt-4">Your account is protected by 2-factor authentication.</p>
                         </div>
                     </form>
                 </div>
@@ -172,104 +180,23 @@
                     </form>
                 </div>
             </div>
-            
-            <!-- Payment Page (Added for completeness based on translations) -->
-            <div id="payment-page" class="hidden py-16 md:py-24">
-                <div class="max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200 text-center">
-                    <h2 class="text-3xl font-bold text-slate-800 mb-2">Free Generations Limit Reached</h2>
-                    <p class="text-slate-500 mb-8">Upgrade to unlock unlimited access and generate complete marketing strategies on demand.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Monthly Plan -->
-                        <div class="p-6 border border-slate-200 rounded-xl hover:border-indigo-500 transition-all cursor-pointer plan-card" data-plan="monthly">
-                            <h3 class="font-bold text-xl mb-2">Monthly Plan</h3>
-                            <p class="text-4xl font-extrabold text-indigo-600 mb-4">$29<span class="text-base text-slate-500 font-medium">/ month</span></p>
-                            <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
-                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Unlimited Generations</li>
-                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>All Features</li>
-                            </ul>
-                            <button class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition select-plan-btn" data-plan="monthly">Choose Plan</button>
-                        </div>
-                        <!-- Quarterly Plan -->
-                        <div class="relative p-6 border-2 border-indigo-500 rounded-xl transition-all cursor-pointer plan-card selected" data-plan="quarterly">
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Popular</div>
-                            <h3 class="font-bold text-xl mb-2">Quarterly Plan</h3>
-                            <p class="text-4xl font-extrabold text-indigo-600 mb-4">$69<span class="text-base text-slate-500 font-medium">/ quarter</span></p>
-                            <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
-                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Unlimited Generations</li>
-                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>All Features</li>
-                            </ul>
-                            <button class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition select-plan-btn" data-plan="quarterly">Choose Plan</button>
-                        </div>
-                        <!-- Annual Plan -->
-                        <div class="p-6 border border-slate-200 rounded-xl hover:border-indigo-500 transition-all cursor-pointer plan-card" data-plan="annual">
-                            <h3 class="font-bold text-xl mb-2">Annual Plan</h3>
-                            <p class="text-4xl font-extrabold text-indigo-600 mb-4">$199<span class="text-base text-slate-500 font-medium">/ year</span></p>
-                            <p class="text-sm text-green-600 mb-6 font-semibold">Best Value - Save over 40%</p>
-                            <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
-                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Unlimited Generations</li>
-                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>All Features</li>
-                            </ul>
-                            <button class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition select-plan-btn" data-plan="annual">Proceed to Payment</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-             <!-- Projects Page -->
-            <div id="projects-page" class="hidden py-16 md:py-24">
-                <div class="max-w-4xl mx-auto">
-                    <div class="flex justify-between items-center mb-8">
-                         <h2 class="text-3xl font-bold text-slate-800">My Saved Projects</h2>
-                         <button id="new-project-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 text-sm rounded-lg hover:bg-indigo-700 transition">New Strategy</button>
-                    </div>
-                    <div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Project cards will be injected here -->
-                    </div>
-                </div>
-            </div>
 
-
-            <!-- Strategy Dashboard -->
-            <div id="strategy-dashboard" class="hidden w-full flex-grow py-8">
-                 <div class="bg-white rounded-2xl shadow-xl border border-slate-200 fade-in">
-                    <div class="flex justify-between items-center p-6 border-b border-slate-200">
-                        <div>
-                            <h3 id="dashboard-title" class="text-2xl font-extrabold text-gray-900"></h3>
-                            <p id="dashboard-subtitle" class="text-md text-gray-500 mt-1"></p>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                             <button id="save-strategy-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition-colors hover:bg-indigo-700">
-                                <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                                <span>Save</span>
-                            </button>
-                            <button id="export-btn" class="bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition-colors hover:bg-gray-900">
-                                <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                                <span>Export</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex">
-                        <aside id="sidebar" class="w-1/4 border-r border-slate-200 p-6">
-                            <nav id="sidebar-nav" class="flex flex-col space-y-2"></nav>
-                        </aside>
-                        <main id="dashboard-content" class="w-3/4 p-8 prose max-w-none"></main>
-                    </div>
-                </div>
-            </div>
-            
+            <div id="results" class="mt-12 w-full"></div>
         </main>
     </div>
 
-    <!-- Modal for messages -->
-    <div id="message-modal" class="modal-message">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <p id="modal-text" class="text-slate-700"></p>
+    <!-- Custom Modal for Post Details -->
+    <div id="post-detail-modal" class="modal-message">
+         <div class="modal-content">
+            <span id="close-post-modal" class="close-button">&times;</span>
+            <h4 class="text-lg font-bold mb-2" id="post-detail-title"></h4>
+            <p id="post-detail-content" class="text-gray-700 text-sm"></p>
         </div>
     </div>
     
+    <!-- Firebase Scripts -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { 
             getAuth, 
             createUserWithEmailAndPassword,
@@ -277,64 +204,10 @@
             onAuthStateChanged,
             signOut,
             signInWithCustomToken,
-            updateProfile,
-            signInAnonymously
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, setLogLevel, addDoc, collection, getDocs, Timestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         
-        // --- STATE MANAGEMENT ---
-        let state = {
-            isLoggedIn: false,
-            currentUser: null,
-            freeGenerations: 1,
-            currentPage: 'homepage',
-            campaignCache: null,
-            weekChartInstance: null,
-            budgetChartInstance: null,
-            financialModel: {
-                revenueTickets: 150000,
-                revenueSponsorships: 100000,
-                costVenue: 35000,
-                costMarketing: 30000,
-                costSpeakers: 20000
-            },
-            budgetData: {
-                labels: ['Programmatic Ads', 'Content & SEO', 'Influencer/Partner Mktg', 'Community Engagement'],
-                values: [35, 30, 20, 15]
-            }
-        };
-
-        // --- DOM ELEMENTS ---
-        const dom = {
-            pages: {
-                homepage: document.getElementById('homepage'),
-                login: document.getElementById('login-page'),
-                signup: document.getElementById('signup-page'),
-                payment: document.getElementById('payment-page'),
-                dashboard: document.getElementById('strategy-dashboard'),
-                projects: document.getElementById('projects-page'),
-            },
-            authContainer: document.getElementById('auth-container'),
-            logoBtn: document.getElementById('logo-btn'),
-            generateBtn: document.getElementById('generate-btn'),
-            generatorSection: document.getElementById('generator-section'),
-            generationsCounter: document.getElementById('generations-counter-container'),
-            loginForm: document.getElementById('login-form'),
-            signupForm: document.getElementById('signup-form'),
-            dashboardTitle: document.getElementById('dashboard-title'),
-            dashboardSubtitle: document.getElementById('dashboard-subtitle'),
-            sidebarNav: document.getElementById('sidebar-nav'),
-            dashboardContent: document.getElementById('dashboard-content'),
-            exportBtn: document.getElementById('export-btn'),
-            messageModal: document.getElementById('message-modal'),
-            modalText: document.getElementById('modal-text'),
-            closeModalBtn: document.querySelector('.close-button'),
-            projectsList: document.getElementById('projects-list'),
-            newProjectBtn: document.getElementById('new-project-btn'),
-        };
-
-        // --- FIREBASE CONFIG ---
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        // --- CONFIG & INITIALIZATION (Firebase, DOM, State) ---
         const firebaseConfig = typeof __firebase_config !== 'undefined' 
             ? JSON.parse(__firebase_config)
             : { apiKey: "YOUR_API_KEY", authDomain: "YOUR_AUTH_DOMAIN", projectId: "YOUR_PROJECT_ID" };
@@ -342,27 +215,47 @@
         const isFirebaseConfigured = firebaseConfig && firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY";
         const app = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
         const auth = isFirebaseConfigured ? getAuth(app) : null;
-        const db = isFirebaseConfigured ? getFirestore(app) : null;
-        if(db) setLogLevel('debug');
+
+        const homepage = document.getElementById('homepage');
+        const loginPage = document.getElementById('login-page');
+        const signupPage = document.getElementById('signup-page');
+        const resultsPage = document.getElementById('results');
+        const authContainer = document.getElementById('auth-container');
+        const generatorSection = document.getElementById('generator-section');
+        const demoSection = document.getElementById('demo-section');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const logoBtn = document.getElementById('logo-btn');
+        const generateBtn = document.getElementById('generate-btn');
+        const demoBtn = document.getElementById('demo-btn');
+        const postDetailModal = document.getElementById('post-detail-modal');
+        const closePostModal = document.getElementById('close-post-modal');
         
-        let unsubscribeUserSnapshot = null;
-
-        // --- UI, PAGE, & LANGUAGE MANAGEMENT ---
-        const showMessageModal = (text) => {
-            dom.modalText.textContent = text;
-            dom.messageModal.style.display = 'flex';
+        let weekChartInstance = null;
+        let budgetChartInstance = null;
+        let currentUser = null; 
+        
+        let financialModel = {
+            revenueTickets: 150000,
+            revenueSponsorships: 100000,
+            costVenue: 35000,
+            costMarketing: 30000,
+            costSpeakers: 20000
         };
 
-        const showPage = (pageName) => {
-            state.currentPage = pageName;
-            Object.values(dom.pages).forEach(page => page.classList.add('hidden'));
-            if (dom.pages[pageName]) {
-                dom.pages[pageName].classList.remove('hidden');
-                dom.pages[pageName].classList.add('fade-in');
-            }
+        let budgetData = {
+            labels: ['Programmatic Ads', 'Content & SEO', 'Influencer/Partner Mktg', 'Community Engagement'],
+            values: [35, 30, 20, 15]
         };
+        let campaignCache = null;
 
-        function showAuthMessage(form, text, isError = false) {
+        // --- AUTHENTICATION & UI MANAGEMENT ---
+        function showPage(pageToShow) {
+            [homepage, loginPage, signupPage, resultsPage].forEach(page => page.classList.add('hidden'));
+            if (pageToShow) pageToShow.classList.remove('hidden');
+        }
+
+        function showMessage(form, text, isError = false) {
             const messageEl = document.getElementById(`${form}-message`);
             if (messageEl) {
                 messageEl.textContent = text;
@@ -370,89 +263,55 @@
             }
         }
         
-        async function showProjectsPage() {
-            if (!state.currentUser) return;
-            showPage('projects');
-            dom.projectsList.innerHTML = '<p>Loading projects...</p>';
-
-            try {
-                const projectsCollectionRef = collection(db, `artifacts/${appId}/users/${state.currentUser.uid}/projects`);
-                const q = query(projectsCollectionRef, orderBy("savedAt", "desc"));
-                const querySnapshot = await getDocs(q);
-                dom.projectsList.innerHTML = ''; // Clear loading message
-                if (querySnapshot.empty) {
-                    dom.projectsList.innerHTML = '<p>You have no saved projects yet.</p>';
-                    return;
-                }
-                querySnapshot.forEach((doc) => {
-                    const project = doc.data();
-                    const card = document.createElement('div');
-                    card.className = 'bg-white p-4 rounded-lg shadow-md border border-slate-200 cursor-pointer hover:shadow-lg transition-shadow';
-                    card.innerHTML = `
-                        <h3 class="font-bold text-lg text-slate-800">${project.eventName}</h3>
-                        <p class="text-sm text-slate-500">Saved: ${project.savedAt.toDate().toLocaleDateString()}</p>
-                    `;
-                    card.addEventListener('click', () => loadProject(doc.id));
-                    dom.projectsList.appendChild(card);
-                });
-            } catch (error) {
-                console.error("Error fetching projects: ", error);
-                dom.projectsList.innerHTML = '<p class="text-red-500">Could not load projects. Please try again later.</p>';
-            }
+        function renderLoggedOutState() {
+             currentUser = null;
+             authContainer.innerHTML = `<a href="#" id="nav-login-btn" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Log In</a><a href="#" id="nav-signup-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-indigo-700 transition">Sign Up</a>`;
+             document.getElementById('nav-login-btn').addEventListener('click', (e) => { e.preventDefault(); showPage(loginPage); });
+             document.getElementById('nav-signup-btn').addEventListener('click', (e) => { e.preventDefault(); showPage(signupPage); });
+             generatorSection.classList.add('hidden');
+             demoSection.classList.remove('hidden');
+             showPage(homepage);
         }
 
-        // --- AUTHENTICATION ---
-        const renderAuthState = (user) => {
-            state.currentUser = user;
-            dom.authContainer.innerHTML = '';
-            if (user && !user.isAnonymous) {
-                state.isLoggedIn = true;
-                dom.authContainer.innerHTML = `
-                    <button id="my-projects-btn" class="text-sm font-semibold text-slate-600 hover:text-slate-900">My Projects</button>
-                    <span class="text-sm font-medium text-slate-400">|</span>
-                    <span class="text-sm font-medium text-slate-600">Welcome, ${user.displayName || (user.email ? user.email.split('@')[0] : 'User')}!</span>
-                    <button id="logout-btn" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">Log Out</button>`;
-                
-                dom.authContainer.querySelector('#logout-btn').addEventListener('click', () => {
-                    if (auth) signOut(auth);
-                });
-                dom.authContainer.querySelector('#my-projects-btn').addEventListener('click', showProjectsPage);
+        function updateUIManually(user) {
+            currentUser = user;
+            authContainer.innerHTML = `<span class="text-sm font-medium text-slate-600">Welcome, ${user.displayName || user.email}!</span><button id="logout-btn" class="bg-slate-200 text-slate-700 font-semibold py-2 px-4 rounded-lg text-sm hover:bg-slate-300 transition">Log Out</button>`;
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                currentUser = null; 
+                if (isFirebaseConfigured) signOut(auth);
+                else renderLoggedOutState();
+            });
+            demoSection.classList.add('hidden');
+            generatorSection.classList.remove('hidden');
+            showPage(homepage);
+        }
 
-
-                dom.generatorSection.classList.remove('hidden');
-
-                if (state.freeGenerations > 0) {
-                    const generationsText = state.freeGenerations === 1 ? '1 free generation left' : `${state.freeGenerations} free generations left`;
-                    dom.generationsCounter.innerHTML = `<p>${generationsText}</p><div class="w-full bg-slate-200 rounded-full h-1.5 mt-1"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: ${state.freeGenerations * 100}%"></div></div>`;
+        if (isFirebaseConfigured) {
+            onAuthStateChanged(auth, user => {
+                if(user) {
+                    updateUIManually(user);
                 } else {
-                    dom.generationsCounter.innerHTML = '';
+                    renderLoggedOutState();
                 }
-
-
-            } else {
-                state.isLoggedIn = false;
-                state.freeGenerations = 1;
-                dom.authContainer.innerHTML = `
-                    <button id="nav-login-btn" class="text-sm font-semibold text-slate-600 hover:text-slate-900">Log In</button>
-                    <button id="nav-signup-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 text-sm rounded-lg hover:bg-indigo-700 transition">Sign Up</button>`;
-                
-                dom.authContainer.querySelector('#nav-login-btn').addEventListener('click', () => showPage('login'));
-                dom.authContainer.querySelector('#nav-signup-btn').addEventListener('click', () => showPage('signup'));
-                
-                dom.generatorSection.classList.add('hidden');
+            });
+            if (initialAuthToken) {
+                signInWithCustomToken(auth, initialAuthToken).catch(err => console.error("Token sign-in failed:", err));
             }
-             if(state.currentPage === 'dashboard') showPage('homepage');
-        };
+        } else {
+            console.warn("Firebase not configured. Running in demo mode.");
+            renderLoggedOutState();
+        }
 
-        // --- GEMINI API & OFFLINE DATA ---
+        // --- GEMINI API INTEGRATION ---
         async function callGeminiAPI(prompt, isJson = false) {
-            const apiKey = "AIzaSyAVSVkl0Wt1NtOvVcuoe1gUB8MjUp6PMH8"; 
+            const apiKey = "AIzaSyAVSVkl0Wt1NtOvVcuoe1gUB8MjUp6PMH8";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
+            
             const payload = {
                 contents: [{ parts: [{ text: prompt }] }],
+                tools: [{ "google_search": {} }],
             };
-            
+
             if(isJson){
                 payload.generationConfig = {
                     responseMimeType: "application/json",
@@ -475,7 +334,7 @@
             
             const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
             if (!response.ok) {
-                let errorBody = await response.text();
+                 let errorBody = await response.text();
                 try {
                     const errorJson = JSON.parse(errorBody);
                     const detailedMessage = errorJson.error?.message || JSON.stringify(errorJson);
@@ -490,110 +349,128 @@
             return text;
         }
 
+        // --- OFFLINE/DEMO DYNAMIC DATA GENERATION (FALLBACK) ---
+        function getOfflineCampaignData(eventName, targetAudience, eventTopic) {
+             const competitorBase = eventTopic.split(" ").slice(-1)[0] || "Tech";
+             const audienceAdjective = targetAudience.split(" ")[0];
+             const eventKeywords = `${eventName} ${targetAudience} ${eventTopic}`.toLowerCase();
+             
+             let swot = {
+                strengths: [`Hyper-focused niche on '${eventTopic}'`, `Direct access to a curated audience of ${targetAudience}`],
+                weaknesses: ["New event brand lacks historical credibility", "Dependent on securing top-tier speakers to draw initial crowd"],
+                opportunities: [`High market appetite for knowledge on ${eventTopic}`, `Forming strategic alliances with established firms targeting ${targetAudience}`],
+                threats: [`Larger, more established tech conferences adding '${eventTopic}' tracks`, `Rapid shifts in technology could make content obsolete if not agile`]
+             };
+
+             if (eventKeywords.includes('ai') || eventKeywords.includes('artificial intelligence')) {
+                swot.strengths.push("Positioned at the forefront of a major tech trend");
+                swot.threats.push("Public perception and ethical concerns around AI");
+             }
+             if (eventKeywords.includes('health') || eventKeywords.includes('medical')) {
+                swot.opportunities.push("Partnering with medical institutions and research bodies");
+                swot.threats.push("Strict regulatory and compliance hurdles (e.g., HIPAA)");
+             }
+
+             let socialPlatforms = [
+                { platform: "LinkedIn", phase: "Pre-Launch", copy: `Is your organization truly prepared for the impact of ${eventTopic}? We're bringing together top ${targetAudience} to build the playbook at ${eventName}. This isn't another webinar; it's a strategy session. #${eventName.replace(/\s/g, '')} ` },
+                { platform: "Twitter", phase: "Launch", copy: `1/ Most leaders get ${eventTopic} wrong. They focus on X, but the real opportunity is Y. Here's why. A thread for ${targetAudience}. #${competitorBase}` },
+             ];
+
+             if (eventKeywords.includes('gamer') || eventKeywords.includes('esports') || eventKeywords.includes('gaming')) {
+                socialPlatforms = [
+                    { platform: "Twitch", phase: "Launch", copy: `We're going live with a pro player to talk about ${eventTopic}! Get ready for exclusive insights and giveaways. Don't miss the stream for the ${eventName}. #esports #${eventName.replace(/\s/g, '')}`},
+                    { platform: "Discord", phase: "Pre-Launch", copy: `Join the official Discord for ${eventName}! Get early access to announcements, connect with other attendees, and participate in pre-event AMAs with our speakers. Link in bio! #gamingcommunity`},
+                    { platform: "TikTok", phase: "Launch", copy: `Unpacking the biggest myths about ${eventTopic} in 60 seconds. You won't believe #3. Get the full story at ${eventName}. #techtok #gaming`},
+                ];
+             }
+
+
+            return {
+                eventName, targetAudience, eventTopic,
+                objective: `To establish <strong>${eventName}</strong> as the premier thought-leadership event for <strong>${targetAudience}</strong> on the strategic implementation of <strong>${eventTopic}</strong>.`,
+                kpis: [
+                    { title: "Qualified Leads", value: `${Math.floor(Math.random() * 500) + 1000}+` },
+                    { title: "Audience Engagement", value: `${Math.floor(Math.random() * 10) + 25}%+` },
+                    { title: "Press Mentions", value: `${Math.floor(Math.random() * 25) + 50}+` },
+                    { title: "Partner Crossovers", value: `${Math.floor(Math.random() * 5) + 8}+` }
+                ],
+                strategies: [
+                    { title: "Content Dominance", desc: `Become the #1 source for actionable insights on '${eventTopic}' through premium content pre- and post-event.`, color: "text-indigo-600" },
+                    { title: "Executive Networking", desc: `Create exclusive, high-value networking opportunities for ${targetAudience} to foster meaningful connections.`, color: "text-green-600" },
+                    { title: "Data-Driven Urgency", desc: "Use market data and trend insights to create a compelling narrative about why this event is unmissable right now.", color: "text-sky-600" }
+                ],
+                swot: swot,
+                competitors: [
+                    { name: `${competitorBase} World ${new Date().getFullYear()}`, differentiator: "Broader focus, less executive-level depth", advantage: `Our event is curated for deep, strategic discussion among ${targetAudience}` },
+                    { name: `Future of ${audienceAdjective} Summit`, differentiator: "More general, less focused on the specifics of " + eventTopic, advantage: `Our specialized focus on ${eventTopic} provides more tangible, immediate value` }
+                ],
+                persona: {
+                    title: `The ${audienceAdjective} Innovator`,
+                    demographics: "Age 45-58, C-Level or Senior VP, likely holds an MBA or advanced degree in their field.",
+                    goals: `Find actionable strategies to implement ${eventTopic} for a competitive edge, network with peers facing similar challenges.`,
+                    painPoints: `Sifting through hype vs. reality of ${eventTopic}, justifying ROI on new tech initiatives, fear of being outpaced by more agile competitors.`
+                },
+                timeline: [
+                    { title: "Pre-Launch: Announce & Vision", guideline: "Launch with a strong vision paper on the future of the topic and its impact. Open super early-bird registration.", focus: [40, 50, 10], keyActions: ["Finalize branding", "Publish vision paper", "Launch landing page"] },
+                    { title: "Launch: Keynote & Agenda Reveal", guideline: "Announce and heavily promote the main keynote speaker and detailed agenda, leveraging credibility and value.", focus: [30, 40, 30], keyActions: ["Secure speaker contract", "Run PR campaign for announcement", "Schedule social media interviews"] },
+                    { title: "Post-Launch: Urgency & Conversion", guideline: "Highlight 'low ticket' warnings, showcase confirmed attendees (with permission), and run final ad campaigns to maximize sales.", focus: [70, 10, 20], keyActions: ["Launch countdown ads", "Publish 'Why you can't miss this' blog post", "Final email push"] }
+                ],
+                emails: [
+                    { title: "Email 1: The Strategic Invitation", subject: `Invitation: A Strategic Dialogue on ${eventTopic} for ${targetAudience}`, body: `<p>As a key figure among ${targetAudience}, you understand the challenges and opportunities presented by ${eventTopic}. That is why I'm personally inviting you to the ${eventName}, an executive summit designed for strategic discussion, not just observation.</p>`, phase: "Pre-Launch" },
+                    { title: "Email 2: The Value Preview", subject: `[Whitepaper] The ROI of ${eventTopic} for Industry Leaders`, body: `<p>To provide a glimpse of the value offered at ${eventName}, we've prepared an exclusive whitepaper on calculating the ROI of implementing strategies related to ${eventTopic}.</p>`, phase: "Launch" },
+                    { title: "Email 3: Final Call", subject: `Final call for ${eventName}`, body: `<p>The opportunity to join a curated group of ${targetAudience} to define the future of ${eventTopic} is closing. Secure your position at the table.</p>`, phase: "Post-Launch" }
+                ],
+                social: socialPlatforms
+            };
+        }
+
         // --- CORE APPLICATION LOGIC (Workspace Generation) ---
-        async function generateContent() {
-            if (!state.currentUser) { 
+        async function generateContent(isDemo = false) {
+            if (!currentUser && !isDemo) { 
                 showPage('signup'); 
                 return;
             }
 
-            if (state.freeGenerations <= 0) {
-                showPage('payment');
-                return;
-            }
-
-            const eventName = document.getElementById('eventName').value.trim();
-            const targetAudience = document.getElementById('targetAudience').value.trim();
-            const eventTopic = document.getElementById('eventTopic').value.trim();
+            const eventName = isDemo ? "AI Innovation Congress" : document.getElementById('eventName').value.trim();
+            const targetAudience = isDemo ? "Tech Executives & VCs" : document.getElementById('targetAudience').value.trim();
+            const eventTopic = isDemo ? "The Future of Generative AI" : document.getElementById('eventTopic').value.trim();
             
             if (!eventName || !targetAudience || !eventTopic) return;
             
-            const btn = dom.generateBtn;
+            const btn = isDemo ? demoBtn : generateBtn;
             const btnText = btn.querySelector('span');
             const originalBtnText = btnText.textContent;
-            btnText.textContent = "Generating...";
+            btnText.textContent = "Building Strategy...";
             btn.disabled = true;
 
-            if (state.weekChartInstance) state.weekChartInstance.destroy();
-            if (state.budgetChartInstance) state.budgetChartInstance.destroy();
+            if (weekChartInstance) weekChartInstance.destroy();
+            if (budgetChartInstance) budgetChartInstance.destroy();
 
             try {
                 const systemPrompt = "You are an expert marketing strategist AI. Your task is to generate a comprehensive, presentation-ready marketing workspace based on a user's event concept. The output must be a valid JSON object only, with no other text before or after it. Use real-world data and insights for your analysis.";
                 const userQuery = `Generate a detailed marketing plan in English for an event named "${eventName}" targeting "${targetAudience}" with the key topic of "${eventTopic}". Ensure the content is unique, insightful, and actionable.`;
                 const fullPrompt = `${systemPrompt}\n\n${userQuery}`;
                 const jsonText = await callGeminiAPI(fullPrompt, true);
-                state.campaignCache = JSON.parse(jsonText);
-                
-                if (state.currentUser && db) {
-                    const newCount = Math.max(0, state.freeGenerations - 1);
-                    const userDocRef = doc(db, `artifacts/${appId}/users/${state.currentUser.uid}/data/profile`);
-                    await updateDoc(userDocRef, {
-                        freeGenerations: newCount
-                    });
-                }
-                renderDashboard(state.campaignCache);
-
+                campaignCache = JSON.parse(jsonText);
+                renderResults(campaignCache);
             } catch (error) {
-                console.error("Content generation failed:", error);
-                showMessageModal("Could not connect to the AI service. Please check your connection and API key, then try again.");
+                console.warn("Live AI generation failed, falling back to offline demo mode. Error:", error);
+                alert("Could not connect to the live AI service. Displaying a high-quality offline demonstration instead.");
+                campaignCache = getOfflineCampaignData(eventName, targetAudience, eventTopic);
+                renderResults(campaignCache);
             } finally {
                 btnText.textContent = originalBtnText;
                 btn.disabled = false;
             }
         }
         
-        // --- DASHBOARD RENDERING LOGIC ---
-        async function saveStrategy() {
-            if (!state.currentUser || !state.campaignCache) {
-                showMessageModal("You must be logged in and have an active strategy to save.");
-                return;
-            }
-            const saveButton = document.getElementById('save-strategy-btn');
-            saveButton.disabled = true;
-            saveButton.querySelector('span').textContent = 'Saving...';
-            
-            try {
-                const projectsCollectionRef = collection(db, `artifacts/${appId}/users/${state.currentUser.uid}/projects`);
-                await addDoc(projectsCollectionRef, {
-                    ...state.campaignCache,
-                    savedAt: Timestamp.now()
-                });
-                showMessageModal("Strategy saved successfully!");
-            } catch (error) {
-                console.error("Error saving strategy:", error);
-                showMessageModal("Could not save strategy. Please try again.");
-            } finally {
-                 saveButton.disabled = false;
-                 saveButton.querySelector('span').textContent = 'Save';
-            }
-        }
-
-       
-
-        async function loadProject(projectId) {
-            if (!state.currentUser) return;
-            try {
-                const projectDocRef = doc(db, `artifacts/${appId}/users/${state.currentUser.uid}/projects`, projectId);
-                const docSnap = await getDoc(projectDocRef);
-                if (docSnap.exists()) {
-                    state.campaignCache = docSnap.data();
-                    renderDashboard(state.campaignCache);
-                } else {
-                    showMessageModal("Project not found.");
-                }
-            } catch (error) {
-                console.error("Error loading project:", error);
-                showMessageModal("Could not load the selected project.");
-            }
-        }
-
-
-        function renderDashboard(campaign) {
+        function renderResults(campaign) {
             const { eventName, targetAudience } = campaign;
-            showPage('dashboard');
+            resultsPage.innerHTML = `<div class="bg-white rounded-2xl shadow-xl border border-slate-200 fade-in"><div class="flex justify-between items-center p-6 border-b border-slate-200"><div><h3 id="campaign-title-output" class="text-2xl font-extrabold text-gray-900"></h3><p id="campaign-subtitle-output" class="text-md text-gray-500 mt-1"></p></div><button id="download-btn" class="bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition-colors hover:bg-gray-900"><svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg><span>Download PDF</span></button></div><div class="flex"><aside id="sidebar" class="w-1/4 border-r border-slate-200 p-6"><nav id="tabs" class="flex flex-col space-y-2"></nav></aside><main id="tab-contents" class="w-3/4 p-8 prose max-w-none"></main></div></div>`;
+            showPage('results');
             
-            dom.dashboardTitle.textContent = `Marketing Workspace: ${eventName}`;
-            dom.dashboardSubtitle.textContent = `A comprehensive strategy targeting ${targetAudience}.`;
+            document.getElementById('campaign-title-output').textContent = `Marketing Workspace: ${eventName}`;
+            document.getElementById('campaign-subtitle-output').textContent = `A comprehensive strategy targeting ${targetAudience}.`;
 
             const tabsData = {
                 proposal:{label: "Strategic Proposal", icon:'<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />'},
@@ -603,7 +480,7 @@
                 social:{label: "Content Command Center", icon:'<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18" />'}
             };
 
-            const tabsContainer = dom.sidebarNav;
+            const tabsContainer = document.getElementById('tabs');
             tabsContainer.innerHTML = ''; // Clear previous tabs
             Object.keys(tabsData).forEach((key, index) => {
                 const button = document.createElement('button');
@@ -619,19 +496,17 @@
                 tabsContainer.appendChild(button);
             });
             
-            document.getElementById('save-strategy-btn').addEventListener('click', saveStrategy);
-
             renderTabContent('proposal', campaign);
         }
 
         function renderTabContent(key, campaign) {
-            const container = dom.dashboardContent;
+            const container = document.getElementById('tab-contents');
             if (!container) return;
             container.innerHTML = `<div id="tab-${key}" class="tab-content active fade-in"></div>`;
             const contentContainer = document.getElementById(`tab-${key}`);
 
             if (key === 'proposal') {
-                const kpisHTML = `<h4>Key Performance Indicators (KPIs)</h4><div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">${campaign.kpis.map(kpi => `<div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center"><div class="text-sm text-gray-500 font-medium">${kpi.title}</div><div class="text-2xl font-bold text-gray-900 mt-1">${kpi.value}</div></div>`).join('')}</div>`;
+                const kpisHTML = `<h4>Key Performance Indicators (KPIs)</h4><div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">${campaign.kpis.map(kpi => `<div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center"><div class="text-sm text-gray-500 font-medium">${kpi.title}</div><div class="text-3xl font-bold text-gray-900 mt-1">${kpi.value}</div></div>`).join('')}</div>`;
                 const strategiesHTML = `<h4>Strategic Approaches</h4><div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">${campaign.strategies.map((s,i) => `<div class="strategy-card border-2 p-4 rounded-lg cursor-pointer ${i === 0 ? 'selected' : ''}" data-strategy="${s.title}"><strong class="block ${s.color || 'text-indigo-600'}">${s.title}</strong><p class="text-sm">${s.desc}</p></div>`).join('')}</div>`;
                 const swotHTML = `<h4>SWOT Analysis</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2"><div class="bg-green-50 p-3 rounded-lg border border-green-200"><strong class="text-green-700">Strengths:</strong><ul class="list-disc pl-5 mt-1 text-sm">${campaign.swot.strengths.map(i => `<li>${i}</li>`).join('')}</ul></div><div class="bg-red-50 p-3 rounded-lg border border-red-200"><strong class="text-red-700">Weaknesses:</strong><ul class="list-disc pl-5 mt-1 text-sm">${campaign.swot.weaknesses.map(i => `<li>${i}</li>`).join('')}</ul></div><div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><strong class="text-blue-700">Opportunities:</strong><ul class="list-disc pl-5 mt-1 text-sm">${campaign.swot.opportunities.map(i => `<li>${i}</li>`).join('')}</ul></div><div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200"><strong class="text-yellow-700">Threats:</strong><ul class="list-disc pl-5 mt-1 text-sm">${campaign.swot.threats.map(i => `<li>${i}</li>`).join('')}</ul></div></div>`;
                 const competitorsHTML = `<h4>Competitive Landscape</h4><table class="w-full mt-2 text-sm text-left"><thead><tr class="border-b"><th class="p-2">Competitor</th><th class="p-2">Key Differentiator</th><th class="p-2">Our Advantage</th></tr></thead><tbody>${campaign.competitors.map(c => `<tr class="border-b"><td class="p-2 font-semibold">${c.name}</td><td class="p-2">${c.differentiator}</td><td class="p-2">${c.advantage}</td></tr>`).join('')}</tbody></table>`;
@@ -645,7 +520,7 @@
                     }
                 });
             } else if (key === 'businessStrategy') {
-                contentContainer.innerHTML = `
+                 contentContainer.innerHTML = `
                     <h3>Business Strategy Plan</h3>
                     <h4>Interactive Financial Projections & ROI</h4>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 items-start">
@@ -654,11 +529,11 @@
                             <strong class="text-green-800 text-lg">Projected Revenue</strong>
                             <div>
                                 <label class="text-sm font-medium">Ticket Sales ($)</label>
-                                <input type="number" id="revenue-tickets" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.revenueTickets}" step="1000">
+                                <input type="number" id="revenue-tickets" class="financial-input w-full p-1 border-gray-300 rounded" value="${financialModel.revenueTickets}" step="1000">
                             </div>
                             <div>
                                 <label class="text-sm font-medium">Sponsorships ($)</label>
-                                <input type="number" id="revenue-sponsorships" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.revenueSponsorships}" step="1000">
+                                <input type="number" id="revenue-sponsorships" class="financial-input w-full p-1 border-gray-300 rounded" value="${financialModel.revenueSponsorships}" step="1000">
                             </div>
                             <div class="text-right font-bold">Total: <span id="total-revenue">$250,000</span></div>
                         </div>
@@ -667,15 +542,15 @@
                             <strong class="text-red-800 text-lg">Estimated Costs</strong>
                             <div>
                                 <label class="text-sm font-medium">Venue & Logistics ($)</label>
-                                <input type="number" id="cost-venue" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.costVenue}" step="1000">
+                                <input type="number" id="cost-venue" class="financial-input w-full p-1 border-gray-300 rounded" value="${financialModel.costVenue}" step="1000">
                             </div>
                             <div>
                                 <label class="text-sm font-medium">Marketing & Ads ($)</label>
-                                <input type="number" id="cost-marketing" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.costMarketing}" step="1000">
+                                <input type="number" id="cost-marketing" class="financial-input w-full p-1 border-gray-300 rounded" value="${financialModel.costMarketing}" step="1000">
                             </div>
                             <div>
                                 <label class="text-sm font-medium">Speakers & Talent ($)</label>
-                                <input type="number" id="cost-speakers" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.costSpeakers}" step="1000">
+                                <input type="number" id="cost-speakers" class="financial-input w-full p-1 border-gray-300 rounded" value="${financialModel.costSpeakers}" step="1000">
                             </div>
                             <div class="text-right font-bold">Total: <span id="total-costs">$85,000</span></div>
                         </div>
@@ -713,7 +588,7 @@
                             </div>
                         </div>
                     </div>
-                      <h4>Risk Mitigation Matrix</h4>
+                     <h4>Risk Mitigation Matrix</h4>
                     <table class="w-full mt-4 text-sm text-left">
                         <thead class="bg-slate-100"><tr><th class="p-2">Potential Risk</th><th class="p-2">Impact</th><th class="p-2">Mitigation Strategy (Solution)</th></tr></thead>
                         <tbody>
@@ -725,9 +600,9 @@
                 `;
                 initializeFinancials();
             } else if (key === 'plan') {
-                contentContainer.innerHTML = `
+                 contentContainer.innerHTML = `
                     <h3>Tactical Plan</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
                             <h4>Dynamic Funnel Projection</h4>
                             <div class="bg-slate-100 p-4 rounded-lg mt-4">
@@ -770,7 +645,7 @@
                     </div>
 
                     <h4>Interactive Launch Timeline</h4>
-                      <div class="my-4 flex justify-end">
+                     <div class="my-4 flex justify-end">
                         <div class="flex space-x-2 rounded-lg bg-gray-200 p-1" id="timeline-controls">
                             <button data-view="weeks" class="timeline-view-btn bg-white rounded-md py-1 px-3 text-sm font-semibold">Weeks</button>
                             <button data-view="months" class="timeline-view-btn py-1 px-3 text-sm font-semibold">Months</button>
@@ -802,7 +677,7 @@
         }
 
         async function rewriteEmail(button, index) {
-            if(!state.currentUser) {
+            if(!currentUser) {
                 showPage('signup');
                 return;
             }
@@ -812,7 +687,8 @@
             const subject = card.querySelector('.email-subject').textContent;
             const body = card.querySelector('.email-body').innerHTML;
 
-            const { eventName, targetAudience, eventTopic, persona } = state.campaignCache;
+            const { eventName, targetAudience, eventTopic } = campaignCache;
+            const { persona } = campaignCache;
 
             const prompt = `You are an expert email marketer. Rewrite the following email body to be more persuasive and impactful.
             Context:
@@ -830,7 +706,7 @@
                 card.querySelector('.email-body').innerHTML = newBody;
             } catch (error) {
                 console.error("Rewrite failed:", error);
-                showMessageModal("AI rewrite failed. Please try again.");
+                alert("AI rewrite failed. Please try again.");
             } finally {
                 button.textContent = "Rewrite with AI";
                 button.disabled = false;
@@ -838,7 +714,7 @@
         }
         
         function copyEmailToClipboard(button, index) {
-            const emailCard = button.closest('.email-card');
+           const emailCard = button.closest('.email-card');
             const subject = emailCard.querySelector('.email-subject').textContent;
             const body = emailCard.querySelector('.email-body').innerText; // Use innerText for plain text copy
             
@@ -886,8 +762,8 @@
         }
         
         async function rewritePost(button, index) {
-            if(!state.currentUser) {
-                showPage('signup');
+            if(!currentUser) {
+                showPage(signupPage);
                 return;
             }
             button.textContent = "Rewriting...";
@@ -896,13 +772,13 @@
             const postContentEl = card.querySelector('.social-post-copy');
             const originalPost = postContentEl.textContent;
             
-            const prompt = `Rewrite this social media post for a ${state.campaignCache.persona.title} audience. Make it more engaging. Original post: "${originalPost}"`;
+            const prompt = `Rewrite this social media post for a ${campaignCache.persona.title} audience. Make it more engaging. Original post: "${originalPost}"`;
             try {
                 const newPost = await callGeminiAPI(prompt, false);
                 postContentEl.textContent = newPost;
             } catch (error) {
                 console.error("Post rewrite failed", error);
-                showMessageModal("AI rewrite failed. Please try again.");
+                alert("AI rewrite failed. Please try again.");
                 postContentEl.textContent = originalPost;
             } finally {
                 button.textContent = "Rewrite with AI";
@@ -911,8 +787,8 @@
         }
         
         async function generateImageIdea(button, index) {
-            if(!state.currentUser) {
-                showPage('signup');
+             if(!currentUser) {
+                showPage(signupPage);
                 return;
             }
             button.textContent = "Generating...";
@@ -927,7 +803,7 @@
                 ideaEl.textContent = idea;
             } catch (error) {
                 console.error("Image idea generation failed", error);
-                showMessageModal("AI image idea failed. Please try again.");
+                alert("AI image idea failed. Please try again.");
             } finally {
                 button.textContent = "Generate Image Idea";
                 button.disabled = false;
@@ -941,7 +817,7 @@
             const timeInput = card.querySelector('.post-time').value;
 
             if (!dateInput || !timeInput) {
-                showMessageModal("Please set a date and time for the post.");
+                alert("Please set a date and time for the post.");
                 return;
             }
 
@@ -958,7 +834,7 @@
                 `DTSTAMP:${toUTC(new Date())}`,
                 `DTSTART:${toUTC(startDateTime)}`,
                 `DTEND:${toUTC(endDateTime)}`,
-                `SUMMARY:Social Media Post: ${state.campaignCache.social[index].platform}`,
+                `SUMMARY:Social Media Post: ${campaignCache.social[index].platform}`,
                 `DESCRIPTION:${postContent.replace(/\n/g, '\\n')}`,
                 'END:VEVENT',
                 'END:VCALENDAR'
@@ -979,7 +855,6 @@
         function renderSocialStrategy(campaign) {
             const container = document.getElementById('social-content-cards');
             const today = new Date();
-            if(!container) return;
             container.innerHTML = campaign.social.map((post, index) => {
                 today.setDate(today.getDate() + 2); // Stagger posts
                 return `
@@ -987,12 +862,12 @@
                     <div class="p-4 bg-slate-50 rounded-t-lg border-b flex justify-between items-center">
                         <div class="flex items-center space-x-2">
                              <span class="font-bold text-lg" contenteditable="true">${post.platform} Post</span>
-                             <span class="text-xs font-semibold uppercase text-indigo-600 bg-indigo-100 rounded-full px-2 py-1">${post.phase} Phase</span>
-                            <select class="status-select text-sm font-medium border-gray-300 rounded-md p-1 focus:ring-indigo-500 focus:border-indigo-500">
+                              <span class="text-xs font-semibold uppercase text-indigo-600 bg-indigo-100 rounded-full px-2 py-1">${post.phase} Phase</span>
+                             <select class="status-select text-sm font-medium border-gray-300 rounded-md p-1 focus:ring-indigo-500 focus:border-indigo-500">
                                  <option>Draft</option>
                                  <option>Scheduled</option>
                                  <option>Published</option>
-                            </select>
+                             </select>
                         </div>
                         <div class="flex items-center space-x-2 text-sm">
                            <input type="date" value="${today.toISOString().split('T')[0]}" class="post-date border-gray-300 rounded-md p-1">
@@ -1009,7 +884,7 @@
                             <div class="visual-idea-content p-2 border rounded bg-slate-50 min-h-[150px] text-sm text-slate-600">Click the button to generate a visual concept...</div>
                         </div>
                     </div>
-                      <div class="p-4 bg-slate-50 border-t flex items-center justify-end space-x-2">
+                     <div class="p-4 bg-slate-50 border-t flex items-center justify-end space-x-2">
                          <button class="add-to-calendar-btn text-sm font-medium text-slate-600 hover:text-indigo-600 transition" data-index="${index}">Add to Calendar</button>
                          <button class="generate-idea-btn bg-purple-100 text-purple-700 font-semibold py-1 px-3 rounded-md text-sm hover:bg-purple-200 transition" data-index="${index}">Generate Image Idea</button>
                          <button class="rewrite-post-btn bg-indigo-600 text-white font-semibold py-1 px-3 rounded-md text-sm hover:bg-indigo-700 transition" data-index="${index}">Rewrite with AI</button>
@@ -1107,14 +982,14 @@
         function updateFinancials() {
             const formatCurrency = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 
-            state.financialModel.revenueTickets = parseFloat(document.getElementById('revenue-tickets').value) || 0;
-            state.financialModel.revenueSponsorships = parseFloat(document.getElementById('revenue-sponsorships').value) || 0;
-            state.financialModel.costVenue = parseFloat(document.getElementById('cost-venue').value) || 0;
-            state.financialModel.costMarketing = parseFloat(document.getElementById('cost-marketing').value) || 0;
-            state.financialModel.costSpeakers = parseFloat(document.getElementById('cost-speakers').value) || 0;
+            financialModel.revenueTickets = parseFloat(document.getElementById('revenue-tickets').value) || 0;
+            financialModel.revenueSponsorships = parseFloat(document.getElementById('revenue-sponsorships').value) || 0;
+            financialModel.costVenue = parseFloat(document.getElementById('cost-venue').value) || 0;
+            financialModel.costMarketing = parseFloat(document.getElementById('cost-marketing').value) || 0;
+            financialModel.costSpeakers = parseFloat(document.getElementById('cost-speakers').value) || 0;
 
-            const totalRevenue = state.financialModel.revenueTickets + state.financialModel.revenueSponsorships;
-            const totalCosts = state.financialModel.costVenue + state.financialModel.costMarketing + state.financialModel.costSpeakers;
+            const totalRevenue = financialModel.revenueTickets + financialModel.revenueSponsorships;
+            const totalCosts = financialModel.costVenue + financialModel.costMarketing + financialModel.costSpeakers;
 
             const profit = totalRevenue - totalCosts;
             const roi = totalCosts > 0 ? ((profit / totalCosts) * 100) : 0;
@@ -1139,9 +1014,9 @@
         }
 
         function updateFunnelMetrics() {
-              const formatNumber = (value) => new Intl.NumberFormat('en-US').format(Math.round(value));
+             const formatNumber = (value) => new Intl.NumberFormat('en-US').format(Math.round(value));
 
-            const marketingBudget = state.financialModel.costMarketing;
+            const marketingBudget = financialModel.costMarketing;
             const cpc = parseFloat(document.getElementById('funnel-cpc')?.value) || 2.5;
             const cplRate = (parseFloat(document.getElementById('funnel-cpl')?.value) || 5) / 100;
             const lcrRate = (parseFloat(document.getElementById('funnel-lcr')?.value) || 20) / 100;
@@ -1160,13 +1035,13 @@
             const controlsContainer = document.getElementById('budget-controls');
             if(!controlsContainer) return;
             controlsContainer.innerHTML = '';
-            state.budgetData.labels.forEach((label, index) => {
+            budgetData.labels.forEach((label, index) => {
                 const controlEl = document.createElement('div');
                 controlEl.className = 'flex items-center space-x-4';
                 controlEl.innerHTML = `
                     <label for="budget-slider-${index}" class="w-1/3 text-sm font-medium text-slate-700">${label}</label>
-                    <input type="range" id="budget-slider-${index}" min="0" max="100" value="${state.budgetData.values[index]}" class="budget-slider flex-grow" data-index="${index}">
-                    <span class="font-semibold w-12 text-right">${state.budgetData.values[index]}%</span>
+                    <input type="range" id="budget-slider-${index}" min="0" max="100" value="${budgetData.values[index]}" class="budget-slider flex-grow" data-index="${index}">
+                    <span class="font-semibold w-12 text-right">${budgetData.values[index]}%</span>
                 `;
                 controlsContainer.appendChild(controlEl);
             });
@@ -1175,39 +1050,39 @@
                 slider.addEventListener('input', (e) => {
                     const changedIndex = parseInt(e.target.dataset.index);
                     const newValue = parseInt(e.target.value);
-                    const oldValue = state.budgetData.values[changedIndex];
+                    const oldValue = budgetData.values[changedIndex];
                     const diff = newValue - oldValue;
                     
                     let totalOther = 0;
-                    state.budgetData.values.forEach((val, i) => {
+                    budgetData.values.forEach((val, i) => {
                         if (i !== changedIndex) totalOther += val;
                     });
 
                     if (totalOther === 0 && diff < 0) {
                          // Distribute evenly if others are 0
-                        const share = -diff / (state.budgetData.values.length - 1);
-                        for (let i = 0; i < state.budgetData.values.length; i++) {
-                            if (i !== changedIndex) state.budgetData.values[i] += share;
-                        }
+                         const share = -diff / (budgetData.values.length - 1);
+                         for (let i = 0; i < budgetData.values.length; i++) {
+                             if (i !== changedIndex) budgetData.values[i] += share;
+                         }
                     } else {
-                        // Distribute proportionally
-                        for (let i = 0; i < state.budgetData.values.length; i++) {
-                            if (i !== changedIndex && totalOther > 0) {
-                                state.budgetData.values[i] -= diff * (state.budgetData.values[i] / totalOther);
-                            }
-                        }
+                         // Distribute proportionally
+                         for (let i = 0; i < budgetData.values.length; i++) {
+                             if (i !== changedIndex && totalOther > 0) {
+                                budgetData.values[i] -= diff * (budgetData.values[i] / totalOther);
+                             }
+                         }
                     }
-                     state.budgetData.values[changedIndex] = newValue;
+                     budgetData.values[changedIndex] = newValue;
 
                     // Normalize to ensure total is exactly 100 due to rounding
-                    const currentTotal = state.budgetData.values.reduce((a, b) => a + b, 0);
+                    const currentTotal = budgetData.values.reduce((a, b) => a + b, 0);
                     const totalDiff = 100 - currentTotal;
                     if(totalDiff !== 0){
                         let maxIndex = 0;
-                        state.budgetData.values.forEach((val, i) => { if(val > state.budgetData.values[maxIndex]) maxIndex = i; });
-                        state.budgetData.values[maxIndex] += totalDiff;
+                        budgetData.values.forEach((val, i) => { if(val > budgetData.values[maxIndex]) maxIndex = i; });
+                        budgetData.values[maxIndex] += totalDiff;
                     }
-                     state.budgetData.values = state.budgetData.values.map(v => Math.max(0, Math.round(v))); // Ensure no negative values
+                     budgetData.values = budgetData.values.map(v => Math.max(0, Math.round(v))); // Ensure no negative values
 
                     renderBudgetControls();
                     updateBudgetChart();
@@ -1219,15 +1094,15 @@
         function updateBudgetChart() {
             const budgetChartCtx = document.getElementById('budgetChart')?.getContext('2d');
             if (!budgetChartCtx) return;
-            if (state.budgetChartInstance) state.budgetChartInstance.destroy();
+            if (budgetChartInstance) budgetChartInstance.destroy();
             
-            state.budgetChartInstance = new Chart(budgetChartCtx, {
+            budgetChartInstance = new Chart(budgetChartCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: state.budgetData.labels,
+                    labels: budgetData.labels,
                     datasets: [{
                         label: 'Budget Allocation',
-                        data: state.budgetData.values,
+                        data: budgetData.values,
                         backgroundColor: [
                             'rgba(67, 56, 202, 0.8)',
                             'rgba(99, 102, 241, 0.8)',
@@ -1252,68 +1127,63 @@
             });
         }
         
+        function openPostDetailModal(dayElement) {
+           const title = dayElement.querySelector('.social-post-copy').previousElementSibling.textContent;
+            const content = dayElement.querySelector('.social-post-copy').innerHTML;
+            document.getElementById('post-detail-title').textContent = title;
+            document.getElementById('post-detail-content').innerHTML = content;
+            postDetailModal.style.display = 'flex';
+        }
+        
         function handlePayment(plan) {
             const stripeLinks = {
-                monthly: "https://buy.stripe.com/5kQ00c6PG9Yi78pekWeAg00",
-                quarterly: "https://buy.stripe.com/eVq4gsei80nI64l3GieAg01",
-                annual: "https://buy.stripe.com/cNi3cob5W7QadwN7WyeAg02"
+                monthly: "https://buy.stripe.com/test_YOUR_MONTHLY_LINK",
+                quarterly: "https://buy.stripe.com/test_YOUR_QUARTERLY_LINK",
+                annual: "https://buy.stripe.com/test_YOUR_ANNUAL_LINK"
             };
             const url = stripeLinks[plan];
-            if (url) {
+            if (url && !url.includes("YOUR_")) {
                 window.location.href = url;
             } else {
-                console.warn(`No Stripe URL found for '${plan}' plan.`);
+                alert(`This is a demo. In a real app, you would be redirected to Stripe for the ${plan} plan.`);
+                console.warn(`Please replace placeholder Stripe URL for '${plan}' plan.`);
             }
         }
         
         // --- EVENT LISTENERS (must be at the end) ---
-        dom.signupForm.addEventListener('submit', async (e) => {
+        signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('signup-name').value;
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
-            showAuthMessage('signup', 'Creating account...');
+            showMessage('signup', 'Creating account...');
             
-            if (!isFirebaseConfigured || !auth || !db) {
-                setTimeout(() => { showAuthMessage('signup', 'Success!', false); setTimeout(() => renderAuthState({ displayName: name, email: email }), 1000); }, 1000);
+            if (!isFirebaseConfigured || !auth) {
+                setTimeout(() => { showMessage('signup', 'Success!', false); setTimeout(() => updateUIManually({ displayName: name, email: email }), 1000); }, 1000);
                 return;
             }
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                const userDocRef = doc(db, `artifacts/${appId}/users/${user.uid}/data/profile`);
-                await setDoc(userDocRef, {
-                    freeGenerations: 1,
-                    email: user.email,
-                    name: name
-                });
-                await updateProfile(user, { displayName: name });
-
+                await updateProfile(userCredential.user, { displayName: name });
             } catch (error) {
                 if (error.code === 'auth/operation-not-allowed') {
                     console.warn("Firebase Auth disabled. Simulating sign up.");
-                    showAuthMessage('signup', 'Success!', false);
-                    setTimeout(() => renderAuthState({ displayName: name, email: email }), 1000);
+                    showMessage('signup', 'Success!', false);
+                    setTimeout(() => updateUIManually({ displayName: name, email: email }), 1000);
                 } else {
-                     showAuthMessage('signup', error.message, true);
+                     showMessage('signup', error.message, true);
                 }
             }
         });
 
-        dom.loginForm.addEventListener('submit', async (e) => {
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
-            showAuthMessage('login', 'Signing in...');
+            showMessage('login', 'Signing in...');
 
             if (!isFirebaseConfigured || !auth) {
-                 setTimeout(() => { 
-                    showAuthMessage('login', 'Success!', false); 
-                    setTimeout(() => {
-                        renderAuthState({ email: email });
-                        showPage('homepage');
-                    }, 500); 
-                }, 1000);
+                 setTimeout(() => { showMessage('login', 'Success!', false); setTimeout(() => updateUIManually({ email: email }), 1000); }, 1000);
                 return;
             }
             try {
@@ -1321,112 +1191,31 @@
             } catch (error) {
                 if (error.code === 'auth/operation-not-allowed') {
                     console.warn("Firebase Auth disabled. Simulating login.");
-                    showAuthMessage('login', 'Success!', false);
-                    setTimeout(() => {
-                        renderAuthState({ email: email });
-                        showPage('homepage');
-                    }, 500);
+                    showMessage('login', 'Success!', false);
+                    setTimeout(() => updateUIManually({ email: email }), 1000);
                 } else {
-                    showAuthMessage('login', 'Invalid email or password.', true);
+                    showMessage('login', 'Invalid email or password.', true);
                 }
             }
         });
 
-        dom.generateBtn.addEventListener('click', () => generateContent());
-        dom.closeModalBtn.addEventListener('click', () => dom.messageModal.style.display = 'none');
-        dom.newProjectBtn.addEventListener('click', () => showPage('homepage'));
+        generateBtn.addEventListener('click', () => generateContent(false));
+        demoBtn.addEventListener('click', () => generateContent(true));
+        closePostModal.addEventListener('click', () => postDetailModal.style.display = 'none');
         
-        dom.logoBtn.addEventListener('click', (e) => {
+        logoBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            state.campaignCache = null;
+            resultsPage.innerHTML = '';
+            campaignCache = null;
+            if (currentUser) {
+                demoSection.classList.add('hidden');
+                generatorSection.classList.remove('hidden');
+            } else {
+                generatorSection.classList.add('hidden');
+                demoSection.classList.remove('hidden');
+            }
             showPage('homepage');
         });
-
-        dom.exportBtn.addEventListener('click', () => {
-            if (!state.campaignCache) return;
-            let content = `Marketing Plan for: ${state.campaignCache.eventName}\n\n`;
-            
-            const tabsData = {
-                proposal:{label: "Strategic Proposal"},
-                businessStrategy: {label: "Business Strategy"},
-                plan:{label: "Tactical Plan"},
-                emails:{label: "Email Strategy"},
-                social:{label: "Content Command Center"}
-            };
-
-            Object.keys(tabsData).forEach(key => {
-                const tabLabel = tabsData[key].label;
-                const tempContainer = document.createElement('div');
-                renderTabContent(key, state.campaignCache); // This will render content into the main view
-                tempContainer.innerHTML = dom.dashboardContent.innerHTML; // clone it
-                content += `--- ${tabLabel.toUpperCase()} ---\n\n`;
-                content += tempContainer.innerText + '\n\n\n';
-            });
-
-
-            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `${state.campaignCache.eventName.replace(/\s+/g, '-')}-marketing-plan.txt`;
-            a.click();
-            URL.revokeObjectURL(a.href);
-            renderTabContent('proposal', state.campaignCache); // Restore the first tab view
-        });
-
-        // --- INITIALIZATION ---
-        const init = () => {
-            if (isFirebaseConfigured && auth && db) {
-                onAuthStateChanged(auth, user => {
-                    if (unsubscribeUserSnapshot) {
-                        unsubscribeUserSnapshot(); // Detach old listener
-                    }
-                    if (user && !user.isAnonymous) {
-                        const userDocRef = doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'profile');
-                        unsubscribeUserSnapshot = onSnapshot(userDocRef, (docSnap) => {
-                            if (docSnap.exists()) {
-                                const userData = docSnap.data();
-                                state.freeGenerations = userData.freeGenerations !== undefined ? userData.freeGenerations : 1;
-                            } else {
-                                // This case handles users who existed before this logic was added, or if there was an error during signup.
-                                setDoc(userDocRef, { freeGenerations: 1, email: user.email, name: user.displayName || "" });
-                                state.freeGenerations = 1;
-                            }
-                            renderAuthState(user); // Re-render with the updated count
-                            if (state.currentPage === 'login' || state.currentPage === 'signup') {
-                                showPage('homepage');
-                            }
-                        }, (error) => {
-                            console.error("Firestore snapshot error:", error);
-                            renderAuthState(user); // Render auth state even if firestore fails
-                        });
-                    } else {
-                        // User is signed out or anonymous
-                        renderAuthState(null);
-                        if (state.currentPage === 'dashboard') {
-                           showPage('homepage');
-                        }
-                    }
-                });
-                
-                (async () => {
-                    try {
-                        if (initialAuthToken) {
-                            await signInWithCustomToken(auth, initialAuthToken);
-                        } else if (!auth.currentUser) {
-                            await signInAnonymously(auth);
-                        }
-                    } catch (err) {
-                        console.error("Authentication failed:", err);
-                    }
-                })();
-
-            } else {
-                console.warn("Firebase not configured. Running in demo mode.");
-                renderAuthState(null);
-            }
-        };
-
-        init();
     </script>
 </body>
 </html>
