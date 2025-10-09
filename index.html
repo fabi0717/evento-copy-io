@@ -447,10 +447,8 @@
         // --- GEMINI API & OFFLINE DATA ---
         async function callGeminiAPI(prompt, isJson = false) {
             // --- ¡CORRECCIÓN DE SEGURIDAD APLICADA! ---
-            // Ahora, en lugar de llamar directamente a la API de Gemini,
-            // llamamos a nuestra Cloud Function segura.
-            // Pega la URL que obtuviste después de desplegar tu función.
-            const cloudFunctionUrl = "URL_DE_TU_CLOUD_FUNCTION_AQUI"; // <-- ¡REEMPLAZA ESTO!
+            // La URL de tu Cloud Function segura se inserta aquí.
+            const cloudFunctionUrl = "https://callgemini-bhomdt6fra-uc.a.run.app";
 
             // El cuerpo de la petición ahora contiene el prompt y el flag isJson.
             const payload = {
@@ -1417,4 +1415,6 @@
     </script>
 </body>
 </html>
+
+
 
