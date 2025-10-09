@@ -763,7 +763,7 @@
         
         async function rewritePost(button, index) {
             if(!currentUser) {
-                showPage(signupPage);
+                showPage('signup');
                 return;
             }
             button.textContent = "Rewriting...";
@@ -788,7 +788,7 @@
         
         async function generateImageIdea(button, index) {
              if(!currentUser) {
-                showPage(signupPage);
+                showPage('signup');
                 return;
             }
             button.textContent = "Generating...";
@@ -1216,6 +1216,7 @@
             }
             showPage('homepage');
         });
+
     </script>
 </body>
 </html>
