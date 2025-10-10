@@ -33,7 +33,7 @@
         .prose h3 { margin-top: 0; margin-bottom: 1em; font-size: 1.75em; font-weight: 800; color: #111827;}
         .prose h4 { margin-top: 1.5em; margin-bottom: 0.5em; font-size: 1.1em; font-weight: 700; color: #1f2937; text-transform: uppercase; letter-spacing: 0.05em;}
         .prose p, .prose ul, .prose li { color: #374151; }
-        .timeline-item .timeline-line { transition: background-color 0.3s; }
+        .timeline-item .timeline-line { transition: background-color: 0.3s; }
         .timeline-item .timeline-dot { transition: all 0.3s; }
         .timeline-item.active .timeline-line { background-color: #4f46e5; }
         .timeline-item.active .timeline-dot { background-color: #4f46e5; transform: scale(1.25); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2); }
@@ -55,6 +55,7 @@
         .auth-message { min-height: 24px; text-align: center; font-weight: 500; }
         .status-dot { width: 10px; height: 10px; border-radius: 50%; }
         .task-checkbox:checked + label { text-decoration: line-through; color: #9ca3af; }
+        .plan-card.selected { border-width: 2px; border-color: #4f46e5; }
         /* Custom slider styles */
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]:focus { outline: none; }
@@ -267,7 +268,7 @@
                 </div>
             </div>
             
-            <!-- Payment Page (Added for completeness based on translations) -->
+            <!-- Payment Page -->
             <div id="payment-page" class="hidden py-16 md:py-24">
                 <div class="max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200 text-center">
                     <h2 class="text-3xl font-bold text-slate-800 mb-2">Free Generations Limit Reached</h2>
@@ -1521,6 +1522,23 @@
         // --- INITIALIZATION ---
         const init = () => {
             setupChatbot(); // Initialize chatbot listeners
+            
+            // Setup listeners for payment page
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected', 'border-indigo-500', 'border-2'));
+                    card.classList.add('selected', 'border-indigo-500', 'border-2');
+                });
+            });
+
+            document.querySelectorAll('.select-plan-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent card click event from firing again
+                    const plan = button.dataset.plan;
+                    handlePayment(plan);
+                });
+            });
+
             if (isFirebaseConfigured && auth && db) {
                 onAuthStateChanged(auth, user => {
                     if (unsubscribeUserSnapshot) {
@@ -1531,16 +1549,16 @@
                         unsubscribeUserSnapshot = onSnapshot(userDocRef, (docSnap) => {
                             if (docSnap.exists()) {
                                 const userData = docSnap.data();
-                                // For existing users, default to 0 if the field is missing for any reason.
-                                // New users get their credit from the 'else' block below.
-                                state.freeGenerations = userData.freeGenerations || 0;
+                                // For existing users, if freeGenerations is undefined or null, it defaults to 0.
+                                // It will only be > 0 if it was explicitly set.
+                                state.freeGenerations = userData.freeGenerations ?? 0;
                             } else {
-                                // This case handles users who signed up but profile creation failed, or very old users.
+                                // This case handles brand new users or old users without a profile.
                                 // We create the profile and give them their one-time trial credit.
                                 setDoc(userDocRef, { freeGenerations: 1, email: user.email, name: user.displayName || "" });
                                 state.freeGenerations = 1;
                             }
-                            renderAuthState(user); // Re-render with the updated count
+                            renderAuthState(user); // Re-render with the correct count from the database
                             if (state.currentPage === 'login' || state.currentPage === 'signup') {
                                 showPage('homepage');
                             }
@@ -1579,6 +1597,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
