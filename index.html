@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-US">
+<html lang="en-US">
 <head>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYYQ8GLWRF"></script>
@@ -60,11 +60,98 @@
         input[type=range]:focus { outline: none; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #4f46e5; cursor: pointer; margin-top: -6px; box-shadow: 0px 0px 5px rgba(0,0,0,0.2); }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #ddd; border-radius: 5px; }
+
+        /* Chatbot styles */
+        #chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+        #chat-bubble {
+            background-color: #4f46e5;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        #chat-window {
+            display: none;
+            position: fixed;
+            bottom: 6.5rem;
+            right: 2rem;
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #chat-header {
+            background-color: #4f46e5;
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-message {
+            padding: 0.5rem 1rem;
+            border-radius: 18px;
+            margin-bottom: 0.5rem;
+            max-width: 80%;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: #eef2ff;
+            color: #4338ca;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            align-self: flex-start;
+        }
+        #chat-input-container {
+            border-top: 1px solid #e5e7eb;
+            padding: 1rem;
+            display: flex;
+        }
+        #chat-input {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            outline: none;
+        }
+         #chat-input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px #c7d2fe;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
     <div id="app" class="min-h-screen flex flex-col items-center p-4 md:p-8">
-
+        
         <header class="w-full max-w-7xl mx-auto flex justify-between items-center py-4">
             <div id="logo-btn" class="inline-flex items-center group cursor-pointer">
                 <div class="flex items-center justify-center w-10 h-10 mr-3 bg-gradient-to-br from-indigo-600 to-purple-500 rounded-xl shadow-lg group-hover:shadow-indigo-400/50 transition-all duration-300">
@@ -88,6 +175,13 @@
                         <span>Instant Strategy.</span>
                     </h2>
                     <p id="main-subtitle" class="text-lg text-slate-600 max-w-3xl mx-auto">From a single idea to a comprehensive, presentation-ready marketing plan in seconds. Let our AI build your entire campaign.</p>
+                </div>
+                
+                <!-- Hero Image Section -->
+                <div id="hero-image-section" class="my-12 max-w-5xl mx-auto">
+                    <img src="https://placehold.co/1200x600/4f46e5/ffffff?text=Evento-Copy+AI&font=poppins" 
+                         alt="Evento-Copy AI in action" 
+                         class="rounded-2xl shadow-2xl border-4 border-white object-cover">
                 </div>
 
                 <div id="generator-section" class="hidden bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200">
@@ -123,7 +217,7 @@
                     <div class="mt-10 text-center"><button id="generate-btn" class="bg-indigo-600 text-white font-bold py-4 px-10 text-lg rounded-xl hover:bg-indigo-700 transition-transform transform hover:scale-105 glowing-shadow flex items-center justify-center mx-auto"><svg class="w-6 h-6 mr-3" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.672-2.672L11.25 18l1.938-.648a3.375 3.375 0 002.672-2.672L16.25 13.5l.648 1.938a3.375 3.375 0 002.672 2.672L21.75 18l-1.938.648a3.375 3.375 0 00-2.672 2.672z" /></svg><span id="generate-btn-text">Build My Strategy</span></button></div>
                 </div>
             </div>
-
+            
             <!-- Login Page -->
             <div id="login-page" class="hidden py-16 md:py-24">
                 <div class="max-w-md mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200">
@@ -172,7 +266,7 @@
                     </form>
                 </div>
             </div>
-
+            
             <!-- Payment Page (Added for completeness based on translations) -->
             <div id="payment-page" class="hidden py-16 md:py-24">
                 <div class="max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200 text-center">
@@ -214,7 +308,7 @@
                     </div>
                 </div>
             </div>
-
+            
              <!-- Projects Page -->
             <div id="projects-page" class="hidden py-16 md:py-24">
                 <div class="max-w-4xl mx-auto">
@@ -256,7 +350,7 @@
                     </div>
                 </div>
             </div>
-
+            
         </main>
     </div>
 
@@ -267,7 +361,28 @@
             <p id="modal-text" class="text-slate-700"></p>
         </div>
     </div>
-
+    
+    <!-- Chatbot Widget -->
+    <div id="chat-widget">
+        <div id="chat-window">
+            <div id="chat-header">
+                <span>Evento-Bot Assistant</span>
+                <span id="close-chat" class="cursor-pointer font-bold text-xl">&times;</span>
+            </div>
+            <div id="chat-messages">
+                 <div class="chat-message bot-message">Hello! How can I help you with Evento-Copy AI or your marketing questions?</div>
+            </div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Ask a question...">
+            </div>
+        </div>
+        <div id="chat-bubble">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.76 9.76 0 01-2.53-.388A.75.75 0 008.25 20.25v.75c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v.75a.75.75 0 00.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 00-.212-.531A9.764 9.764 0 0121 12zM3 12c0 4.556 4.03 8.25 9 8.25a9.76 9.76 0 01-2.53-.388A.75.75 0 008.25 20.25v.75c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v.75a.75.75 0 00.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 00-.212-.531A9.764 9.764 0 0121 12zM3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"></path>
+            </svg>
+        </div>
+    </div>
+    
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { 
@@ -281,12 +396,12 @@
             signInAnonymously
         } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, setLogLevel, addDoc, collection, getDocs, Timestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
+        
         // --- STATE MANAGEMENT ---
         let state = {
             isLoggedIn: false,
             currentUser: null,
-            freeGenerations: 0, // CORREGIDO: Iniciar en 0 para esperar el valor de la base de datos.
+            freeGenerations: 0, // Start at 0 until loaded from DB
             currentPage: 'homepage',
             campaignCache: null,
             weekChartInstance: null,
@@ -331,9 +446,15 @@
             closeModalBtn: document.querySelector('.close-button'),
             projectsList: document.getElementById('projects-list'),
             newProjectBtn: document.getElementById('new-project-btn'),
+            // Chatbot DOM
+            chatBubble: document.getElementById('chat-bubble'),
+            chatWindow: document.getElementById('chat-window'),
+            closeChat: document.getElementById('close-chat'),
+            chatMessages: document.getElementById('chat-messages'),
+            chatInput: document.getElementById('chat-input'),
         };
 
-        // --- FIREBASE CONFIG ---
+        // --- FIREBASE CONFIG & CLOUD FUNCTION ---
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const firebaseConfig = typeof __firebase_config !== 'undefined' 
             ? JSON.parse(__firebase_config)
@@ -344,6 +465,10 @@
         const auth = isFirebaseConfigured ? getAuth(app) : null;
         const db = isFirebaseConfigured ? getFirestore(app) : null;
         if(db) setLogLevel('debug');
+        
+        // This is the URL of the Cloud Function you deployed.
+        // It acts as a secure intermediary to the Gemini API.
+        const cloudFunctionUrl = "https://callgemini-bhomdt6fra-uc.a.run.app";
         
         let unsubscribeUserSnapshot = null;
 
@@ -414,7 +539,12 @@
                     <button id="logout-btn" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">Log Out</button>`;
                 
                 dom.authContainer.querySelector('#logout-btn').addEventListener('click', () => {
-                    if (auth) signOut(auth);
+                    if (auth) {
+                        signOut(auth).catch((error) => {
+                           console.error("Logout failed:", error);
+                           showMessageModal("Could not log out at the moment. Please try again.");
+                        });
+                    }
                 });
                 dom.authContainer.querySelector('#my-projects-btn').addEventListener('click', showProjectsPage);
 
@@ -431,7 +561,6 @@
 
             } else {
                 state.isLoggedIn = false;
-                // CORREGIDO: Se eliminó `state.freeGenerations = 1;` para evitar que el contador se reinicie.
                 dom.authContainer.innerHTML = `
                     <button id="nav-login-btn" class="text-sm font-semibold text-slate-600 hover:text-slate-900">Log In</button>
                     <button id="nav-signup-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 text-sm rounded-lg hover:bg-indigo-700 transition">Sign Up</button>`;
@@ -444,35 +573,24 @@
              if(state.currentPage === 'dashboard') showPage('homepage');
         };
 
-        // --- GEMINI API & OFFLINE DATA ---
-        async function callGeminiAPI(prompt, isJson = false) {
-            // --- ¡CORRECCIÓN DE SEGURIDAD APLICADA! ---
-            // La URL de tu Cloud Function segura se inserta aquí.
-            const cloudFunctionUrl = "https://callgemini-bhomdt6fra-uc.a.run.app";
-
-            // El cuerpo de la petición ahora contiene el prompt y el flag isJson.
-            const payload = {
-                prompt: prompt,
-                isJson: isJson
-            };
-            
-            const response = await fetch(cloudFunctionUrl, { 
-                method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify(payload) 
+        // --- SECURE API CALL via Cloud Function ---
+        async function callSecureApi(prompt, isJson = false) {
+            const response = await fetch(cloudFunctionUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt, isJson }),
             });
 
             if (!response.ok) {
-                const errorText = await response.text();
-                console.error("Cloud Function call failed:", errorText);
-                throw new Error(`API call failed: ${response.status} - ${errorText}`);
+                const errorBody = await response.text();
+                throw new Error(`API call failed: ${response.status} - ${errorBody}`);
             }
 
             const result = await response.json();
-            const text = result.text;
-            
-            if (!text) throw new Error("No content received from API.");
-            return text;
+            if (!result.text) {
+                throw new Error("No content received from API.");
+            }
+            return result.text;
         }
 
         // --- CORE APPLICATION LOGIC (Workspace Generation) ---
@@ -506,7 +624,7 @@
                 const systemPrompt = "You are an expert marketing strategist AI. Your task is to generate a comprehensive, presentation-ready marketing workspace based on a user's event concept. The output must be a valid JSON object only, with no other text before or after it. Use real-world data and insights for your analysis.";
                 const userQuery = `Generate a detailed marketing plan in English for an event named "${eventName}" targeting "${targetAudience}" with the key topic of "${eventTopic}". Ensure the content is unique, insightful, and actionable.`;
                 const fullPrompt = `${systemPrompt}\n\n${userQuery}`;
-                const jsonText = await callGeminiAPI(fullPrompt, true);
+                const jsonText = await callSecureApi(fullPrompt, true);
                 state.campaignCache = JSON.parse(jsonText);
                 
                 if (state.currentUser && db) {
@@ -800,7 +918,7 @@
             const { eventName, targetAudience, eventTopic, persona } = state.campaignCache;
 
             const prompt = `You are an expert email marketer. Rewrite the following email body to be more persuasive and impactful. 
-            Context:
+            Context: 
             - Event Name: ${eventName}
             - Target Audience: ${targetAudience}
             - Key Topic: ${eventTopic}
@@ -811,7 +929,7 @@
             Rewrite the body only. Do not include the subject. Output only the HTML for the email body.`;
             
             try {
-                const newBody = await callGeminiAPI(prompt, false);
+                const newBody = await callSecureApi(prompt, false);
                 card.querySelector('.email-body').innerHTML = newBody;
             } catch (error) {
                 console.error("Rewrite failed:", error);
@@ -883,7 +1001,7 @@
             
             const prompt = `Rewrite this social media post for a ${state.campaignCache.persona.title} audience. Make it more engaging. Original post: "${originalPost}"`;
             try {
-                const newPost = await callGeminiAPI(prompt, false);
+                const newPost = await callSecureApi(prompt, false);
                 postContentEl.textContent = newPost;
             } catch (error) {
                 console.error("Post rewrite failed", error);
@@ -908,7 +1026,7 @@
 
             const prompt = `Generate a creative and compelling visual idea for this social media post: "${postContent}". Be concise and actionable.`;
             try {
-                const idea = await callGeminiAPI(prompt, false);
+                const idea = await callSecureApi(prompt, false);
                 ideaEl.textContent = idea;
             } catch (error) {
                 console.error("Image idea generation failed", error);
@@ -994,10 +1112,10 @@
                             <div class="visual-idea-content p-2 border rounded bg-slate-50 min-h-[150px] text-sm text-slate-600">Click the button to generate a visual concept...</div>
                         </div>
                     </div>
-                     <div class="p-4 bg-slate-50 border-t flex items-center justify-end space-x-2">
-                       <button class="add-to-calendar-btn text-sm font-medium text-slate-600 hover:text-indigo-600 transition" data-index="${index}">Add to Calendar</button>
-                       <button class="generate-idea-btn bg-purple-100 text-purple-700 font-semibold py-1 px-3 rounded-md text-sm hover:bg-purple-200 transition" data-index="${index}">Generate Image Idea</button>
-                       <button class="rewrite-post-btn bg-indigo-600 text-white font-semibold py-1 px-3 rounded-md text-sm hover:bg-indigo-700 transition" data-index="${index}">Rewrite with AI</button>
+                      <div class="p-4 bg-slate-50 border-t flex items-center justify-end space-x-2">
+                         <button class="add-to-calendar-btn text-sm font-medium text-slate-600 hover:text-indigo-600 transition" data-index="${index}">Add to Calendar</button>
+                         <button class="generate-idea-btn bg-purple-100 text-purple-700 font-semibold py-1 px-3 rounded-md text-sm hover:bg-purple-200 transition" data-index="${index}">Generate Image Idea</button>
+                         <button class="rewrite-post-btn bg-indigo-600 text-white font-semibold py-1 px-3 rounded-md text-sm hover:bg-indigo-700 transition" data-index="${index}">Rewrite with AI</button>
                     </div>
                 </div>
             `}).join('');
@@ -1013,7 +1131,7 @@
             if (!timelineContainer) return;
             timelineContainer.innerHTML = '';
             const data = view === 'months' 
-                ? [
+                ? [ 
                     {...timelineData[0], title: "Month 1: Pre-Launch & Awareness"}, 
                     {...timelineData[1], title: "Month 2: Engagement & Nurturing"}
                   ] 
@@ -1036,11 +1154,11 @@
                     </div>
                     <div class="timeline-content pl-8">
                          <div class="flex items-center space-x-2 my-2">
-                            <div class="status-dot ${statusOptions[currentStatus].bg}"></div>
-                            <select class="status-select text-sm font-medium border-none bg-transparent p-0 focus:ring-0">
-                                ${Object.keys(statusOptions).map(s => `<option value="${s}" ${s === currentStatus ? 'selected' : ''}>${statusOptions[s].text}</option>`).join('')}
-                            </select>
-                        </div>
+                             <div class="status-dot ${statusOptions[currentStatus].bg}"></div>
+                             <select class="status-select text-sm font-medium border-none bg-transparent p-0 focus:ring-0">
+                                 ${Object.keys(statusOptions).map(s => `<option value="${s}" ${s === currentStatus ? 'selected' : ''}>${statusOptions[s].text}</option>`).join('')}
+                             </select>
+                         </div>
                         <p class="text-slate-500" contenteditable="true">${item.guideline}</p>
                         <div class="mt-4">
                             <h5 class="font-semibold text-sm">Key Actions:</h5>
@@ -1250,6 +1368,48 @@
                 console.warn(`No Stripe URL found for '${plan}' plan.`);
             }
         }
+
+        // --- CHATBOT LOGIC ---
+        function setupChatbot() {
+            dom.chatBubble.addEventListener('click', () => {
+                dom.chatWindow.style.display = 'flex';
+                dom.chatBubble.style.display = 'none';
+            });
+            dom.closeChat.addEventListener('click', () => {
+                dom.chatWindow.style.display = 'none';
+                dom.chatBubble.style.display = 'block';
+            });
+            dom.chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && dom.chatInput.value.trim() !== '') {
+                    handleChatSubmit();
+                }
+            });
+        }
+
+        async function handleChatSubmit() {
+            const userInput = dom.chatInput.value.trim();
+            addChatMessage(userInput, 'user');
+            dom.chatInput.value = '';
+            
+            const systemPrompt = "You are Evento-Bot, a helpful assistant for the Evento-Copy AI web application. Your goal is to answer user questions about the app's features, marketing strategies in general, or how to use the app. Be friendly, concise, and helpful. The app helps users generate complete marketing strategies from a simple idea.";
+            const fullPrompt = `${systemPrompt}\n\nUser question: ${userInput}`;
+
+            try {
+                const botResponse = await callSecureApi(fullPrompt, false);
+                addChatMessage(botResponse, 'bot');
+            } catch (error) {
+                console.error("Chatbot API call failed:", error);
+                addChatMessage("Sorry, I'm having trouble connecting right now. Please try again later.", 'bot');
+            }
+        }
+
+        function addChatMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', `${sender}-message`);
+            messageElement.textContent = text;
+            dom.chatMessages.appendChild(messageElement);
+            dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+        }
         
         // --- EVENT LISTENERS (must be at the end) ---
         dom.signupForm.addEventListener('submit', async (e) => {
@@ -1360,6 +1520,7 @@
 
         // --- INITIALIZATION ---
         const init = () => {
+            setupChatbot(); // Initialize chatbot listeners
             if (isFirebaseConfigured && auth && db) {
                 onAuthStateChanged(auth, user => {
                     if (unsubscribeUserSnapshot) {
@@ -1370,9 +1531,12 @@
                         unsubscribeUserSnapshot = onSnapshot(userDocRef, (docSnap) => {
                             if (docSnap.exists()) {
                                 const userData = docSnap.data();
-                                state.freeGenerations = userData.freeGenerations !== undefined ? userData.freeGenerations : 1;
+                                // For existing users, default to 0 if the field is missing for any reason.
+                                // New users get their credit from the 'else' block below.
+                                state.freeGenerations = userData.freeGenerations || 0;
                             } else {
-                                // This case handles users who existed before this logic was added, or if there was an error during signup.
+                                // This case handles users who signed up but profile creation failed, or very old users.
+                                // We create the profile and give them their one-time trial credit.
                                 setDoc(userDocRef, { freeGenerations: 1, email: user.email, name: user.displayName || "" });
                                 state.freeGenerations = 1;
                             }
@@ -1415,6 +1579,4 @@
     </script>
 </body>
 </html>
-
-
 
