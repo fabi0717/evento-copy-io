@@ -1549,7 +1549,7 @@
                         const userDocRef = doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'profile');
                         unsubscribeUserSnapshot = onSnapshot(userDocRef, (docSnap) => {
                             if (!docSnap.exists()) {
-                                // **CORRECCIÓN:** This is the single point for creating a new user's profile.
+                                // **CORRECCIÓN PROFUNDA:** Este es ahora el ÚNICO lugar donde se crea el perfil de un usuario nuevo.
                                 console.log("New user detected, creating profile with 1 free generation.");
                                 setDoc(userDocRef, { 
                                     freeGenerations: 1, 
@@ -1557,15 +1557,15 @@
                                     name: user.displayName || "",
                                     createdAt: Timestamp.now()
                                 }).then(() => {
-                                    state.freeGenerations = 1;
-                                    renderAuthState(user);
-                                    showPage('homepage'); // Redirect after profile is created.
+                                    // No es necesario actualizar el estado aquí, onSnapshot se volverá a disparar con los nuevos datos.
+                                    // La redirección se maneja abajo.
                                 });
                             } else {
                                 const userData = docSnap.data();
                                 state.freeGenerations = userData.freeGenerations ?? 0;
                                 renderAuthState(user);
-                                // Redirect on successful login
+                                
+                                // **CORRECCIÓN PROFUNDA:** Redirigir siempre a la homepage después de un login o signup exitoso.
                                 if (state.currentPage === 'login' || state.currentPage === 'signup') {
                                     showPage('homepage');
                                 }
@@ -1575,9 +1575,9 @@
                             renderAuthState(user); // Render auth state even if firestore fails
                         });
                     } else {
-                        // User is signed out or anonymous
+                        // **CORRECCIÓN PROFUNDA:** Flujo de cierre de sesión y de invitado.
                         renderAuthState(null);
-                        showPage('homepage');
+                        showPage('homepage'); // Siempre volver a la homepage al cerrar sesión.
                     }
                 });
                 
