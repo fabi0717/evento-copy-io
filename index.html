@@ -61,6 +61,91 @@
         input[type=range]:focus { outline: none; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #4f46e5; cursor: pointer; margin-top: -6px; box-shadow: 0px 0px 5px rgba(0,0,0,0.2); }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #ddd; border-radius: 5px; }
+        /* Chatbot styles */
+        #chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+        #chat-bubble {
+            background-color: #4f46e5;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        #chat-window {
+            position: fixed;
+            bottom: 6.5rem;
+            right: 2rem;
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #chat-header {
+            background-color: #4f46e5;
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-message {
+            padding: 0.5rem 1rem;
+            border-radius: 18px;
+            margin-bottom: 0.5rem;
+            max-width: 80%;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: #eef2ff;
+            color: #4338ca;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            align-self: flex-start;
+        }
+        #chat-input-container {
+            border-top: 1px solid #e5e7eb;
+            padding: 1rem;
+            display: flex;
+        }
+        #chat-input {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            outline: none;
+        }
+         #chat-input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px #c7d2fe;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -276,6 +361,27 @@
         </div>
     </div>
     
+    <!-- Chatbot Widget -->
+    <div id="chat-widget">
+        <div id="chat-window">
+            <div id="chat-header">
+                <span>Evento-Bot Assistant</span>
+                <span id="close-chat" class="cursor-pointer font-bold text-xl">&times;</span>
+            </div>
+            <div id="chat-messages">
+                 <div class="chat-message bot-message">Hello! How can I help you with Evento-Copy AI or your marketing questions?</div>
+            </div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Ask a question...">
+            </div>
+        </div>
+        <div id="chat-bubble">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.76 9.76 0 01-2.53-.388A.75.75 0 008.25 20.25v.75c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v.75a.75.75 0 00.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 00-.212-.531A9.764 9.764 0 0121 12zM3 12c0 4.556 4.03 8.25 9 8.25a9.76 9.76 0 01-2.53-.388A.75.75 0 008.25 20.25v.75c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v.75a.75.75 0 00.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 00-.212-.531A9.764 9.764 0 0121 12zM3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"></path>
+            </svg>
+        </div>
+    </div>
+    
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { 
@@ -339,6 +445,12 @@
             closeModalBtn: document.querySelector('.close-button'),
             projectsList: document.getElementById('projects-list'),
             newProjectBtn: document.getElementById('new-project-btn'),
+            // Chatbot DOM
+            chatBubble: document.getElementById('chat-bubble'),
+            chatWindow: document.getElementById('chat-window'),
+            closeChat: document.getElementById('close-chat'),
+            chatMessages: document.getElementById('chat-messages'),
+            chatInput: document.getElementById('chat-input'),
         };
 
         // --- FIREBASE CONFIG & CLOUD FUNCTION ---
@@ -425,7 +537,14 @@
                 
                 dom.authContainer.querySelector('#logout-btn').addEventListener('click', () => {
                     if (auth) {
-                        signOut(auth).catch((error) => {
+                        signOut(auth)
+                        .then(() => {
+                            // On successful sign-out, the onAuthStateChanged listener will automatically
+                            // re-render the UI to the logged-out state. We also force a redirect
+                            // to the homepage for a smoother user experience.
+                            showPage('homepage');
+                        })
+                        .catch((error) => {
                            console.error("Logout failed:", error);
                            showMessageModal("Could not log out at the moment. Please try again.");
                         });
@@ -1264,6 +1383,48 @@
             }
         }
         
+        // --- CHATBOT LOGIC ---
+        function setupChatbot() {
+            dom.chatBubble.addEventListener('click', () => {
+                dom.chatWindow.style.display = 'flex';
+                dom.chatBubble.style.display = 'none';
+            });
+            dom.closeChat.addEventListener('click', () => {
+                dom.chatWindow.style.display = 'none';
+                dom.chatBubble.style.display = 'block';
+            });
+            dom.chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && dom.chatInput.value.trim() !== '') {
+                    handleChatSubmit();
+                }
+            });
+        }
+
+        async function handleChatSubmit() {
+            const userInput = dom.chatInput.value.trim();
+            addChatMessage(userInput, 'user');
+            dom.chatInput.value = '';
+            
+            const systemPrompt = "You are Evento-Bot, a helpful assistant for the Evento-Copy AI web application. Your goal is to answer user questions about the app's features, marketing strategies in general, or how to use the app. Be friendly, concise, and helpful. The app helps users generate complete marketing strategies from a simple idea.";
+            const fullPrompt = `${systemPrompt}\n\nUser question: ${userInput}`;
+
+            try {
+                const botResponse = await callSecureApi(fullPrompt, false);
+                addChatMessage(botResponse, 'bot');
+            } catch (error) {
+                console.error("Chatbot API call failed:", error);
+                addChatMessage("Sorry, I'm having trouble connecting right now. Please try again later.", 'bot');
+            }
+        }
+
+        function addChatMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', `${sender}-message`);
+            messageElement.textContent = text;
+            dom.chatMessages.appendChild(messageElement);
+            dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+        }
+
         // --- EVENT LISTENERS (must be at the end) ---
         dom.signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -1279,8 +1440,20 @@
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
-                // Dejamos que el listener onAuthStateChanged maneje la creación del perfil.
                 await updateProfile(user, { displayName: name });
+
+                // **CORRECCIÓN:** Crear el perfil y la generación gratuita inmediatamente.
+                const userDocRef = doc(db, `artifacts/${appId}/users/${user.uid}/data/profile`);
+                await setDoc(userDocRef, {
+                    freeGenerations: 1,
+                    email: user.email,
+                    name: name,
+                    createdAt: Timestamp.now()
+                });
+                
+                // **CORRECCIÓN:** Forzar la redirección a la página principal.
+                // El listener onAuthStateChanged se encargará de renderizar la UI con los datos correctos.
+                showPage('homepage');
 
             } catch (error) {
                 if (error.code === 'auth/operation-not-allowed') {
@@ -1368,6 +1541,9 @@
 
         // --- INITIALIZATION ---
         const init = () => {
+            // Setup Chatbot Listeners
+            setupChatbot();
+
             // Setup listeners for payment page
             document.querySelectorAll('.plan-card').forEach(card => {
                 card.addEventListener('click', () => {
@@ -1395,12 +1571,17 @@
                             if (docSnap.exists()) {
                                 const userData = docSnap.data();
                                 state.freeGenerations = userData.freeGenerations ?? 0;
+                                renderAuthState(user); // Re-render with the correct count from the database
                             } else {
-                                // This case handles brand new users. We create the profile and give them their one-time trial credit.
+                                // Este caso ahora es inesperado para un usuario que acaba de registrarse,
+                                // ya que el perfil se crea inmediatamente.
+                                // Puede ocurrir si un usuario antiguo nunca tuvo perfil. Como fallback, lo creamos.
+                                console.warn("User profile not found, creating one as a fallback.");
                                 setDoc(userDocRef, { freeGenerations: 1, email: user.email, name: user.displayName || "" });
                                 state.freeGenerations = 1;
+                                renderAuthState(user);
                             }
-                            renderAuthState(user); // Re-render with the correct count from the database
+                            // This redirection logic is still good for login.
                             if (state.currentPage === 'login' || state.currentPage === 'signup') {
                                 showPage('homepage');
                             }
@@ -1439,6 +1620,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
