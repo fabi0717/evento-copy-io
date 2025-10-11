@@ -1,2 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYYQ8GLWRF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EYYQ8GLWRF');
+    </script>
+    <!-- End Google Analytics -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento-Copy AI - AI-Powered Marketing Strategy</title>
+    <meta name="description" content="Generate comprehensive, presentation-ready marketing strategies in seconds with Evento-Copy AI. From a single idea to a full campaign plan.">
+    <meta name="keywords" content="AI marketing, marketing strategy, content generation, AI copywriting, event marketing, campaign planner">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .logo-font { font-family: 'Poppins', sans-serif; }
+        .logo-shadow {
+            text-shadow: 1px 1px 0px #1e3a8a, 3px 3px 5px rgba(0,0,0,0.2);
+        }
+        .glowing-shadow { box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4), 0 4px 6px -2px rgba(79, 70, 229, 0.2); }
+        .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .sidebar-button.active { background-color: #eef2ff; color: #4338ca; font-weight: 600; }
+        .prose h3 { margin-top: 0; margin-bottom: 1em; font-size: 1.75em; font-weight: 800; color: #111827;}
+        .prose h4 { margin-top: 1.5em; margin-bottom: 0.5em; font-size: 1.1em; font-weight: 700; color: #1f2937; text-transform: uppercase; letter-spacing: 0.05em;}
+        .prose p, .prose ul, .prose li { color: #374151; }
+        .timeline-item .timeline-line { transition: background-color: 0.3s; }
+        .timeline-item .timeline-dot { transition: all 0.3s; }
+        .timeline-item.active .timeline-line { background-color: #4f46e5; }
+        .timeline-item.active .timeline-dot { background-color: #4f46e5; transform: scale(1.25); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2); }
+        .timeline-content { display: none; transition: all 0.3s ease-in-out; }
+        .timeline-item.active .timeline-content { display: block; }
+        [contenteditable]:focus { outline: 2px solid #4f46e5; background-color: #f0f2ff; border-radius: 4px; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2); }
+        .strategy-card.selected { border-color: #4f46e5; box-shadow: 0 0 0 2px #4f46e5; transform: scale(1.02); }
+        @keyframes grow { from { width: 0%; } }
+        .modal-message {
+            display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background-color: #fefefe; padding: 24px; border: 1px solid #888; width: 90%;
+            max-width: 450px; text-align: left; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-button:hover { color: #333; }
+        .auth-message { min-height: 24px; text-align: center; font-weight: 500; }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .task-checkbox:checked + label { text-decoration: line-through; color: #9ca3af; }
+        .plan-card.selected { border-width: 2px; border-color: #4f46e5; }
+        /* Custom slider styles */
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]:focus { outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #4f46e5; cursor: pointer; margin-top: -6px; box-shadow: 0px 0px 5px rgba(0,0,0,0.2); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #ddd; border-radius: 5px; }
+        /* Chatbot styles */
+        #chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+        #chat-bubble {
+            background-color: #4f46e5;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        #chat-window {
+            position: fixed;
+            bottom: 6.5rem;
+            right: 2rem;
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #chat-header {
+            background-color: #4f46e5;
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-message {
+            padding: 0.5rem 1rem;
+            border-radius: 18px;
+            margin-bottom: 0.5rem;
+            max-width: 80%;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: #eef2ff;
+            color: #4338ca;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            align-self: flex-start;
+        }
+        #chat-input-container {
+            border-top: 1px solid #e5e7eb;
+            padding: 1rem;
+            display: flex;
+        }
+        #chat-input {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            outline: none;
+        }
+         #chat-input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px #c7d2fe;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <div id="app" class="min-h-screen flex flex-col items-center p-4 md:p-8">
+        
+        <header class="w-full max-w-7xl mx-auto flex justify-between items-center py-4">
+            <div id="logo-btn" class="inline-flex items-center group cursor-pointer">
+                <div class="flex items-center justify-center w-10 h-10 mr-3 bg-gradient-to-br from-indigo-600 to-purple-500 rounded-xl shadow-lg group-hover:shadow-indigo-400/50 transition-all duration-300">
+                    <svg class="w-6 h-6 text-white transform transition-transform duration-300 group-hover:rotate-12" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z"></path>
+                    </svg>
+                </div>
+                <span class="logo-font logo-shadow text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">Evento-Copy AI</span>
+            </div>
+             <div class="flex items-center space-x-6">
+                <div id="auth-container" class="flex items-center space-x-4"></div>
+            </div>
+        </header>
+
+        <main class="w-full max-w-7xl mx-auto flex-grow flex flex-col">
+            <div id="homepage" class="py-16 md:py-24">
+                <div class="text-center mb-12">
+                    <h2 id="main-title" class="text-5xl md:text-7xl font-black mb-4 leading-tight">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">AI-Powered Marketing.</span>
+                        <br>
+                        <span>Instant Strategy.</span>
+                    </h2>
+                    <p id="main-subtitle" class="text-lg text-slate-600 max-w-3xl mx-auto">From a single idea to a comprehensive, presentation-ready marketing plan in seconds. Let our AI build your entire campaign.</p>
+                </div>
+                
+                <!-- Hero Image Section -->
+                <div id="hero-image-section" class="my-12 max-w-5xl mx-auto">
+                    <img src="https://placehold.co/1200x600/4f46e5/ffffff?text=Evento-Copy+AI&font=poppins" 
+                         alt="Evento-Copy AI in action" 
+                         class="rounded-2xl shadow-2xl border-4 border-white object-cover">
+                </div>
+
+                <div id="generator-section" class="hidden bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200">
+                    <div id="generations-counter-container" class="text-center text-sm text-slate-500 mb-6"></div>
+                    <div class="max-w-4xl mx-auto space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-indigo-100 text-indigo-600 rounded-lg p-2 mt-1"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" /></svg></div>
+                            <div class="flex-1">
+                                <label for="eventName" class="text-lg text-slate-800 font-semibold">Event Name</label>
+                                <input type="text" id="eventName" placeholder="e.g., 'AI Marketing Summit'" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" value="Global Fintech Conference">
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-purple-100 text-purple-600 rounded-lg p-2 mt-1"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3 3 0 0110.5 9.75v-.75a3 3 0 00-3-3h-1.5a3 3 0 00-3 3v.75a3 3 0 013 3v.75a3 3 0 003 3h.75a3 3 0 003-3v-.75a3 3 0 013-3m-3.75 9.118a3 3 0 01-3 3h-.75a3 3 0 01-3-3v-.75a3 3 0 013-3h1.5a3 3 0 013 3v.75z" /></svg></div>
+                            <div class="flex-1">
+                                <label for="targetAudience" class="text-lg text-slate-800 font-semibold">Target Audience</label>
+                                <input list="audience-options" type="text" id="targetAudience" placeholder="e.g., 'Senior Management'" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition" value="Bank Executives and Investors">
+                                <datalist id="audience-options"><option value="C-Suite Executives"><option value="Marketing Managers"><option value="Tech Enthusiasts"><option value="Small Business Owners"></datalist>
+                            </div>
+                        </div>
+
+                         <div class="flex items-start space-x-4">
+                            <div class="bg-green-100 text-green-600 rounded-lg p-2 mt-1"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                            <div class="flex-1">
+                                <label for="eventTopic" class="text-lg text-slate-800 font-semibold">Key Topic</label>
+                                <input list="topic-options" type="text" id="eventTopic" placeholder="e.g., 'New AI advertising models'" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition" value="The future of digital currency">
+                                <datalist id="topic-options"><option value="Product Launch"><option value="Lead Generation"><option value="Brand Awareness"><option value="Customer Retention"></datalist>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 text-center"><button id="generate-btn" class="bg-indigo-600 text-white font-bold py-4 px-10 text-lg rounded-xl hover:bg-indigo-700 transition-transform transform hover:scale-105 glowing-shadow flex items-center justify-center mx-auto"><svg class="w-6 h-6 mr-3" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.672-2.672L11.25 18l1.938-.648a3.375 3.375 0 002.672-2.672L16.25 13.5l.648 1.938a3.375 3.375 0 002.672 2.672L21.75 18l-1.938.648a3.375 3.375 0 00-2.672 2.672z" /></svg><span id="generate-btn-text">Build My Strategy</span></button></div>
+                </div>
+            </div>
+            
+            <!-- Login Page -->
+            <div id="login-page" class="hidden py-16 md:py-24">
+                <div class="max-w-md mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200">
+                    <h2 class="text-3xl font-bold text-center text-slate-800 mb-2">Welcome Back</h2>
+                    <p class="text-center text-slate-500 mb-6">Enter your credentials to access your dashboard.</p>
+                    <form id="login-form" class="space-y-6">
+                        <div id="login-message" class="auth-message"></div>
+                        <div>
+                            <label for="login-email" class="text-lg text-slate-800 font-semibold">Email Address</label>
+                            <input type="email" id="login-email" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div>
+                            <label for="login-password" class="text-lg text-slate-800 font-semibold">Password</label>
+                            <input type="password" id="login-password" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-10 text-lg rounded-xl hover:bg-indigo-700 transition-transform transform hover:scale-105 glowing-shadow">Log In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sign Up Page -->
+            <div id="signup-page" class="hidden py-16 md:py-24">
+                <div class="max-w-md mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200">
+                    <h2 class="text-3xl font-bold text-center text-slate-800 mb-2">Start Your Free Trial</h2>
+                     <p class="text-center text-slate-500 mb-6">Create an account to begin generating strategies.</p>
+                    <form id="signup-form" class="space-y-6">
+                         <div id="signup-message" class="auth-message"></div>
+                         <div>
+                            <label for="signup-name" class="text-lg text-slate-800 font-semibold">Full Name</label>
+                            <input type="text" id="signup-name" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div>
+                            <label for="signup-email" class="text-lg text-slate-800 font-semibold">Email Address</label>
+                            <input type="email" id="signup-email" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div>
+                            <label for="signup-password" class="text-lg text-slate-800 font-semibold">Create Password</label>
+                            <input type="password" id="signup-password" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-10 text-lg rounded-xl hover:bg-indigo-700 transition-transform transform hover:scale-105 glowing-shadow">Create Account</button>
+                             <p class="text-xs text-slate-500 mt-4">By signing up, you agree to our Terms of Service.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Payment Page -->
+            <div id="payment-page" class="hidden py-16 md:py-24">
+                <div class="max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200 text-center">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-2">Free Generations Limit Reached</h2>
+                    <p class="text-slate-500 mb-8">Upgrade to unlock unlimited access and generate complete marketing strategies on demand.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Monthly Plan -->
+                        <div class="p-6 border border-slate-200 rounded-xl hover:border-indigo-500 transition-all cursor-pointer plan-card" data-plan="monthly">
+                            <h3 class="font-bold text-xl mb-2">Monthly Plan</h3>
+                            <p class="text-4xl font-extrabold text-indigo-600 mb-4">$29<span class="text-base text-slate-500 font-medium">/ month</span></p>
+                            <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
+                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Unlimited Generations</li>
+                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>All Features</li>
+                            </ul>
+                            <button class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition select-plan-btn" data-plan="monthly">Choose Plan</button>
+                        </div>
+                        <!-- Quarterly Plan -->
+                        <div class="relative p-6 border-2 border-indigo-500 rounded-xl transition-all cursor-pointer plan-card selected" data-plan="quarterly">
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Popular</div>
+                            <h3 class="font-bold text-xl mb-2">Quarterly Plan</h3>
+                            <p class="text-4xl font-extrabold text-indigo-600 mb-4">$69<span class="text-base text-slate-500 font-medium">/ quarter</span></p>
+                            <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
+                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Unlimited Generations</li>
+                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>All Features</li>
+                            </ul>
+                            <button class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition select-plan-btn" data-plan="quarterly">Choose Plan</button>
+                        </div>
+                        <!-- Annual Plan -->
+                        <div class="p-6 border border-slate-200 rounded-xl hover:border-indigo-500 transition-all cursor-pointer plan-card" data-plan="annual">
+                            <h3 class="font-bold text-xl mb-2">Annual Plan</h3>
+                            <p class="text-4xl font-extrabold text-indigo-600 mb-4">$199<span class="text-base text-slate-500 font-medium">/ year</span></p>
+                            <p class="text-sm text-green-600 mb-6 font-semibold">Best Value - Save over 40%</p>
+                            <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
+                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Unlimited Generations</li>
+                                <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>All Features</li>
+                            </ul>
+                            <button class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition select-plan-btn" data-plan="annual">Proceed to Payment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             <!-- Projects Page -->
+            <div id="projects-page" class="hidden py-16 md:py-24">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex justify-between items-center mb-8">
+                         <h2 class="text-3xl font-bold text-slate-800">My Saved Projects</h2>
+                         <button id="new-project-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 text-sm rounded-lg hover:bg-indigo-700 transition">New Strategy</button>
+                    </div>
+                    <div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Project cards will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Strategy Dashboard -->
+            <div id="strategy-dashboard" class="hidden w-full flex-grow py-8">
+                 <div class="bg-white rounded-2xl shadow-xl border border-slate-200 fade-in">
+                    <div class="flex justify-between items-center p-6 border-b border-slate-200">
+                        <div>
+                            <h3 id="dashboard-title" class="text-2xl font-extrabold text-gray-900"></h3>
+                            <p id="dashboard-subtitle" class="text-md text-gray-500 mt-1"></p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                             <button id="save-strategy-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition-colors hover:bg-indigo-700">
+                                <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                                <span>Save</span>
+                            </button>
+                            <button id="export-btn" class="bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition-colors hover:bg-gray-900">
+                                <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                                <span>Export</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <aside id="sidebar" class="w-1/4 border-r border-slate-200 p-6">
+                            <nav id="sidebar-nav" class="flex flex-col space-y-2"></nav>
+                        </aside>
+                        <main id="dashboard-content" class="w-3/4 p-8 prose max-w-none"></main>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <!-- Modal for messages -->
+    <div id="message-modal" class="modal-message">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modal-text" class="text-slate-700"></p>
+        </div>
+    </div>
+    
+    <!-- Chatbot Widget -->
+    <div id="chat-widget">
+        <div id="chat-window">
+            <div id="chat-header">
+                <span>Evento-Bot Assistant</span>
+                <span id="close-chat" class="cursor-pointer font-bold text-xl">&times;</span>
+            </div>
+            <div id="chat-messages">
+                 <div class="chat-message bot-message">Hello! How can I help you with Evento-Copy AI or your marketing questions?</div>
+            </div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Ask a question...">
+            </div>
+        </div>
+        <div id="chat-bubble">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.76 9.76 0 01-2.53-.388A.75.75 0 008.25 20.25v.75c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v.75a.75.75 0 00.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 00-.212-.531A9.764 9.764 0 0121 12zM3 12c0 4.556 4.03 8.25 9 8.25a9.76 9.76 0 01-2.53-.388A.75.75 0 008.25 20.25v.75c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v.75a.75.75 0 00.75.75h.75a.75.75 0 00.75-.75v-.75a.75.75 0 00-.212-.531A9.764 9.764 0 0121 12zM3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"></path>
+            </svg>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut,
+            signInWithCustomToken,
+            updateProfile,
+            signInAnonymously
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, setLogLevel, addDoc, collection, getDocs, Timestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // --- STATE MANAGEMENT ---
+        let state = {
+            isLoggedIn: false,
+            currentUser: null,
+            freeGenerations: 0, // Iniciar en 0. El valor real se carga desde Firestore.
+            currentPage: 'homepage',
+            campaignCache: null,
+            weekChartInstance: null,
+            budgetChartInstance: null,
+            financialModel: {
+                revenueTickets: 150000,
+                revenueSponsorships: 100000,
+                costVenue: 35000,
+                costMarketing: 30000,
+                costSpeakers: 20000
+            },
+            budgetData: {
+                labels: ['Programmatic Ads', 'Content & SEO', 'Influencer/Partner Mktg', 'Community Engagement'],
+                values: [35, 30, 20, 15]
+            }
+        };
+
+        // --- DOM ELEMENTS ---
+        const dom = {
+            pages: {
+                homepage: document.getElementById('homepage'),
+                login: document.getElementById('login-page'),
+                signup: document.getElementById('signup-page'),
+                payment: document.getElementById('payment-page'),
+                dashboard: document.getElementById('strategy-dashboard'),
+                projects: document.getElementById('projects-page'),
+            },
+            authContainer: document.getElementById('auth-container'),
+            logoBtn: document.getElementById('logo-btn'),
+            generateBtn: document.getElementById('generate-btn'),
+            generatorSection: document.getElementById('generator-section'),
+            generationsCounter: document.getElementById('generations-counter-container'),
+            loginForm: document.getElementById('login-form'),
+            signupForm: document.getElementById('signup-form'),
+            dashboardTitle: document.getElementById('dashboard-title'),
+            dashboardSubtitle: document.getElementById('dashboard-subtitle'),
+            sidebarNav: document.getElementById('sidebar-nav'),
+            dashboardContent: document.getElementById('dashboard-content'),
+            exportBtn: document.getElementById('export-btn'),
+            messageModal: document.getElementById('message-modal'),
+            modalText: document.getElementById('modal-text'),
+            closeModalBtn: document.querySelector('.close-button'),
+            projectsList: document.getElementById('projects-list'),
+            newProjectBtn: document.getElementById('new-project-btn'),
+            // Chatbot DOM
+            chatBubble: document.getElementById('chat-bubble'),
+            chatWindow: document.getElementById('chat-window'),
+            closeChat: document.getElementById('close-chat'),
+            chatMessages: document.getElementById('chat-messages'),
+            chatInput: document.getElementById('chat-input'),
+        };
+
+        // --- FIREBASE CONFIG & CLOUD FUNCTION ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config)
+            : { apiKey: "YOUR_API_KEY", authDomain: "YOUR_AUTH_DOMAIN", projectId: "YOUR_PROJECT_ID" };
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        const isFirebaseConfigured = firebaseConfig && firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY";
+        const app = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
+        const auth = isFirebaseConfigured ? getAuth(app) : null;
+        const db = isFirebaseConfigured ? getFirestore(app) : null;
+        if(db) setLogLevel('debug');
+        
+        const cloudFunctionUrl = "https://callgemini-bhomdt6fra-uc.a.run.app";
+        
+        let unsubscribeUserSnapshot = null;
+
+        // --- UI, PAGE, & LANGUAGE MANAGEMENT ---
+        const showMessageModal = (text) => {
+            dom.modalText.textContent = text;
+            dom.messageModal.style.display = 'flex';
+        };
+
+        const showPage = (pageName) => {
+            state.currentPage = pageName;
+            Object.values(dom.pages).forEach(page => page.classList.add('hidden'));
+            if (dom.pages[pageName]) {
+                dom.pages[pageName].classList.remove('hidden');
+                dom.pages[pageName].classList.add('fade-in');
+            }
+        };
+
+        function showAuthMessage(form, text, isError = false) {
+            const messageEl = document.getElementById(`${form}-message`);
+            if (messageEl) {
+                messageEl.textContent = text;
+                messageEl.className = `auth-message ${isError ? 'text-red-500' : 'text-green-500'}`;
+            }
+        }
+        
+        async function showProjectsPage() {
+            if (!state.currentUser) return;
+            showPage('projects');
+            dom.projectsList.innerHTML = '<p>Loading projects...</p>';
+
+            try {
+                const projectsCollectionRef = collection(db, `artifacts/${appId}/users/${state.currentUser.uid}/projects`);
+                const q = query(projectsCollectionRef, orderBy("savedAt", "desc"));
+                const querySnapshot = await getDocs(q);
+                dom.projectsList.innerHTML = ''; // Clear loading message
+                if (querySnapshot.empty) {
+                    dom.projectsList.innerHTML = '<p>You have no saved projects yet.</p>';
+                    return;
+                }
+                querySnapshot.forEach((doc) => {
+                    const project = doc.data();
+                    const card = document.createElement('div');
+                    card.className = 'bg-white p-4 rounded-lg shadow-md border border-slate-200 cursor-pointer hover:shadow-lg transition-shadow';
+                    card.innerHTML = `
+                        <h3 class="font-bold text-lg text-slate-800">${project.eventName}</h3>
+                        <p class="text-sm text-slate-500">Saved: ${project.savedAt.toDate().toLocaleDateString()}</p>
+                    `;
+                    card.addEventListener('click', () => loadProject(doc.id));
+                    dom.projectsList.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error fetching projects: ", error);
+                dom.projectsList.innerHTML = '<p class="text-red-500">Could not load projects. Please try again later.</p>';
+            }
+        }
+
+        // --- AUTHENTICATION ---
+        const renderAuthState = (user) => {
+            state.currentUser = user;
+            dom.authContainer.innerHTML = '';
+            if (user && !user.isAnonymous) {
+                state.isLoggedIn = true;
+                dom.authContainer.innerHTML = `
+                    <button id="my-projects-btn" class="text-sm font-semibold text-slate-600 hover:text-slate-900">My Projects</button>
+                    <span class="text-sm font-medium text-slate-400">|</span>
+                    <span class="text-sm font-medium text-slate-600">Welcome, ${user.displayName || (user.email ? user.email.split('@')[0] : 'User')}!</span>
+                    <button id="logout-btn" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">Log Out</button>`;
+                
+                dom.authContainer.querySelector('#logout-btn').addEventListener('click', () => {
+                    if (auth) {
+                        signOut(auth).catch((error) => {
+                           console.error("Logout failed:", error);
+                           showMessageModal("Could not log out at the moment. Please try again.");
+                        });
+                    }
+                });
+                dom.authContainer.querySelector('#my-projects-btn').addEventListener('click', showProjectsPage);
+
+
+                dom.generatorSection.classList.remove('hidden');
+
+                if (state.freeGenerations > 0) {
+                    const generationsText = state.freeGenerations === 1 ? '1 free generation left' : `${state.freeGenerations} free generations left`;
+                    dom.generationsCounter.innerHTML = `<p>${generationsText}</p><div class="w-full bg-slate-200 rounded-full h-1.5 mt-1"><div class="bg-indigo-500 h-1.5 rounded-full" style="width: ${state.freeGenerations * 100}%"></div></div>`;
+                } else {
+                    dom.generationsCounter.innerHTML = '';
+                }
+
+
+            } else {
+                state.isLoggedIn = false;
+                dom.authContainer.innerHTML = `
+                    <button id="nav-login-btn" class="text-sm font-semibold text-slate-600 hover:text-slate-900">Log In</button>
+                    <button id="nav-signup-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 text-sm rounded-lg hover:bg-indigo-700 transition">Sign Up</button>`;
+                
+                dom.authContainer.querySelector('#nav-login-btn').addEventListener('click', () => showPage('login'));
+                dom.authContainer.querySelector('#nav-signup-btn').addEventListener('click', () => showPage('signup'));
+                
+                dom.generatorSection.classList.add('hidden');
+            }
+             // Always ensure we are on a valid page after auth state changes
+            if (state.currentPage === 'dashboard' && !state.isLoggedIn) {
+                showPage('homepage');
+            }
+        };
+
+        // --- SECURE API CALL via Cloud Function ---
+        async function callSecureApi(prompt, isJson = false) {
+            const response = await fetch(cloudFunctionUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt, isJson }),
+            });
+
+            if (!response.ok) {
+                const errorBody = await response.text();
+                throw new Error(`API call failed: ${response.status} - ${errorBody}`);
+            }
+
+            const result = await response.json();
+            if (!result.text) {
+                throw new Error("No content received from API.");
+            }
+            return result.text;
+        }
+
+        // --- CORE APPLICATION LOGIC (Workspace Generation) ---
+        async function generateContent() {
+            if (!state.currentUser) { 
+                showPage('signup'); 
+                return;
+            }
+
+            if (state.freeGenerations <= 0) {
+                showPage('payment');
+                return;
+            }
+
+            const eventName = document.getElementById('eventName').value.trim();
+            const targetAudience = document.getElementById('targetAudience').value.trim();
+            const eventTopic = document.getElementById('eventTopic').value.trim();
+            
+            if (!eventName || !targetAudience || !eventTopic) return;
+            
+            const btn = dom.generateBtn;
+            const btnText = btn.querySelector('span');
+            const originalBtnText = btnText.textContent;
+            btnText.textContent = "Generating...";
+            btn.disabled = true;
+
+            if (state.weekChartInstance) state.weekChartInstance.destroy();
+            if (state.budgetChartInstance) state.budgetChartInstance.destroy();
+
+            try {
+                const systemPrompt = "You are an expert marketing strategist AI. Your task is to generate a comprehensive, presentation-ready marketing workspace based on a user's event concept. The output must be a valid JSON object only, with no other text before or after it. Use real-world data and insights for your analysis.";
+                const userQuery = `Generate a detailed marketing plan in English for an event named "${eventName}" targeting "${targetAudience}" with the key topic of "${eventTopic}". Ensure the content is unique, insightful, and actionable.`;
+                const fullPrompt = `${systemPrompt}\n\n${userQuery}`;
+                const jsonText = await callSecureApi(fullPrompt, true);
+                state.campaignCache = JSON.parse(jsonText);
+                
+                if (state.currentUser && db) {
+                    const newCount = Math.max(0, state.freeGenerations - 1);
+                    const userDocRef = doc(db, `artifacts/${appId}/users/${state.currentUser.uid}/data/profile`);
+                    await updateDoc(userDocRef, {
+                        freeGenerations: newCount
+                    });
+                }
+                renderDashboard(state.campaignCache);
+
+            } catch (error) {
+                console.error("Content generation failed:", error);
+                showMessageModal("Could not connect to the AI service. Please check your connection and try again.");
+            } finally {
+                btnText.textContent = originalBtnText;
+                btn.disabled = false;
+            }
+        }
+        
+        // --- DASHBOARD RENDERING LOGIC ---
+        async function saveStrategy() {
+            if (!state.currentUser || !state.campaignCache) {
+                showMessageModal("You must be logged in and have an active strategy to save.");
+                return;
+            }
+            const saveButton = document.getElementById('save-strategy-btn');
+            saveButton.disabled = true;
+            saveButton.querySelector('span').textContent = 'Saving...';
+            
+            try {
+                const projectsCollectionRef = collection(db, `artifacts/${appId}/users/${state.currentUser.uid}/projects`);
+                await addDoc(projectsCollectionRef, {
+                    ...state.campaignCache,
+                    savedAt: Timestamp.now()
+                });
+                showMessageModal("Strategy saved successfully!");
+            } catch (error) {
+                console.error("Error saving strategy:", error);
+                showMessageModal("Could not save strategy. Please try again.");
+            } finally {
+                 saveButton.disabled = false;
+                 saveButton.querySelector('span').textContent = 'Save';
+            }
+        }
+
+        
+
+        async function loadProject(projectId) {
+            if (!state.currentUser) return;
+            try {
+                const projectDocRef = doc(db, `artifacts/${appId}/users/${state.currentUser.uid}/projects`, projectId);
+                const docSnap = await getDoc(projectDocRef);
+                if (docSnap.exists()) {
+                    state.campaignCache = docSnap.data();
+                    renderDashboard(state.campaignCache);
+                } else {
+                    showMessageModal("Project not found.");
+                }
+            } catch (error) {
+                console.error("Error loading project:", error);
+                showMessageModal("Could not load the selected project.");
+            }
+        }
+
+
+        function renderDashboard(campaign) {
+            const { eventName, targetAudience } = campaign;
+            showPage('dashboard');
+            
+            dom.dashboardTitle.textContent = `Marketing Workspace: ${eventName}`;
+            dom.dashboardSubtitle.textContent = `A comprehensive strategy targeting ${targetAudience}.`;
+
+            const tabsData = {
+                proposal:{label: "Strategic Proposal", icon:'<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />'},
+                businessStrategy: {label: "Business Strategy", icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311l-3.75 0M9 17.25v.008H9.008V17.25H9zm3.75 0v.008h.008v-.008h-.008zm3.75 0v.008h.008v-.008h-.008z" />'},
+                plan:{label: "Tactical Plan", icon:'<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />'},
+                emails:{label: "Email Strategy", icon:'<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />'},
+                social:{label: "Content Command Center", icon:'<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18" />'}
+            };
+
+            const tabsContainer = dom.sidebarNav;
+            tabsContainer.innerHTML = ''; // Clear previous tabs
+            Object.keys(tabsData).forEach((key, index) => {
+                const button = document.createElement('button');
+                button.className = 'sidebar-button w-full text-left py-2.5 px-4 rounded-lg text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors';
+                button.innerHTML = `<span class="flex items-center"><svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">${tabsData[key].icon}</svg>${tabsData[key].label}</span>`;
+                if (index === 0) button.classList.add('active');
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tabsContainer.querySelectorAll('.sidebar-button').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    renderTabContent(key, campaign);
+                });
+                tabsContainer.appendChild(button);
+            });
+            
+            document.getElementById('save-strategy-btn').addEventListener('click', saveStrategy);
+
+            renderTabContent('proposal', campaign);
+        }
+
+        function renderTabContent(key, campaign) {
+            const container = dom.dashboardContent;
+            if (!container) return;
+            container.innerHTML = `<div id="tab-${key}" class="tab-content active fade-in"></div>`;
+            const contentContainer = document.getElementById(`tab-${key}`);
+
+            if (key === 'proposal') {
+                const kpisHTML = `<h4>Key Performance Indicators (KPIs)</h4><div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">${campaign.kpis.map(kpi => `<div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center"><div class="text-sm text-gray-500 font-medium">${kpi.title}</div><div class="text-2xl font-bold text-gray-900 mt-1">${kpi.value}</div></div>`).join('')}</div>`;
+                const strategiesHTML = `<h4>Strategic Approaches</h4><div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">${campaign.strategies.map((s,i) => `<div class="strategy-card border-2 p-4 rounded-lg cursor-pointer ${i === 0 ? 'selected' : ''}" data-strategy="${s.title}"><strong class="block ${s.color || 'text-indigo-600'}">${s.title}</strong><p class="text-sm">${s.desc}</p></div>`).join('')}</div>`;
+                const swotHTML = `<h4>SWOT Analysis</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2"><div class="bg-green-50 p-3 rounded-lg border border-green-200"><strong class="text-green-700">Strengths:</strong><ul class="list-disc pl-5 mt-1 text-sm">${campaign.swot.strengths.map(i => `<li>${i}</li>`).join('')}</ul></div><div class="bg-red-50 p-3 rounded-lg border border-red-200"><strong class="text-red-700">Weaknesses:</strong><ul class="list-disc pl-5 mt-1 text-sm">${campaign.swot.weaknesses.map(i => `<li>${i}</li>`).join('')}</ul></div><div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><strong class="text-blue-700">Opportunities:</strong><ul class="list-disc pl-5 mt-1 text-sm">${campaign.swot.opportunities.map(i => `<li>${i}</li>`).join('')}</ul></div><div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200"><strong class="text-yellow-700">Threats:</strong><ul class="list-disc pl-5 mt-1 text-sm">${campaign.swot.threats.map(i => `<li>${i}</li>`).join('')}</ul></div></div>`;
+                const competitorsHTML = `<h4>Competitive Landscape</h4><table class="w-full mt-2 text-sm text-left"><thead><tr class="border-b"><th class="p-2">Competitor</th><th class="p-2">Key Differentiator</th><th class="p-2">Our Advantage</th></tr></thead><tbody>${campaign.competitors.map(c => `<tr class="border-b"><td class="p-2 font-semibold">${c.name}</td><td class="p-2">${c.differentiator}</td><td class="p-2">${c.advantage}</td></tr>`).join('')}</tbody></table>`;
+                const personaHTML = `<h4>Audience Persona: "${campaign.persona.title}"</h4><div class="bg-indigo-50 border-l-4 border-indigo-400 p-4 rounded-r-lg" contenteditable="true"><p><strong>Demographics:</strong> ${campaign.persona.demographics}<br><strong>Goals:</strong> ${campaign.persona.goals}<br><strong>Pain Points:</strong> ${campaign.persona.painPoints}</p></div>`;
+                contentContainer.innerHTML = `<h3>Strategic Proposal</h3>${kpisHTML}<h4>Objective</h4><p contenteditable="true">${campaign.objective}</p>${strategiesHTML}${swotHTML}${competitorsHTML}${personaHTML}`;
+                contentContainer.querySelector('.grid').addEventListener('click', (e) => {
+                    const card = e.target.closest('.strategy-card');
+                    if (card) {
+                        contentContainer.querySelectorAll('.strategy-card').forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                    }
+                });
+            } else if (key === 'businessStrategy') {
+                contentContainer.innerHTML = `
+                    <h3>Business Strategy Plan</h3>
+                    <h4>Interactive Financial Projections & ROI</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 items-start">
+                        <!-- Revenue Column -->
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200 space-y-3">
+                            <strong class="text-green-800 text-lg">Projected Revenue</strong>
+                            <div>
+                                <label class="text-sm font-medium">Ticket Sales ($)</label>
+                                <input type="number" id="revenue-tickets" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.revenueTickets}" step="1000">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium">Sponsorships ($)</label>
+                                <input type="number" id="revenue-sponsorships" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.revenueSponsorships}" step="1000">
+                            </div>
+                            <div class="text-right font-bold">Total: <span id="total-revenue">$250,000</span></div>
+                        </div>
+                        <!-- Costs Column -->
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200 space-y-3">
+                            <strong class="text-red-800 text-lg">Estimated Costs</strong>
+                            <div>
+                                <label class="text-sm font-medium">Venue & Logistics ($)</label>
+                                <input type="number" id="cost-venue" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.costVenue}" step="1000">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium">Marketing & Ads ($)</label>
+                                <input type="number" id="cost-marketing" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.costMarketing}" step="1000">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium">Speakers & Talent ($)</label>
+                                <input type="number" id="cost-speakers" class="financial-input w-full p-1 border-gray-300 rounded" value="${state.financialModel.costSpeakers}" step="1000">
+                            </div>
+                            <div class="text-right font-bold">Total: <span id="total-costs">$85,000</span></div>
+                        </div>
+                        <!-- ROI Column -->
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 text-center sticky top-8">
+                            <strong class="text-blue-800">Projected ROI</strong>
+                            <p class="text-4xl font-bold text-blue-700 mt-4" id="roi-value">194%</p>
+                            <p class="text-sm font-semibold text-slate-600 mt-2">Profit: <span id="profit-value">$165,000</span></p>
+                        </div>
+                    </div>
+                    <h4>Go-to-Market (GTM) Strategy</h4>
+                    <div class="mt-4 space-y-4">
+                        <div class="border rounded-lg">
+                            <div class="p-4 bg-slate-100 rounded-t-lg"><strong class="text-indigo-600">Phase 1: Pre-Launch (Weeks 1-2)</strong><p class="text-sm font-semibold">Objective: Build initial awareness and secure anchor sponsors/speakers.</p></div>
+                            <div class="p-4 grid grid-cols-3 gap-4 text-sm">
+                                <div><strong class="block">Key Channels:</strong><ul class="list-disc pl-5"><li>PR Outreach</li><li>LinkedIn</li><li>Founder's Network</li></ul></div>
+                                <div><strong class="block">Core Messaging:</strong><p>"A new paradigm is coming. Be part of the conversation that defines what's next."</p></div>
+                                <div><strong class="block">KPIs:</strong><ul class="list-disc pl-5"><li>Media Mentions</li><li>Sponsor Commitments</li><li>Advisory Board Formed</li></ul></div>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg">
+                            <div class="p-4 bg-slate-100 rounded-t-lg"><strong class="text-indigo-600">Phase 2: Launch & Engage (Weeks 3-6)</strong><p class="text-sm font-semibold">Objective: Drive early-bird registrations and build an engaged community.</p></div>
+                            <div class="p-4 grid grid-cols-3 gap-4 text-sm">
+                                <div><strong class="block">Key Channels:</strong><ul class="list-disc pl-5"><li>Content Marketing (Blog, Video)</li><li>Paid Social Ads</li><li>Email Nurturing</li></ul></div>
+                                <div><strong class="block">Core Messaging:</strong><p>"Get the framework for success. Early access and pricing for industry leaders."</p></div>
+                                <div><strong class="block">KPIs:</strong><ul class="list-disc pl-5"><li>Early Bird Registrations</li><li>Click-Through Rate (CTR)</li><li>Community Growth</li></ul></div>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg">
+                            <div class="p-4 bg-slate-100 rounded-t-lg"><strong class="text-indigo-600">Phase 3: Conversion & Urgency (Weeks 7-8)</strong><p class="text-sm font-semibold">Objective: Maximize ticket sales and create Fear Of Missing Out (FOMO).</p></div>
+                            <div class="p-4 grid grid-cols-3 gap-4 text-sm">
+                                <div><strong class="block">Key Channels:</strong><ul class="list-disc pl-5"><li>Retargeting Ads</li><li>Social Proof (Testimonials)</li><li>Last-Chance Emails</li></ul></div>
+                                <div><strong class="block">Core Messaging:</strong><p>"Don't get left behind. The future is being decided here, with or without you."</p></div>
+                                <div><strong class="block">KPIs:</strong><ul class="list-disc pl-5"><li>Ticket Sales Velocity</li><li>Final Conversion Rate</li></ul></div>
+                            </div>
+                        </div>
+                    </div>
+                      <h4>Risk Mitigation Matrix</h4>
+                    <table class="w-full mt-4 text-sm text-left">
+                        <thead class="bg-slate-100"><tr><th class="p-2">Potential Risk</th><th class="p-2">Impact</th><th class="p-2">Mitigation Strategy (Solution)</th></tr></thead>
+                        <tbody>
+                            <tr class="border-b"><td class="p-2 font-semibold">Low Initial Ticket Sales</td><td class="p-2 text-red-600 font-semibold">High</td><td class="p-2">Activate influencer partnerships early; offer exclusive bonuses for the first 100 attendees.</td></tr>
+                            <tr class="border-b"><td class="p-2 font-semibold">Keynote Speaker Cancellation</td><td class="p-2 text-yellow-600 font-semibold">Medium</td><td class="p-2">Have a backup high-profile speaker on standby; pivot messaging to highlight the collective expertise of all speakers.</td></tr>
+                            <tr><td class="p-2 font-semibold">Competitor Event Announcement</td><td class="p-2 text-yellow-600 font-semibold">Medium</td><td class="p-2">Double down on our unique value proposition (e.g., executive focus) and launch a targeted counter-PR campaign.</td></tr>
+                        </tbody>
+                    </table>
+                `;
+                initializeFinancials();
+            } else if (key === 'plan') {
+                contentContainer.innerHTML = `
+                    <h3>Tactical Plan</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h4>Dynamic Funnel Projection</h4>
+                            <div class="bg-slate-100 p-4 rounded-lg mt-4">
+                                <p class="text-sm">Marketing Budget: <strong id="funnel-budget" class="text-indigo-600">$30,000</strong></p>
+                            </div>
+                            <div id="funnel-controls" class="grid grid-cols-3 gap-4 mt-4 text-sm">
+                                <div><label class="font-medium">Avg. CPC ($)</label><input type="number" id="funnel-cpc" class="w-full p-1 border-gray-300 rounded" value="2.50" step="0.1"></div>
+                                <div><label class="font-medium">Click-to-Lead (%)</label><input type="number" id="funnel-cpl" class="w-full p-1 border-gray-300 rounded" value="5" step="0.5"></div>
+                                <div><label class="font-medium">Lead-to-Reg. (%)</label><input type="number" id="funnel-lcr" class="w-full p-1 border-gray-300 rounded" value="20" step="1"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                             <div class="flex items-center space-x-4 bg-slate-100 p-4 rounded-lg">
+                                <div class="flex-shrink-0 flex justify-center items-center bg-indigo-200 text-indigo-700 h-12 w-12 rounded-full">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </div>
+                                <div><h5 class="font-bold">Website Clicks</h5><p id="funnel-clicks" class="text-2xl font-bold text-indigo-600">12,000</p></div>
+                            </div>
+                            <div class="flex items-center space-x-4 bg-slate-100 p-4 rounded-lg">
+                                <div class="flex-shrink-0 flex justify-center items-center bg-purple-200 text-purple-700 h-12 w-12 rounded-full">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <div><h5 class="font-bold">Engaged Leads</h5><p id="funnel-leads" class="text-2xl font-bold text-purple-600">600</p></div>
+                            </div>
+                             <div class="flex items-center space-x-4 bg-slate-100 p-4 rounded-lg">
+                                <div class="flex-shrink-0 flex justify-center items-center bg-green-200 text-green-700 h-12 w-12 rounded-full">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div><h5 class="font-bold">Registrations</h5><p id="funnel-registrations" class="text-2xl font-bold text-green-600">120</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center mt-8">
+                        <div class="lg:col-span-3">
+                            <h4>Interactive Budget Allocation</h4>
+                            <div id="budget-controls" class="space-y-4 mt-4"></div>
+                        </div>
+                        <div class="lg:col-span-2" style="position: relative; height:300px; width:100%;"><canvas id="budgetChart"></canvas></div>
+                    </div>
+
+                    <h4>Interactive Launch Timeline</h4>
+                      <div class="my-4 flex justify-end">
+                        <div class="flex space-x-2 rounded-lg bg-gray-200 p-1" id="timeline-controls">
+                            <button data-view="weeks" class="timeline-view-btn bg-white rounded-md py-1 px-3 text-sm font-semibold">Weeks</button>
+                            <button data-view="months" class="timeline-view-btn py-1 px-3 text-sm font-semibold">Months</button>
+                        </div>
+                    </div>
+                    <div id="timeline" class="mt-2 border-t border-slate-200"></div>
+                `;
+                
+                initializeFunnel();
+
+                const timelineControls = document.getElementById('timeline-controls');
+                timelineControls.addEventListener('click', e => {
+                    if (e.target.classList.contains('timeline-view-btn')) {
+                        timelineControls.querySelectorAll('.timeline-view-btn').forEach(b => b.classList.remove('bg-white', 'text-indigo-600', 'font-bold'));
+                        e.target.classList.add('bg-white', 'text-indigo-600', 'font-bold');
+                        renderTimeline(campaign.timeline, e.target.dataset.view);
+                    }
+                });
+                renderTimeline(campaign.timeline, 'weeks');
+                renderBudgetControls();
+                updateBudgetChart();
+            } else if (key === 'emails') {
+                contentContainer.innerHTML = `<h3>Interactive Email Strategy</h3><div id="email-sequence" class="space-y-6"></div>`;
+                renderEmailStrategy(campaign);
+            } else if (key === 'social') {
+                contentContainer.innerHTML = `<h3>Content Command Center</h3><div id="social-content-cards" class="space-y-6"></div>`;
+                renderSocialStrategy(campaign);
+            }
+        }
+
+        async function rewriteEmail(button, index) {
+            if(!state.currentUser) {
+                showPage('signup');
+                return;
+            }
+            button.textContent = "Rewriting...";
+            button.disabled = true;
+            const card = button.closest('.email-card');
+            const subject = card.querySelector('.email-subject').textContent;
+            const body = card.querySelector('.email-body').innerHTML;
+
+            const { eventName, targetAudience, eventTopic, persona } = state.campaignCache;
+
+            const prompt = `You are an expert email marketer. Rewrite the following email body to be more persuasive and impactful. 
+            Context: 
+            - Event Name: ${eventName}
+            - Target Audience: ${targetAudience}
+            - Key Topic: ${eventTopic}
+            - Persona: ${persona.title} (${persona.painPoints})
+            Original Subject: ${subject}
+            Original Body: ${body}
+            
+            Rewrite the body only. Do not include the subject. Output only the HTML for the email body.`;
+            
+            try {
+                const newBody = await callSecureApi(prompt, false);
+                card.querySelector('.email-body').innerHTML = newBody;
+            } catch (error) {
+                console.error("Rewrite failed:", error);
+                showMessageModal("AI rewrite failed. Please try again.");
+            } finally {
+                button.textContent = "Rewrite with AI";
+                button.disabled = false;
+            }
+        }
+        
+        function copyEmailToClipboard(button, index) {
+            const emailCard = button.closest('.email-card');
+            const subject = emailCard.querySelector('.email-subject').textContent;
+            const body = emailCard.querySelector('.email-body').innerText; // Use innerText for plain text copy
+            
+            const fullEmail = `Subject: ${subject}\n\n${body}`;
+            
+            const textarea = document.createElement('textarea');
+            textarea.value = fullEmail;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const originalText = button.textContent;
+            button.textContent = "Copied!";
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 2000);
+        }
+
+        function renderEmailStrategy(campaign) {
+            const container = document.getElementById('email-sequence');
+            container.innerHTML = campaign.emails.map((email, index) => `
+                <div class="email-card border rounded-lg bg-white">
+                    <div class="p-4 bg-slate-50 rounded-t-lg border-b flex justify-between items-center">
+                        <h5 class="font-bold">${email.title}</h5>
+                        <span class="text-xs font-semibold uppercase text-indigo-600 bg-indigo-100 rounded-full px-2 py-1">${email.phase} Phase</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="font-semibold text-slate-800">Subject: <span class="email-subject font-normal" contenteditable="true">${email.subject}</span></div>
+                        <div class="email-body mt-4 p-4 border rounded bg-slate-50 min-h-[150px]" contenteditable="true">${email.body}</div>
+                        <div class="mt-4 flex items-center justify-end space-x-2">
+                             <button class="copy-email-btn text-sm font-medium text-slate-600 hover:text-indigo-600 transition" data-index="${index}">Copy Email</button>
+                             <button class="rewrite-email-btn bg-indigo-600 text-white font-semibold py-1 px-3 rounded-md text-sm hover:bg-indigo-700 transition" data-index="${index}">Rewrite with AI</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            container.querySelectorAll('.rewrite-email-btn').forEach(btn => {
+                btn.addEventListener('click', () => rewriteEmail(btn, btn.dataset.index));
+            });
+            container.querySelectorAll('.copy-email-btn').forEach(btn => {
+                btn.addEventListener('click', () => copyEmailToClipboard(btn, btn.dataset.index));
+            });
+        }
+        
+        async function rewritePost(button, index) {
+            if(!state.currentUser) {
+                showPage('signup');
+                return;
+            }
+            button.textContent = "Rewriting...";
+            button.disabled = true;
+            const card = button.closest('.social-card');
+            const postContentEl = card.querySelector('.social-post-copy');
+            const originalPost = postContentEl.textContent;
+            
+            const prompt = `Rewrite this social media post for a ${state.campaignCache.persona.title} audience. Make it more engaging. Original post: "${originalPost}"`;
+            try {
+                const newPost = await callSecureApi(prompt, false);
+                postContentEl.textContent = newPost;
+            } catch (error) {
+                console.error("Post rewrite failed", error);
+                showMessageModal("AI rewrite failed. Please try again.");
+                postContentEl.textContent = originalPost;
+            } finally {
+                button.textContent = "Rewrite with AI";
+                button.disabled = false;
+            }
+        }
+        
+        async function generateImageIdea(button, index) {
+            if(!state.currentUser) {
+                showPage('signup');
+                return;
+            }
+            button.textContent = "Generating...";
+            button.disabled = true;
+            const card = button.closest('.social-card');
+            const postContent = card.querySelector('.social-post-copy').textContent;
+            const ideaEl = card.querySelector('.visual-idea-content');
+
+            const prompt = `Generate a creative and compelling visual idea for this social media post: "${postContent}". Be concise and actionable.`;
+            try {
+                const idea = await callSecureApi(prompt, false);
+                ideaEl.textContent = idea;
+            } catch (error) {
+                console.error("Image idea generation failed", error);
+                showMessageModal("AI image idea failed. Please try again.");
+            } finally {
+                button.textContent = "Generate Image Idea";
+                button.disabled = false;
+            }
+        }
+        
+        function generateICS(button, index) {
+            const card = button.closest('.social-card');
+            const postContent = card.querySelector('.social-post-copy').textContent;
+            const dateInput = card.querySelector('.post-date').value;
+            const timeInput = card.querySelector('.post-time').value;
+
+            if (!dateInput || !timeInput) {
+                showMessageModal("Please set a date and time for the post.");
+                return;
+            }
+
+            const startDateTime = new Date(`${dateInput}T${timeInput}`);
+            const endDateTime = new Date(startDateTime.getTime() + 30 * 60000); // 30 mins later
+            
+            const toUTC = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            
+            const icsContent = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'BEGIN:VEVENT',
+                `UID:${Date.now()}@eventocopy.ai`,
+                `DTSTAMP:${toUTC(new Date())}`,
+                `DTSTART:${toUTC(startDateTime)}`,
+                `DTEND:${toUTC(endDateTime)}`,
+                `SUMMARY:Social Media Post: ${state.campaignCache.social[index].platform}`,
+                `DESCRIPTION:${postContent.replace(/\n/g, '\\n')}`,
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\r\n');
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'social-post.ics';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function renderSocialStrategy(campaign) {
+            const container = document.getElementById('social-content-cards');
+            const today = new Date();
+            if(!container) return;
+            container.innerHTML = campaign.social.map((post, index) => {
+                today.setDate(today.getDate() + 2); // Stagger posts
+                return `
+                <div class="social-card border rounded-lg bg-white overflow-hidden">
+                    <div class="p-4 bg-slate-50 rounded-t-lg border-b flex justify-between items-center">
+                        <div class="flex items-center space-x-2">
+                             <span class="font-bold text-lg" contenteditable="true">${post.platform} Post</span>
+                             <span class="text-xs font-semibold uppercase text-indigo-600 bg-indigo-100 rounded-full px-2 py-1">${post.phase} Phase</span>
+                            <select class="status-select text-sm font-medium border-gray-300 rounded-md p-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                 <option>Draft</option>
+                                 <option>Scheduled</option>
+                                 <option>Published</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm">
+                           <input type="date" value="${today.toISOString().split('T')[0]}" class="post-date border-gray-300 rounded-md p-1">
+                           <input type="time" value="10:00" class="post-time border-gray-300 rounded-md p-1">
+                        </div>
+                    </div>
+                    <div class="p-4 grid grid-cols-2 gap-4">
+                        <div>
+                            <h5 class="font-semibold mb-2">Post Copy</h5>
+                            <div class="social-post-copy p-2 border rounded bg-slate-50 min-h-[150px]" contenteditable="true">${post.copy}</div>
+                        </div>
+                         <div>
+                            <h5 class="font-semibold mb-2">Visual Idea</h5>
+                            <div class="visual-idea-content p-2 border rounded bg-slate-50 min-h-[150px] text-sm text-slate-600">Click the button to generate a visual concept...</div>
+                        </div>
+                    </div>
+                      <div class="p-4 bg-slate-50 border-t flex items-center justify-end space-x-2">
+                         <button class="add-to-calendar-btn text-sm font-medium text-slate-600 hover:text-indigo-600 transition" data-index="${index}">Add to Calendar</button>
+                         <button class="generate-idea-btn bg-purple-100 text-purple-700 font-semibold py-1 px-3 rounded-md text-sm hover:bg-purple-200 transition" data-index="${index}">Generate Image Idea</button>
+                         <button class="rewrite-post-btn bg-indigo-600 text-white font-semibold py-1 px-3 rounded-md text-sm hover:bg-indigo-700 transition" data-index="${index}">Rewrite with AI</button>
+                    </div>
+                </div>
+            `}).join('');
+
+            container.querySelectorAll('.rewrite-post-btn').forEach(btn => btn.addEventListener('click', () => rewritePost(btn, btn.dataset.index)));
+            container.querySelectorAll('.generate-idea-btn').forEach(btn => btn.addEventListener('click', () => generateImageIdea(btn, btn.dataset.index)));
+            container.querySelectorAll('.add-to-calendar-btn').forEach(btn => btn.addEventListener('click', () => generateICS(btn, btn.dataset.index)));
+        }
+
+
+        function renderTimeline(timelineData, view) {
+             const timelineContainer = document.getElementById('timeline');
+            if (!timelineContainer) return;
+            timelineContainer.innerHTML = '';
+            const data = view === 'months' 
+                ? [ 
+                    {...timelineData[0], title: "Month 1: Pre-Launch & Awareness"}, 
+                    {...timelineData[1], title: "Month 2: Engagement & Nurturing"}
+                  ] 
+                : timelineData;
+
+            data.forEach((item, index) => {
+                const statusOptions = {
+                    'Not Started': { bg: 'bg-slate-400', text: 'Not Started' },
+                    'In Progress': { bg: 'bg-yellow-500', text: 'In Progress' },
+                    'Completed': { bg: 'bg-green-500', text: 'Completed' }
+                };
+                const currentStatus = item.status || 'Not Started';
+
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item relative pl-8 sm:pl-32 py-6 group';
+                timelineItem.innerHTML = `
+                    <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-200 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-slate-200 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                        <time class="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-indigo-600 bg-indigo-100 rounded-full">${view === 'months' ? `Month ${index+1}` : `Week ${index+1}`}</time>
+                        <div class="timeline-header text-xl font-bold text-slate-900 cursor-pointer" contenteditable="true">${item.title}</div>
+                    </div>
+                    <div class="timeline-content pl-8">
+                         <div class="flex items-center space-x-2 my-2">
+                             <div class="status-dot ${statusOptions[currentStatus].bg}"></div>
+                             <select class="status-select text-sm font-medium border-none bg-transparent p-0 focus:ring-0">
+                                 ${Object.keys(statusOptions).map(s => `<option value="${s}" ${s === currentStatus ? 'selected' : ''}>${statusOptions[s].text}</option>`).join('')}
+                             </select>
+                         </div>
+                        <p class="text-slate-500" contenteditable="true">${item.guideline}</p>
+                        <div class="mt-4">
+                            <h5 class="font-semibold text-sm">Key Actions:</h5>
+                            <ul class="mt-2 space-y-2">
+                                ${item.keyActions.map((action, i) => `
+                                    <li class="flex items-center">
+                                        <input type="checkbox" id="task-${index}-${i}" class="task-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                        <label for="task-${index}-${i}" class="ml-2 text-sm text-slate-600">${action}</label>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                timelineContainer.appendChild(timelineItem);
+                
+                // Event Listeners
+                const header = timelineItem.querySelector('.timeline-header');
+                header.addEventListener('click', () => {
+                    const wasActive = timelineItem.classList.contains('active');
+                    document.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('active'));
+                    if (!wasActive) {
+                        timelineItem.classList.add('active');
+                    }
+                });
+
+                const statusSelect = timelineItem.querySelector('.status-select');
+                statusSelect.addEventListener('change', (e) => {
+                    const newStatus = e.target.value;
+                    item.status = newStatus; // Persist state change
+                    const dot = timelineItem.querySelector('.status-dot');
+                    dot.className = `status-dot ${statusOptions[newStatus].bg}`;
+                });
+                
+                if (index === 0) {
+                    timelineItem.classList.add('active');
+                }
+            });
+        }
+        
+        function initializeFinancials() {
+            const inputs = document.querySelectorAll('.financial-input');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateFinancials);
+            });
+            updateFinancials(); // Initial calculation
+        }
+
+        function updateFinancials() {
+            const formatCurrency = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+
+            state.financialModel.revenueTickets = parseFloat(document.getElementById('revenue-tickets').value) || 0;
+            state.financialModel.revenueSponsorships = parseFloat(document.getElementById('revenue-sponsorships').value) || 0;
+            state.financialModel.costVenue = parseFloat(document.getElementById('cost-venue').value) || 0;
+            state.financialModel.costMarketing = parseFloat(document.getElementById('cost-marketing').value) || 0;
+            state.financialModel.costSpeakers = parseFloat(document.getElementById('cost-speakers').value) || 0;
+
+            const totalRevenue = state.financialModel.revenueTickets + state.financialModel.revenueSponsorships;
+            const totalCosts = state.financialModel.costVenue + state.financialModel.costMarketing + state.financialModel.costSpeakers;
+
+            const profit = totalRevenue - totalCosts;
+            const roi = totalCosts > 0 ? ((profit / totalCosts) * 100) : 0;
+
+            document.getElementById('total-revenue').textContent = formatCurrency(totalRevenue);
+            document.getElementById('total-costs').textContent = formatCurrency(totalCosts);
+            document.getElementById('profit-value').textContent = formatCurrency(profit);
+            document.getElementById('roi-value').textContent = `${Math.round(roi)}%`;
+            
+            // Link to funnel
+            if(document.getElementById('funnel-budget')) {
+                updateFunnelMetrics();
+            }
+        }
+        
+        function initializeFunnel() {
+            const inputs = document.querySelectorAll('#funnel-controls input');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateFunnelMetrics);
+            });
+            updateFunnelMetrics();
+        }
+
+        function updateFunnelMetrics() {
+             const formatNumber = (value) => new Intl.NumberFormat('en-US').format(Math.round(value));
+
+            const marketingBudget = state.financialModel.costMarketing;
+            const cpc = parseFloat(document.getElementById('funnel-cpc')?.value) || 2.5;
+            const cplRate = (parseFloat(document.getElementById('funnel-cpl')?.value) || 5) / 100;
+            const lcrRate = (parseFloat(document.getElementById('funnel-lcr')?.value) || 20) / 100;
+
+            const clicks = cpc > 0 ? marketingBudget / cpc : 0;
+            const leads = clicks * cplRate;
+            const registrations = leads * lcrRate;
+
+            document.getElementById('funnel-budget').textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(marketingBudget);
+            document.getElementById('funnel-clicks').textContent = formatNumber(clicks);
+            document.getElementById('funnel-leads').textContent = formatNumber(leads);
+            document.getElementById('funnel-registrations').textContent = formatNumber(registrations);
+        }
+
+        function renderBudgetControls() {
+            const controlsContainer = document.getElementById('budget-controls');
+            if(!controlsContainer) return;
+            controlsContainer.innerHTML = '';
+            state.budgetData.labels.forEach((label, index) => {
+                const controlEl = document.createElement('div');
+                controlEl.className = 'flex items-center space-x-4';
+                controlEl.innerHTML = `
+                    <label for="budget-slider-${index}" class="w-1/3 text-sm font-medium text-slate-700">${label}</label>
+                    <input type="range" id="budget-slider-${index}" min="0" max="100" value="${state.budgetData.values[index]}" class="budget-slider flex-grow" data-index="${index}">
+                    <span class="font-semibold w-12 text-right">${state.budgetData.values[index]}%</span>
+                `;
+                controlsContainer.appendChild(controlEl);
+            });
+
+            document.querySelectorAll('.budget-slider').forEach(slider => {
+                slider.addEventListener('input', (e) => {
+                    const changedIndex = parseInt(e.target.dataset.index);
+                    const newValue = parseInt(e.target.value);
+                    const oldValue = state.budgetData.values[changedIndex];
+                    const diff = newValue - oldValue;
+                    
+                    let totalOther = 0;
+                    state.budgetData.values.forEach((val, i) => {
+                        if (i !== changedIndex) totalOther += val;
+                    });
+
+                    if (totalOther === 0 && diff < 0) {
+                         // Distribute evenly if others are 0
+                        const share = -diff / (state.budgetData.values.length - 1);
+                        for (let i = 0; i < state.budgetData.values.length; i++) {
+                            if (i !== changedIndex) state.budgetData.values[i] += share;
+                        }
+                    } else {
+                        // Distribute proportionally
+                        for (let i = 0; i < state.budgetData.values.length; i++) {
+                            if (i !== changedIndex && totalOther > 0) {
+                                state.budgetData.values[i] -= diff * (state.budgetData.values[i] / totalOther);
+                            }
+                        }
+                    }
+                     state.budgetData.values[changedIndex] = newValue;
+
+                    // Normalize to ensure total is exactly 100 due to rounding
+                    const currentTotal = state.budgetData.values.reduce((a, b) => a + b, 0);
+                    const totalDiff = 100 - currentTotal;
+                    if(totalDiff !== 0){
+                        let maxIndex = 0;
+                        state.budgetData.values.forEach((val, i) => { if(val > state.budgetData.values[maxIndex]) maxIndex = i; });
+                        state.budgetData.values[maxIndex] += totalDiff;
+                    }
+                     state.budgetData.values = state.budgetData.values.map(v => Math.max(0, Math.round(v))); // Ensure no negative values
+
+                    renderBudgetControls();
+                    updateBudgetChart();
+                });
+            });
+        }
+
+
+        function updateBudgetChart() {
+            const budgetChartCtx = document.getElementById('budgetChart')?.getContext('2d');
+            if (!budgetChartCtx) return;
+            if (state.budgetChartInstance) state.budgetChartInstance.destroy();
+            
+            state.budgetChartInstance = new Chart(budgetChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: state.budgetData.labels,
+                    datasets: [{
+                        label: 'Budget Allocation',
+                        data: state.budgetData.values,
+                        backgroundColor: [
+                            'rgba(67, 56, 202, 0.8)',
+                            'rgba(99, 102, 241, 0.8)',
+                            'rgba(129, 140, 248, 0.8)',
+                            'rgba(167, 139, 250, 0.8)',
+                            'rgba(221, 214, 254, 0.8)'
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'right' },
+                        title: { display: false },
+                        tooltip: { callbacks: { label: (c) => `${c.label}: ${c.raw}%` } }
+                    },
+                }
+            });
+        }
+        
+        function handlePayment(plan) {
+            const stripeLinks = {
+                monthly: "https://buy.stripe.com/5kQ00c6PG9Yi78pekWeAg00",
+                quarterly: "https://buy.stripe.com/eVq4gsei80nI64l3GieAg01",
+                annual: "https://buy.stripe.com/cNi3cob5W7QadwN7WyeAg02"
+            };
+            let url = stripeLinks[plan];
+            if (url && state.currentUser) {
+                // Adjuntamos la información del usuario para que Stripe la devuelva en el webhook
+                const sessionParams = new URLSearchParams({
+                    client_reference_id: state.currentUser.uid,
+                    'metadata[app_id]': appId,
+                    'metadata[plan_name]': plan,
+                });
+                url = `${url}?${sessionParams.toString()}`;
+                window.location.href = url;
+            } else if (!state.currentUser) {
+                showMessageModal("Please log in or sign up to select a plan.");
+                showPage('signup');
+            } else {
+                console.warn(`No Stripe URL found for '${plan}' plan.`);
+            }
+        }
+        
+        // --- CHATBOT LOGIC ---
+        function setupChatbot() {
+            dom.chatBubble.addEventListener('click', () => {
+                dom.chatWindow.style.display = 'flex';
+                dom.chatBubble.style.display = 'none';
+            });
+            dom.closeChat.addEventListener('click', () => {
+                dom.chatWindow.style.display = 'none';
+                dom.chatBubble.style.display = 'block';
+            });
+            dom.chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && dom.chatInput.value.trim() !== '') {
+                    handleChatSubmit();
+                }
+            });
+        }
+
+        async function handleChatSubmit() {
+            const userInput = dom.chatInput.value.trim();
+            addChatMessage(userInput, 'user');
+            dom.chatInput.value = '';
+            
+            const systemPrompt = "You are Evento-Bot, a helpful assistant for the Evento-Copy AI web application. Your goal is to answer user questions about the app's features, marketing strategies in general, or how to use the app. Be friendly, concise, and helpful. The app helps users generate complete marketing strategies from a simple idea.";
+            const fullPrompt = `${systemPrompt}\n\nUser question: ${userInput}`;
+
+            try {
+                const botResponse = await callSecureApi(fullPrompt, false);
+                addChatMessage(botResponse, 'bot');
+            } catch (error) {
+                console.error("Chatbot API call failed:", error);
+                addChatMessage("Sorry, I'm having trouble connecting right now. Please try again later.", 'bot');
+            }
+        }
+
+        function addChatMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', `${sender}-message`);
+            messageElement.textContent = text;
+            dom.chatMessages.appendChild(messageElement);
+            dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+        }
+
+        // --- EVENT LISTENERS (must be at the end) ---
+        dom.signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const signupButton = dom.signupForm.querySelector('button[type="submit"]');
+            
+            showAuthMessage('signup', 'Creating account...');
+            signupButton.disabled = true;
+            
+            if (!isFirebaseConfigured || !auth || !db) {
+                setTimeout(() => { showAuthMessage('signup', 'Success!', false); setTimeout(() => renderAuthState({ displayName: name, email: email }), 1000); }, 1000);
+                signupButton.disabled = false;
+                return;
+            }
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                await updateProfile(user, { displayName: name });
+                // The onAuthStateChanged listener will handle creating the user profile and redirecting.
+            } catch (error) {
+                showAuthMessage('signup', error.message, true);
+                signupButton.disabled = false;
+            }
+        });
+
+        dom.loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const loginButton = dom.loginForm.querySelector('button[type="submit"]');
+            
+            showAuthMessage('login', 'Signing in...');
+            loginButton.disabled = true;
+
+            if (!isFirebaseConfigured || !auth) {
+                 setTimeout(() => { 
+                    showAuthMessage('login', 'Success!', false); 
+                    setTimeout(() => {
+                        renderAuthState({ email: email });
+                        showPage('homepage');
+                    }, 500); 
+                }, 1000);
+                loginButton.disabled = false;
+                return;
+            }
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                // The onAuthStateChanged listener will handle the UI update and redirection.
+            } catch (error) {
+                showAuthMessage('login', 'Invalid email or password.', true);
+            } finally {
+                loginButton.disabled = false;
+            }
+        });
+
+        dom.generateBtn.addEventListener('click', () => generateContent());
+        dom.closeModalBtn.addEventListener('click', () => dom.messageModal.style.display = 'none');
+        dom.newProjectBtn.addEventListener('click', () => showPage('homepage'));
+        
+        dom.logoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            state.campaignCache = null;
+            showPage('homepage');
+        });
+
+        dom.exportBtn.addEventListener('click', () => {
+            if (!state.campaignCache) return;
+            let content = `Marketing Plan for: ${state.campaignCache.eventName}\n\n`;
+            
+            const tabsData = {
+                proposal:{label: "Strategic Proposal"},
+                businessStrategy: {label: "Business Strategy"},
+                plan:{label: "Tactical Plan"},
+                emails:{label: "Email Strategy"},
+                social:{label: "Content Command Center"}
+            };
+
+            Object.keys(tabsData).forEach(key => {
+                const tabLabel = tabsData[key].label;
+                const tempContainer = document.createElement('div');
+                renderTabContent(key, state.campaignCache); // This will render content into the main view
+                tempContainer.innerHTML = dom.dashboardContent.innerHTML; // clone it
+                content += `--- ${tabLabel.toUpperCase()} ---\n\n`;
+                content += tempContainer.innerText + '\n\n\n';
+            });
+
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `${state.campaignCache.eventName.replace(/\s+/g, '-')}-marketing-plan.txt`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            renderTabContent('proposal', state.campaignCache); // Restore the first tab view
+        });
+
+        // --- INITIALIZATION ---
+        const init = () => {
+            // Setup Chatbot Listeners
+            setupChatbot();
+
+            // Setup listeners for payment page
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected', 'border-indigo-500', 'border-2'));
+                    card.classList.add('selected', 'border-indigo-500', 'border-2');
+                });
+            });
+
+            document.querySelectorAll('.select-plan-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent card click event from firing again
+                    const plan = button.dataset.plan;
+                    handlePayment(plan);
+                });
+            });
+
+            if (isFirebaseConfigured && auth && db) {
+                onAuthStateChanged(auth, user => {
+                    if (unsubscribeUserSnapshot) {
+                        unsubscribeUserSnapshot(); // Detach old listener
+                    }
+                    if (user && !user.isAnonymous) {
+                        const userDocRef = doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'profile');
+                        unsubscribeUserSnapshot = onSnapshot(userDocRef, (docSnap) => {
+                            if (!docSnap.exists()) {
+                                // **CORRECCIÓN PROFUNDA:** Este es ahora el ÚNICO lugar donde se crea el perfil de un usuario nuevo.
+                                console.log("New user detected, creating profile with 1 free generation.");
+                                setDoc(userDocRef, { 
+                                    freeGenerations: 1, 
+                                    email: user.email, 
+                                    name: user.displayName || "",
+                                    createdAt: Timestamp.now()
+                                }).then(() => {
+                                    // No es necesario actualizar el estado aquí, onSnapshot se volverá a disparar con los nuevos datos.
+                                    // La redirección se maneja abajo.
+                                });
+                            } else {
+                                const userData = docSnap.data();
+                                state.freeGenerations = userData.freeGenerations ?? 0;
+                                renderAuthState(user);
+                                
+                                // **CORRECCIÓN PROFUNDA:** Redirigir siempre a la homepage después de un login o signup exitoso.
+                                if (state.currentPage === 'login' || state.currentPage === 'signup') {
+                                    showPage('homepage');
+                                }
+                            }
+                        }, (error) => {
+                            console.error("Firestore snapshot error:", error);
+                            renderAuthState(user); // Render auth state even if firestore fails
+                        });
+                    } else {
+                        // **CORRECCIÓN PROFUNDA:** Flujo de cierre de sesión y de invitado.
+                        renderAuthState(null);
+                        showPage('homepage'); // Siempre volver a la homepage al cerrar sesión.
+                    }
+                });
+                
+                (async () => {
+                    try {
+                        if (initialAuthToken) {
+                            await signInWithCustomToken(auth, initialAuthToken);
+                        } else if (!auth.currentUser) {
+                            await signInAnonymously(auth);
+                        }
+                    } catch (err) {
+                        console.error("Authentication failed:", err);
+                    }
+                })();
+
+            } else {
+                console.warn("Firebase not configured. Running in demo mode.");
+                renderAuthState(null);
+            }
+        };
+
+        init();
+    </script>
+</body>
+</html>
+
 
 
