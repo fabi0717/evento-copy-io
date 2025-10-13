@@ -92,7 +92,7 @@
         import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, Timestamp, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyDWi09jT79AEKn1bqW8Z1L10Ih9VNFTYrA",
+            apiKey: "AIzaSyACcf5OFw4nBlwYPF_BZuW5fLAnmGAWxg4",
             authDomain: "evento-copy-ai-4527c.firebaseapp.com",
             projectId: "evento-copy-ai-4527c",
             storageBucket: "evento-copy-ai-4527c.firebasestorage.app",
@@ -220,8 +220,9 @@
                 const response = await fetch(cloudFunctionUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    // THIS IS THE CORRECTED, MORE STRICT PROMPT
                     body: JSON.stringify({ 
-                        prompt: `Generate a detailed marketing plan in JSON format for an event named "${eventName}" targeting "${targetAudience}" with the key topic of "${eventTopic}".`,
+                        prompt: `Generate a detailed marketing plan in JSON format for an event named "${eventName}" targeting "${targetAudience}" with the key topic of "${eventTopic}". CRITICAL: The response MUST include a non-empty 'sections' object where each key is a section title formatted as a string (e.g. "SWOT_Analysis") and the value is its detailed content formatted as an HTML string.`,
                         isJson: true
                     }),
                 });
