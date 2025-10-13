@@ -72,16 +72,16 @@
 
             <div id="login-page" class="hidden py-16 fade-in"><div class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold text-center mb-6">Welcome Back</h2><form id="login-form" class="space-y-6"><div id="login-message" class="auth-message"></div><div><label for="login-email">Email Address</label><input type="email" id="login-email" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="login-password">Password</label><input type="password" id="login-password" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700">Log In</button></form></div></div>
             <div id="signup-page" class="hidden py-16 fade-in"><div class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold text-center mb-6">Start Your Free Trial</h2><p class="text-center text-slate-500 mb-6">Create an account to get 1 free strategy generation.</p><form id="signup-form" class="space-y-6"><div id="signup-message" class="auth-message"></div><div><label for="signup-name">Full Name</label><input type="text" id="signup-name" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="signup-email">Email Address</label><input type="email" id="signup-email" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="signup-password">Create Password</label><input type="password" id="signup-password" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700">Create Account</button></form></div></div>
-            <div id="payment-page" class="hidden py-16 fade-in"><div class="max-w-3xl mx-auto text-center bg-white p-10 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold">Free Generation Consumed</h2><p class="text-slate-500 mt-2">Please upgrade to continue generating unlimited strategies.</p></div></div>
+            <div id="payment-page" class="hidden py-16 fade-in"><div class="max-w-3xl mx-auto text-center bg-white p-10 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold">You've Used Your Free Generation</h2><p class="text-slate-500 mt-2">Please upgrade to continue generating unlimited strategies.</p></div></div>
             <div id="projects-page" class="hidden py-16 fade-in"><div class="max-w-4xl mx-auto"><div class="flex justify-between items-center mb-8"><h2 class="text-3xl font-bold">My Saved Projects</h2><button id="new-project-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700">New Strategy</button></div><div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div></div></div>
-            <div id="strategy-dashboard" class="hidden w-full flex-grow py-8 fade-in"><div class="bg-white rounded-2xl shadow-xl border"><div class="p-6 border-b flex justify-between items-center"><div><h3 id="dashboard-title" class="text-2xl font-bold"></h3></div><div class="flex items-center space-x-2"><button id="save-strategy-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700">Save</button></div></div><div class="flex"><aside id="sidebar" class="w-1/4 border-r p-6"><nav id="sidebar-nav" class="flex flex-col space-y-2"></nav></aside><main id="dashboard-content" class="w-3/4 p-8 prose max-w-none"></main></div></div></div>
+            <div id="strategy-dashboard" class="hidden w-full flex-grow py-8 fade-in"><div class="bg-white rounded-2xl shadow-xl border"><div class="p-6 border-b flex justify-between items-center"><div><h3 id="dashboard-title" class="text-2xl font-bold"></h3></div><div class="flex items-center space-x-2"><button id="save-strategy-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700">Save Strategy</button></div></div><div class="flex"><aside id="sidebar" class="w-1/4 border-r p-6"><nav id="sidebar-nav" class="flex flex-col space-y-2"></nav></aside><main id="dashboard-content" class="w-3/4 p-8 prose max-w-none"></main></div></div></div>
         </main>
     </div>
 
     <div id="message-modal" class="modal-message"><div class="modal-content"><span class="close-button">&times;</span><p id="modal-text"></p></div></div>
     
     <div id="chat-widget">
-        <div id="chat-window"><div id="chat-header"><span>Evento-Bot Assistant</span><span id="close-chat" class="cursor-pointer font-bold text-xl">&times;</span></div><div id="chat-messages"></div><div id="chat-input-container"><input type="text" id="chat-input" placeholder="Ask a question..." class="w-full border rounded-full px-4 py-2"></div></div>
+        <div id="chat-window"><div id="chat-header"><span>Evento-Bot Assistant</span><span id="close-chat" class="cursor-pointer font-bold text-xl">&times;</span></div><div id="chat-messages"><div class="p-2">Hello! How can I help?</div></div><div id="chat-input-container"><input type="text" id="chat-input" placeholder="Ask a question..." class="w-full border rounded-full px-4 py-2"></div></div>
         <div id="chat-bubble"><svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9.75 9.75 0 11-19.5 0 9.75 9.75 0 0119.5 0z" /></svg></div>
     </div>
 
@@ -151,7 +151,7 @@
             dom.authContainer.querySelector('#logout-btn').addEventListener('click', () => signOut(auth));
             dom.authContainer.querySelector('#my-projects-btn').addEventListener('click', showProjectsPage);
             dom.generatorSection.classList.remove('hidden');
-            dom.generationsCounter.innerHTML = state.freeGenerations > 0 ? `<p class="text-green-600 font-semibold">You have ${state.freeGenerations} free generation remaining.</p>` : `<p class="text-red-500">No free generations remaining. Please upgrade.</p>`;
+            dom.generationsCounter.innerHTML = state.freeGenerations > 0 ? `<p class="text-green-600 font-semibold">You have ${state.freeGenerations} free generation remaining.</p>` : `<p class="text-red-500">No free generations remaining.</p>`;
         };
 
         const renderUIForGuest = () => {
@@ -204,7 +204,7 @@
         dom.generateBtn.addEventListener('click', async () => {
             if (!state.currentUser) return showPage('signup');
             if (state.freeGenerations <= 0) {
-                showMessageModal("You have no free generations left.");
+                showMessageModal("You have no free generations left. Please choose a plan to continue.");
                 return showPage('payment');
             }
 
@@ -221,22 +221,20 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
-                        prompt: `Generate a detailed marketing plan for an event named "${eventName}" targeting "${targetAudience}" with the key topic of "${eventTopic}".`,
-                        isJson: true // This flag is important for the backend
+                        prompt: `Generate a detailed marketing plan in JSON format for an event named "${eventName}" targeting "${targetAudience}" with the key topic of "${eventTopic}".`,
+                        isJson: true
                     }),
                 });
 
                 if (!response.ok) throw new Error(`API Error: ${response.status}`);
                 const result = await response.json();
-                state.campaignCache = JSON.parse(result.text); // The backend wraps the JSON in a `text` field
-
-                renderDashboard(state.campaignCache);
+                const campaignData = JSON.parse(result.text);
+                
+                state.campaignCache = campaignData;
+                renderDashboard(campaignData);
 
                 const userDocRef = doc(db, 'users', state.currentUser.uid);
                 await updateDoc(userDocRef, { freeGenerations: 0 });
-                
-                // After successful generation and credit consumption, redirect to payment page
-                setTimeout(() => showPage('payment'), 1000); // Wait 1 sec before redirect
 
             } catch (error) {
                 console.error("Generation failed:", error);
@@ -246,35 +244,35 @@
                 dom.generateBtn.disabled = false;
             }
         });
-
-        const showProjectsPage = async () => {
-            if (!state.currentUser) return;
-            showPage('projects');
-            dom.projectsList.innerHTML = '<p>Loading projects...</p>';
-            try {
-                const projectsRef = collection(db, `users/${state.currentUser.uid}/projects`);
-                const q = query(projectsRef, orderBy("savedAt", "desc"));
-                const querySnapshot = await getDocs(q);
-                dom.projectsList.innerHTML = '';
-                if (querySnapshot.empty) {
-                    dom.projectsList.innerHTML = '<p>You have no saved projects yet.</p>';
-                    return;
-                }
-                querySnapshot.forEach((docSnap) => {
-                    const project = docSnap.data();
-                    const card = document.createElement('div');
-                    card.className = 'bg-white p-4 rounded-lg shadow cursor-pointer hover:shadow-lg';
-                    card.innerHTML = `<h3 class="font-bold">${project.eventName}</h3><p class="text-sm text-slate-500">Saved: ${project.savedAt.toDate().toLocaleDateString()}</p>`;
-                    card.addEventListener('click', () => {
-                        state.campaignCache = project.strategy;
-                        renderDashboard(project.strategy);
-                    });
-                    dom.projectsList.appendChild(card);
+        
+        const renderDashboard = (campaign) => {
+            if (!campaign) return;
+            showPage('dashboard');
+            dom.dashboard.title.textContent = `Marketing Strategy: ${campaign.eventName || 'Untitled'}`;
+            
+            const sections = campaign.sections || {};
+            const tabs = Object.keys(sections);
+            dom.dashboard.sidebarNav.innerHTML = '';
+            
+            tabs.forEach((key, index) => {
+                const button = document.createElement('button');
+                button.className = 'sidebar-button w-full text-left py-2 px-4 rounded-lg text-sm';
+                button.textContent = key.replace(/_/g, ' ');
+                if (index === 0) button.classList.add('active');
+                button.addEventListener('click', () => {
+                    dom.dashboard.sidebarNav.querySelectorAll('.sidebar-button').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    dom.dashboard.content.innerHTML = `<h3>${key.replace(/_/g, ' ')}</h3>${sections[key]}`;
                 });
-            } catch (error) {
-                console.error("Error fetching projects: ", error);
-                dom.projectsList.innerHTML = '<p class="text-red-500">Could not load projects.</p>';
+                dom.dashboard.sidebarNav.appendChild(button);
+            });
+            
+            if (tabs.length > 0) {
+                dom.dashboard.content.innerHTML = `<h3>${tabs[0].replace(/_/g, ' ')}</h3>${sections[tabs[0]]}`;
+            } else {
+                dom.dashboard.content.innerHTML = '<p>The generated strategy has no sections to display.</p>';
             }
+            dom.dashboard.saveBtn.onclick = saveStrategy;
         };
 
         const saveStrategy = async () => {
@@ -287,44 +285,43 @@
                     strategy: state.campaignCache,
                     savedAt: Timestamp.now()
                 });
-                showMessageModal("Strategy saved successfully!");
+                showMessageModal("Strategy saved to 'My Projects' successfully!");
             } catch (error) {
                 console.error("Error saving project:", error);
                 showMessageModal("Could not save the strategy.");
             } finally {
-                dom.dashboard.saveBtn.textContent = 'Save';
+                dom.dashboard.saveBtn.textContent = 'Save Strategy';
             }
         };
 
-        const renderDashboard = (campaign) => {
-            if (!campaign) return;
-            state.campaignCache = campaign;
-            showPage('dashboard');
-            dom.dashboard.title.textContent = `Marketing Strategy: ${campaign.eventName}`;
-            
-            const tabs = Object.keys(campaign.sections || {});
-            dom.dashboard.sidebarNav.innerHTML = '';
-            tabs.forEach((key, index) => {
-                const button = document.createElement('button');
-                button.className = 'sidebar-button w-full text-left py-2 px-4 rounded-lg';
-                button.textContent = key.replace(/_/g, ' ');
-                if (index === 0) button.classList.add('active');
-                button.addEventListener('click', () => {
-                    dom.dashboard.sidebarNav.querySelectorAll('.sidebar-button').forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    renderTabContent(key, campaign.sections[key]);
-                });
-                dom.dashboard.sidebarNav.appendChild(button);
-            });
-            
-            if (tabs.length > 0) {
-                renderTabContent(tabs[0], campaign.sections[tabs[0]]);
+        const showProjectsPage = async () => {
+            if (!state.currentUser) return;
+            showPage('projects');
+            dom.projectsList.innerHTML = '<p>Loading projects...</p>';
+            try {
+                const projectsRef = collection(db, `users/${state.currentUser.uid}/projects`);
+                const q = query(projectsRef, orderBy("savedAt", "desc"));
+                const querySnapshot = await getDocs(q);
+                dom.projectsList.innerHTML = '';
+                if (querySnapshot.empty) {
+                    dom.projectsList.innerHTML = '<p>You have no saved projects yet.</p>';
+                } else {
+                    querySnapshot.forEach((docSnap) => {
+                        const project = docSnap.data();
+                        const card = document.createElement('div');
+                        card.className = 'bg-white p-4 rounded-lg shadow cursor-pointer hover:shadow-lg';
+                        card.innerHTML = `<h3 class="font-bold">${project.eventName}</h3><p class="text-sm text-slate-500">Saved: ${project.savedAt.toDate().toLocaleDateString()}</p>`;
+                        card.addEventListener('click', () => {
+                            state.campaignCache = project.strategy;
+                            renderDashboard(project.strategy);
+                         });
+                        dom.projectsList.appendChild(card);
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching projects: ", error);
+                dom.projectsList.innerHTML = '<p class="text-red-500">Could not load projects.</p>';
             }
-            dom.dashboard.saveBtn.onclick = saveStrategy;
-        };
-
-        const renderTabContent = (key, content) => {
-            dom.dashboard.content.innerHTML = `<h3>${key.replace(/_/g, ' ')}</h3>${content}`;
         };
         
         const setupChatbot = () => {
@@ -336,7 +333,6 @@
                 dom.chat.window.style.display = 'none';
                 dom.chat.bubble.style.display = 'flex';
             });
-            // Chatbot logic can be expanded here
         };
 
         dom.logoBtn.addEventListener('click', () => showPage('homepage'));
