@@ -95,7 +95,7 @@
 
         // --- Firebase Configuration ---
         const firebaseConfig = {
-            apiKey: "AIzaSyACcf5OFw4nBlwYPF_BZuW5fLAnmGAWxg4",
+            apiKey: "AIzaSyDWi09jT79AEKn1bqW8Z1L10Ih9VNFTYrA", // <-- ¡ESTA ES LA LLAVE CORRECTA!
             authDomain: "evento-copy-ai-4527c.firebaseapp.com",
             projectId: "evento-copy-ai-4527c",
             storageBucket: "evento-copy-ai-4527c.firebasestorage.app",
@@ -246,7 +246,7 @@
                     }),
                 });
 
-                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
                 const result = await response.json();
                 const campaignData = JSON.parse(result.text);
                 
