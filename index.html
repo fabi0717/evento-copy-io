@@ -3,51 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evento-Copy AI</title>
+    <title>Evento-Copy AI - Test</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Poppins:wght@800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; } .logo-font { font-family: 'Poppins', sans-serif; }
         .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .sidebar-button.active { background-color: #eef2ff; color: #4338ca; font-weight: 600; }
         .auth-message { min-height: 24px; text-align: center; font-weight: 500; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
     <div id="app" class="min-h-screen flex flex-col items-center p-4 md:p-8">
         <header class="w-full max-w-7xl mx-auto flex justify-between items-center py-4">
-            <div id="logo-btn" class="inline-flex items-center group cursor-pointer">
+            <div class="inline-flex items-center group cursor-pointer">
                 <span class="logo-font text-3xl font-extrabold text-slate-800">Evento-Copy AI</span>
             </div>
             <div id="auth-container" class="flex items-center space-x-4"></div>
         </header>
-        <main class="w-full max-w-7xl mx-auto flex-grow flex flex-col">
-            <div id="homepage" class="py-16 md:py-24 fade-in">
-                <div class="text-center mb-12">
-                    <h2 class="text-5xl md:text-7xl font-black mb-4 leading-tight"><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">AI-Powered Marketing.</span><br><span>Instant Strategy.</span></h2>
-                    <p class="text-lg text-slate-600 max-w-3xl mx-auto">From a single idea to a comprehensive, presentation-ready marketing plan in seconds.</p>
-                </div>
-                <div id="generator-section" class="hidden bg-white p-8 md:p-10 rounded-3xl shadow-xl border">
-                    <div id="generations-counter-container" class="text-center text-sm text-slate-500 mb-6"></div>
-                    <div class="max-w-4xl mx-auto space-y-6">
-                        <div><label for="eventName" class="text-lg font-semibold">Event Name</label><input type="text" id="eventName" class="mt-1 block w-full bg-slate-100 rounded-md px-3 py-2" value="Global Fintech Conference"></div>
-                        <div><label for="targetAudience" class="text-lg font-semibold">Target Audience</label><input type="text" id="targetAudience" class="mt-1 block w-full bg-slate-100 rounded-md px-3 py-2" value="Bank Executives"></div>
-                        <div><label for="eventTopic" class="text-lg font-semibold">Key Topic</label><input type="text" id="eventTopic" class="mt-1 block w-full bg-slate-100 rounded-md px-3 py-2" value="Future of Digital Currency"></div>
-                    </div>
-                    <div class="mt-10 text-center"><button id="generate-btn" class="bg-indigo-600 text-white font-bold py-4 px-10 text-lg rounded-xl hover:bg-indigo-700"><span id="generate-btn-text">Build My Strategy</span></button></div>
-                </div>
-            </div>
-            <div id="signup-page" class="hidden py-16 fade-in"><div class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold text-center mb-6">Start Your Free Trial</h2><form id="signup-form" class="space-y-6"><div id="signup-message" class="auth-message"></div><div><label for="signup-name">Full Name</label><input type="text" id="signup-name" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="signup-email">Email Address</label><input type="email" id="signup-email" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="signup-password">Create Password</label><input type="password" id="signup-password" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700">Create Account</button></form></div></div>
-            <div id="strategy-dashboard" class="hidden w-full flex-grow py-8 fade-in"><div class="bg-white rounded-2xl shadow-xl border"><div class="p-6 border-b"><div><h3 id="dashboard-title" class="text-2xl font-bold"></h3></div></div><div class="flex"><aside id="sidebar" class="w-1/4 border-r p-6"><nav id="sidebar-nav" class="flex flex-col space-y-2"></nav></aside><main id="dashboard-content" class="w-3/4 p-8 prose max-w-none"></main></div></div></div>
+        <main class="w-full max-w-md mx-auto flex-grow flex flex-col justify-center">
+            <div id="signup-page" class="hidden"><div class="bg-white p-8 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold text-center mb-6">Start Your Free Trial</h2><form id="signup-form" class="space-y-6"><div id="signup-message" class="auth-message text-red-500"></div><div><label for="signup-name">Full Name</label><input type="text" id="signup-name" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="signup-email">Email Address</label><input type="email" id="signup-email" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="signup-password">Create Password</label><input type="password" id="signup-password" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700">Create Account</button></form></div></div>
+            <div id="logged-in-page" class="hidden"><div class="bg-white p-8 rounded-3xl shadow-xl text-center"><h2 id="welcome-message" class="text-2xl font-bold mb-6"></h2><p>Your app is connected to Firebase!</p><button id="logout-btn" class="w-full mt-4 text-center text-indigo-600">Log Out</button></div></div>
         </main>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDWi09jT79AEKn1bqW8Z1L10Ih9VNFTYrA",
@@ -59,130 +41,50 @@
         };
 
         const app = initializeApp(firebaseConfig);
-        const appCheck = initializeAppCheck(app, {
-          provider: new ReCaptchaV3Provider('6LeL8egrAAAAAOsCSG5HbzXDeHJS2NJljGBa-Cfh'),
-          isTokenAutoRefreshEnabled: true
-        });
-        
         const auth = getAuth(app);
-        const db = getFirestore(app);
 
-        let state = { currentUser: null, freeGenerations: 0 };
-        const dom = {
-            pages: { homepage: document.getElementById('homepage'), signup: document.getElementById('signup-page'), dashboard: document.getElementById('strategy-dashboard') },
-            authContainer: document.getElementById('auth-container'),
-            generatorSection: document.getElementById('generator-section'),
-            generationsCounter: document.getElementById('generations-counter-container'),
-            signupForm: document.getElementById('signup-form'),
-            generateBtn: document.getElementById('generate-btn'),
-            dashboardTitle: document.getElementById('dashboard-title'),
-            sidebarNav: document.getElementById('sidebar-nav'),
-            dashboardContent: document.getElementById('dashboard-content'),
+        const pages = {
+            signup: document.getElementById('signup-page'),
+            loggedIn: document.getElementById('logged-in-page')
+        };
+        const signupForm = document.getElementById('signup-form');
+        const logoutBtn = document.getElementById('logout-btn');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const signupMessage = document.getElementById('signup-message');
+
+        const showPage = (pageName) => {
+            Object.values(pages).forEach(page => page.classList.add('hidden'));
+            if (pages[pageName]) pages[pageName].classList.remove('hidden');
         };
 
-        let unsubscribe;
-
-        const showPage = (pageName) => Object.values(dom.pages).forEach(p => p.id === pageName ? p.classList.remove('hidden') : p.classList.add('hidden'));
-
         onAuthStateChanged(auth, user => {
-            if (unsubscribe) unsubscribe();
             if (user) {
-                state.currentUser = user;
-                const userDocRef = doc(db, 'users', user.uid);
-                unsubscribe = onSnapshot(userDocRef, docSnap => {
-                    if (!docSnap.exists()) {
-                        setDoc(userDocRef, { email: user.email, name: user.displayName, freeGenerations: 1 });
-                    } else {
-                        state.freeGenerations = docSnap.data().freeGenerations;
-                    }
-                    renderUI(user);
-                });
+                welcomeMessage.textContent = `Welcome, ${user.displayName || user.email}!`;
+                showPage('loggedIn');
             } else {
-                state.currentUser = null;
-                renderUI(null);
+                showPage('signup');
             }
         });
 
-        function renderUI(user) {
-            if (user) {
-                dom.authContainer.innerHTML = `<span>Welcome, ${user.displayName}!</span><button id="logout-btn" class="ml-4 text-indigo-600">Log Out</button>`;
-                dom.authContainer.querySelector('#logout-btn').addEventListener('click', () => signOut(auth));
-                dom.generationsCounter.textContent = `You have ${state.freeGenerations} generation(s) left.`;
-                dom.generatorSection.classList.remove('hidden');
-                showPage('homepage');
-            } else {
-                dom.authContainer.innerHTML = `<button id="nav-signup-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg">Sign Up</button>`;
-                dom.authContainer.querySelector('#nav-signup-btn').addEventListener('click', () => showPage('signup'));
-                dom.generatorSection.classList.add('hidden');
-                showPage('signup');
-            }
-        }
-
-        dom.signupForm.addEventListener('submit', async (e) => {
+        signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            signupMessage.textContent = '';
             const [name, email, password] = [document.getElementById('signup-name').value, document.getElementById('signup-email').value, document.getElementById('signup-password').value];
+            if (password.length < 6) {
+                signupMessage.textContent = 'Password must be at least 6 characters.';
+                return;
+            }
             try {
                 const cred = await createUserWithEmailAndPassword(auth, email, password);
                 await updateProfile(cred.user, { displayName: name });
+                // onAuthStateChanged will handle UI change
             } catch (error) {
-                document.getElementById('signup-message').textContent = error.message;
+                console.error("Signup Error:", error);
+                signupMessage.textContent = error.message;
             }
         });
 
-        dom.generateBtn.addEventListener('click', async () => {
-            if (state.freeGenerations <= 0) {
-                alert("No generations left.");
-                return;
-            }
-            const btnText = document.getElementById('generate-btn-text');
-            btnText.textContent = "Generating...";
-            dom.generateBtn.disabled = true;
-
-            try {
-                const [eventName, targetAudience, eventTopic] = [document.getElementById('eventName').value, document.getElementById('targetAudience').value, document.getElementById('eventTopic').value];
-                const cloudFunctionUrl = "https://callgemini-bhomdt6fra-uc.a.run.app";
-                const response = await fetch(cloudFunctionUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: `Marketing plan for ${eventName}`, isJson: true }),
-                });
-                if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
-                const result = await response.json();
-                const campaignData = JSON.parse(result.text);
-                renderDashboard(campaignData);
-                await updateDoc(doc(db, 'users', state.currentUser.uid), { freeGenerations: 0 });
-            } catch (error) {
-                alert(`Error: ${error.message}`);
-            } finally {
-                btnText.textContent = "Build My Strategy";
-                dom.generateBtn.disabled = false;
-            }
-        });
-
-        function renderDashboard(campaign) {
-            showPage('dashboard');
-            dom.dashboardTitle.textContent = `Strategy: ${campaign.eventName || 'Untitled'}`;
-            const sections = campaign.sections || {};
-            const tabs = Object.keys(sections);
-            dom.sidebarNav.innerHTML = '';
-            tabs.forEach((key, index) => {
-                const button = document.createElement('button');
-                button.className = 'sidebar-button w-full text-left py-2 px-4 rounded-lg';
-                if (index === 0) button.classList.add('active');
-                button.textContent = key.replace(/_/g, ' ');
-                button.addEventListener('click', () => {
-                    dom.sidebarNav.querySelectorAll('.sidebar-button').forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    dom.dashboardContent.innerHTML = `<h3>${key.replace(/_/g, ' ')}</h3><div>${sections[key]}</div>`;
-                });
-                dom.sidebarNav.appendChild(button);
-            });
-            if (tabs.length > 0) {
-                dom.dashboardContent.innerHTML = `<h3>${tabs[0].replace(/_/g, ' ')}</h3><div>${sections[tabs[0]]}</div>`;
-            } else {
-                dom.dashboardContent.innerHTML = '<p>No sections to display.</p>';
-            }
-        }
+        logoutBtn.addEventListener('click', () => signOut(auth));
     </script>
 </body>
 </html>
