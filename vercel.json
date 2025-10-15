@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/generate",
+      "destination": "https://callgemini-bhomdt6fra-uc.a.run.app/"
+    }
+  ]
+}
