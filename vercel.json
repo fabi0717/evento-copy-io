@@ -1,13 +1,9 @@
 {
   "functions": {
-    "api/generate.js": {
-      "runtime": "nodejs18.x"
-    }
+    "api/generate.js": { "runtime": "nodejs18.x" }
   },
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    }
+    { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }
+
