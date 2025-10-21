@@ -1,7 +1,11 @@
 {
   "name": "evento-copy-ai",
   "version": "1.0.0",
+  "main": "index.html",
   "dependencies": {
     "@google/generative-ai": "^0.12.0"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
   }
 }
