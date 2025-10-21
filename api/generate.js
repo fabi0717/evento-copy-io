@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     if (!prompt) return res.status(400).json({ error: 'Prompt is required' });
 
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro-lastest" });
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
