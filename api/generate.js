@@ -1,4 +1,4 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default async function handler(req, res) {
   // Permitir CORS
@@ -14,19 +14,18 @@ export default async function handler(req, res) {
     if (!prompt) return res.status(400).json({ error: 'Prompt is required' });
 
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-<<<<<<< HEAD
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-=======
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
->>>>>>> 16e0e5be129644e93d7540ece8c9c956b8c53d1c
 
+    // La siguiente línea corrige el bug de await
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
 
-    res.status(200).json({ success: true, text: text });
+    res.status(200).json({ success: true, text });
   } catch (error) {
     console.error('Generation error:', error);
     res.status(500).json({ error: 'Failed to generate strategy', details: error.message });
   }
 }
+
+
