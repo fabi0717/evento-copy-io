@@ -1,306 +1,73 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evento-Copy AI - AI-Powered Marketing Strategy</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evento Copy AI | Strategic Intelligence Platform</title>
+    <meta name="description" content="Generate professional business and marketing strategies instantly with Evento Copy AI.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .logo-font { font-family: 'Poppins', sans-serif; }
-        .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .sidebar-button.active { background-color: #eef2ff; color: #4338ca; font-weight: 600; }
-        .prose h3 { margin-top: 0; font-size: 1.75em; font-weight: 800; color: #111827;}
-        .prose h4 { margin-top: 1.5em; font-size: 1.1em; font-weight: 700; color: #1f2937;}
-        .modal-message { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
-        .modal-content { background-color: #fefefe; padding: 24px; border-radius: 12px; width: 90%; max-width: 450px; }
-        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .auth-message { min-height: 24px; text-align: center; font-weight: 500; }
-        #chat-widget { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; }
-        #chat-bubble { background-color: #4f46e5; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        #chat-window { position: fixed; bottom: 6.5rem; right: 2rem; width: 350px; height: 500px; background-color: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: none; flex-direction: column; }
-        #chat-header { background-color: #4f46e5; color: white; padding: 1rem; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        #chat-messages { flex-grow: 1; padding: 1rem; overflow-y: auto; }
-        #chat-input-container { border-top: 1px solid #e5e7eb; padding: 1rem; }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-900">
-    <div id="app" class="min-h-screen flex flex-col items-center p-4 md:p-8">
-        <header class="w-full max-w-7xl mx-auto flex justify-between items-center py-4">
-            <div id="logo-btn" class="inline-flex items-center group cursor-pointer">
-                <div class="flex items-center justify-center w-10 h-10 mr-3 bg-gradient-to-br from-indigo-600 to-purple-500 rounded-xl shadow-lg"><svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z"></path></svg></div>
-                <span class="logo-font text-3xl font-extrabold text-slate-800">Evento-Copy AI</span>
-            </div>
-             <div id="auth-container" class="flex items-center space-x-4"></div>
-        </header>
-        <main class="w-full max-w-7xl mx-auto flex-grow flex flex-col">
-            <div id="homepage" class="py-16 md:py-24 fade-in">
-                <div class="text-center mb-12"><h2 class="text-5xl md:text-7xl font-black mb-4 leading-tight"><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">AI-Powered Marketing.</span><br><span>Instant Strategy.</span></h2><p class="text-lg text-slate-600 max-w-3xl mx-auto">From a single idea to a comprehensive, presentation-ready marketing plan in seconds. Let our AI build your entire campaign.</p></div>
-                <div id="hero-image-section" class="my-12 max-w-5xl mx-auto"><img src="https://placehold.co/1200x600/4f46e5/ffffff?text=Evento-Copy+AI&font=poppins" alt="Evento-Copy AI in action" class="rounded-2xl shadow-2xl border-4 border-white object-cover"></div>
-                <div id="generator-section" class="hidden bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200">
-                    <div id="generations-counter-container" class="text-center text-sm text-slate-500 mb-6"></div>
-                    <div class="max-w-4xl mx-auto space-y-6">
-                         <div><label for="eventName" class="text-lg text-slate-800 font-semibold">Event Name</label><input type="text" id="eventName" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg" value="Global Fintech Conference"></div>
-                         <div><label for="targetAudience" class="text-lg text-slate-800 font-semibold">Target Audience</label><input type="text" id="targetAudience" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg" value="Bank Executives and Investors"></div>
-                         <div><label for="eventTopic" class="text-lg text-slate-800 font-semibold">Key Topic</label><input type="text" id="eventTopic" class="mt-1 block w-full bg-slate-100 border-transparent rounded-md px-3 py-2 text-lg" value="The future of digital currency"></div>
-                    </div>
-                    <div class="mt-10 text-center"><button id="generate-btn" class="bg-indigo-600 text-white font-bold py-4 px-10 text-lg rounded-xl hover:bg-indigo-700 transition"><span id="generate-btn-text">Build My Strategy</span></button></div>
-                </div>
-            </div>
-            <div id="login-page" class="hidden py-16 fade-in"><div class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold text-center mb-6">Welcome Back</h2><form id="login-form" class="space-y-6"><div id="login-message" class="auth-message"></div><div><label for="login-email">Email Address</label><input type="email" id="login-email" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="login-password">Password</label><input type="password" id="login-password" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700">Log In</button></form></div></div>
-            <div id="signup-page" class="hidden py-16 fade-in"><div class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold text-center mb-6">Start Your Free Trial</h2><p class="text-center text-slate-500 mb-6">Create an account to get 1 free strategy generation.</p><form id="signup-form" class="space-y-6"><div id="signup-message" class="auth-message"></div><div><label for="signup-name">Full Name</label><input type="text" id="signup-name" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="signup-email">Email Address</label><input type="email" id="signup-email" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><div><label for="signup-password">Create Password</label><input type="password" id="signup-password" autocomplete="off" class="mt-1 block w-full bg-slate-100 rounded-md p-2" required></div><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700">Create Account</button></form></div></div>
-            <div id="payment-page" class="hidden py-16 fade-in"><div class="max-w-3xl mx-auto text-center bg-white p-10 rounded-3xl shadow-xl"><h2 class="text-3xl font-bold">You've Used Your Free Generation</h2><p class="text-slate-500 mt-2">Please upgrade to continue generating unlimited strategies.</p></div></div>
-            <div id="projects-page" class="hidden py-16 fade-in"><div class="max-w-4xl mx-auto"><div class="flex justify-between items-center mb-8"><h2 class="text-3xl font-bold">My Saved Projects</h2><button id="new-project-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700">New Strategy</button></div><div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div></div></div>
-            <div id="strategy-dashboard" class="hidden w-full flex-grow py-8 fade-in"><div class="bg-white rounded-2xl shadow-xl border"><div class="p-6 border-b flex justify-between items-center"><div><h3 id="dashboard-title" class="text-2xl font-bold"></h3></div><div><button id="save-strategy-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700">Save Strategy</button></div></div><div class="flex"><aside id="sidebar" class="w-1/4 border-r p-6"><nav id="sidebar-nav" class="flex flex-col space-y-2"></nav></aside><main id="dashboard-content" class="w-3/4 p-8 prose max-w-none"></main></div></div></div>
-        </main>
-    </div>
-    <div id="message-modal" class="modal-message"><div class="modal-content"><span class="close-button">&times;</span><p id="modal-text"></p></div></div>
-    <div id="chat-widget">
-        <div id="chat-window"><div id="chat-header"><span>Evento-Bot Assistant</span><span id="close-chat" class="cursor-pointer font-bold text-xl">&times;</span></div><div id="chat-messages"><div class="p-2">Hello! How can I help?</div></div><div id="chat-input-container"><input type="text" id="chat-input" placeholder="Ask a question..." class="w-full border rounded-full px-4 py-2"></div></div>
-        <div id="chat-bubble"><svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9.75 9.75 0 11-19.5 0 9.75 9.75 0 0119.5 0z" /></svg></div>
-    </div>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, updateDoc, collection, addDoc, getDocs, query, orderBy, Timestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDWi09jT79AEKn1bqW8Z1L10Ih9VNFTYrA",
-            authDomain: "evento-copy-ai-4527c.firebaseapp.com",
-            projectId: "evento-copy-ai-4527c",
-            storageBucket: "evento-copy-ai-4527c.firebasestorage.app",
-            messagingSenderId: "1076478763329",
-            appId: "1:1076478763329:web:2d348b936d533423a23b9d"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        let state = { currentUser: null, freeGenerations: 0, currentPage: 'homepage', campaignCache: null };
-        const dom = {
-            pages: { homepage: document.getElementById('homepage'), login: document.getElementById('login-page'), signup: document.getElementById('signup-page'), payment: document.getElementById('payment-page'), projects: document.getElementById('projects-page'), dashboard: document.getElementById('strategy-dashboard') },
-            authContainer: document.getElementById('auth-container'),
-            logoBtn: document.getElementById('logo-btn'),
-            generateBtn: document.getElementById('generate-btn'),
-            generatorSection: document.getElementById('generator-section'),
-            generationsCounter: document.getElementById('generations-counter-container'),
-            loginForm: document.getElementById('login-form'),
-            signupForm: document.getElementById('signup-form'),
-            messageModal: document.getElementById('message-modal'),
-            modalText: document.getElementById('modal-text'),
-            closeModalBtn: document.querySelector('.close-button'),
-            projectsList: document.getElementById('projects-list'),
-            newProjectBtn: document.getElementById('new-project-btn'),
-            dashboard: { title: document.getElementById('dashboard-title'), sidebarNav: document.getElementById('sidebar-nav'), content: document.getElementById('dashboard-content'), saveBtn: document.getElementById('save-strategy-btn')},
-            chat: { bubble: document.getElementById('chat-bubble'), window: document.getElementById('chat-window'), close: document.getElementById('close-chat'), messages: document.getElementById('chat-messages'), input: document.getElementById('chat-input')}
-        };
-
-        let unsubscribeUserSnapshot = null;
-
-        const showPage = (pageName) => {
-            state.currentPage = pageName;
-            Object.values(dom.pages).forEach(p => p.classList.add('hidden'));
-            if (dom.pages[pageName]) dom.pages[pageName].classList.remove('hidden');
-        };
-        const showMessageModal = (text) => {
-            dom.modalText.textContent = text;
-            dom.messageModal.style.display = 'flex';
-        };
-        const showAuthMessage = (form, text, isError = false) => {
-            const el = document.getElementById(`${form}-message`);
-            if (el) { el.textContent = text; el.className = `auth-message ${isError ? 'text-red-500' : 'text-green-500'}`; }
-        };
-        
-        const renderUIForUser = (user) => {
-            dom.authContainer.innerHTML = `<button id="my-projects-btn" class="text-sm font-semibold text-slate-600 hover:text-slate-900">My Projects</button><span class="text-sm text-slate-400">|</span><span class="text-sm font-medium text-slate-600">Welcome, ${user.displayName || user.email.split('@')[0]}!</span><button id="logout-btn" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">Log Out</button>`;
-            dom.authContainer.querySelector('#logout-btn').addEventListener('click', () => signOut(auth));
-            dom.authContainer.querySelector('#my-projects-btn').addEventListener('click', showProjectsPage);
-            dom.generatorSection.classList.remove('hidden');
-            dom.generationsCounter.innerHTML = state.freeGenerations > 0 ? `<p class="text-green-600 font-semibold">You have ${state.freeGenerations} free generation remaining.</p>` : `<p class="text-red-500">No free generations remaining.</p>`;
-        };
-        const renderUIForGuest = () => {
-            dom.authContainer.innerHTML = `<button id="nav-login-btn" class="text-sm font-semibold text-slate-600 hover:text-slate-900">Log In</button><button id="nav-signup-btn" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700">Sign Up</button>`;
-            dom.authContainer.querySelector('#nav-login-btn').addEventListener('click', () => showPage('login'));
-            dom.authContainer.querySelector('#nav-signup-btn').addEventListener('click', () => showPage('signup'));
-            dom.generatorSection.classList.add('hidden');
-        };
-
-        onAuthStateChanged(auth, user => {
-            if (unsubscribeUserSnapshot) unsubscribeUserSnapshot();
-            if (user) {
-                state.currentUser = user;
-                const userDocRef = doc(db, 'users', user.uid);
-                unsubscribeUserSnapshot = onSnapshot(userDocRef, (docSnap) => {
-                    if (!docSnap.exists()) {
-                        setDoc(userDocRef, { email: user.email, name: user.displayName || "", createdAt: Timestamp.now(), freeGenerations: 1 });
-                    } else {
-                        state.freeGenerations = docSnap.data().freeGenerations ?? 0;
-                    }
-                    renderUIForUser(user);
-                });
-                if (['login', 'signup'].includes(state.currentPage)) showPage('homepage');
-            } else {
-                state.currentUser = null;
-                state.freeGenerations = 0;
-                renderUIForGuest();
-                if (!['homepage', 'login', 'signup'].includes(state.currentPage)) showPage('homepage');
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              monday: {
+                blue: '#0073EA',
+                darkBlue: '#0060B9',
+                green: '#00C875',
+                red: '#E2445C',
+                yellow: '#FDAB3D',
+                purple: '#A25DDC',
+                dark: '#323338',
+                gray: '#F5F6F8',
+                border: '#D0D4E4',
+                hover: '#E6F1FC'
+              }
+            },
+            fontFamily: {
+              sans: ['Figtree', 'Inter', 'system-ui', 'sans-serif'],
             }
-        });
-
-        dom.signupForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const [name, email, password] = [document.getElementById('signup-name').value, document.getElementById('signup-email').value, document.getElementById('signup-password').value];
-            if (password.length < 6) { return showAuthMessage('signup', 'Password must be at least 6 characters.', true); }
-            showAuthMessage('signup', 'Creating account...');
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                await updateProfile(userCredential.user, { displayName: name });
-            } catch (error) { showAuthMessage('signup', error.message, true); }
-        });
-        dom.loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const [email, password] = [document.getElementById('login-email').value, document.getElementById('login-password').value];
-            showAuthMessage('login', 'Signing in...');
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-            } catch (error) { showAuthMessage('login', 'Invalid email or password.', true); }
-        });
-        
-        dom.generateBtn.addEventListener('click', async () => {
-            if (!state.currentUser) return showPage('signup');
-            if (state.freeGenerations <= 0) return showPage('payment');
-
-            const [eventName, targetAudience, eventTopic] = [document.getElementById('eventName').value.trim(), document.getElementById('targetAudience').value.trim(), document.getElementById('eventTopic').value.trim()];
-            if (!eventName || !targetAudience || !eventTopic) return showMessageModal("Please fill in all fields.");
-
-            const btnText = document.getElementById('generate-btn-text');
-            btnText.textContent = "Generating...";
-            dom.generateBtn.disabled = true;
-
-            try {
-                const cloudFunctionUrl = "/api/generate"; 
-                const response = await fetch(cloudFunctionUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        prompt: `Generate a detailed marketing plan in JSON for an event named "${eventName}" targeting "${targetAudience}" with the key topic of "${eventTopic}". CRITICAL: The response MUST include a non-empty 'sections' object where each key is a section title formatted as a string (e.g. "SWOT_Analysis") and the value is its detailed content formatted as an HTML string.`,
-                        isJson: true
-                    }),
-                });
-
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error("API Response Error:", errorText);
-                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
-                }
-                const result = await response.json();
-                const campaignData = JSON.parse(result.text);
-                
-                state.campaignCache = campaignData;
-                renderDashboard(campaignData);
-
-                const userDocRef = doc(db, 'users', state.currentUser.uid);
-                await updateDoc(userDocRef, { freeGenerations: 0 });
-
-            } catch (error) {
-                console.error("Generation failed:", error);
-                showMessageModal("Could not generate the strategy. Please try again later.");
-            } finally {
-                btnText.textContent = "Build My Strategy";
-                dom.generateBtn.disabled = false;
-            }
-        });
-
-        const renderDashboard = (campaign) => {
-            if (!campaign || !campaign.sections) { return showMessageModal("The generated strategy was empty or malformed."); }
-            showPage('dashboard');
-            dom.dashboard.title.textContent = `Marketing Strategy: ${campaign.eventName || 'Untitled'}`;
-            const sections = campaign.sections;
-            const tabs = Object.keys(sections);
-            dom.dashboard.sidebarNav.innerHTML = '';
-            
-            tabs.forEach((key, index) => {
-                const button = document.createElement('button');
-                button.className = 'sidebar-button w-full text-left py-2 px-4 rounded-lg text-sm';
-                button.textContent = key.replace(/_/g, ' ');
-                if (index === 0) button.classList.add('active');
-                button.addEventListener('click', () => {
-                    dom.dashboard.sidebarNav.querySelectorAll('.sidebar-button').forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    dom.dashboard.content.innerHTML = `<h3>${key.replace(/_/g, ' ')}</h3><div>${sections[key]}</div>`;
-                });
-                dom.dashboard.sidebarNav.appendChild(button);
-            });
-            
-            if (tabs.length > 0) {
-                dom.dashboard.content.innerHTML = `<h3>${tabs[0].replace(/_/g, ' ')}</h3><div>${sections[tabs[0]]}</div>`;
-            } else {
-                dom.dashboard.content.innerHTML = '<p>The generated strategy has no sections to display.</p>';
-            }
-            dom.dashboard.saveBtn.onclick = saveStrategy;
-        };
-
-        const saveStrategy = async () => {
-            if (!state.currentUser || !state.campaignCache) return showMessageModal("No active strategy to save.");
-            dom.dashboard.saveBtn.textContent = 'Saving...';
-            try {
-                const projectsRef = collection(db, `users/${state.currentUser.uid}/projects`);
-                await addDoc(projectsRef, {
-                    eventName: state.campaignCache.eventName,
-                    strategy: state.campaignCache,
-                    savedAt: Timestamp.now()
-                });
-                showMessageModal("Strategy saved to 'My Projects' successfully!");
-            } catch (error) { console.error("Error saving project:", error); showMessageModal("Could not save the strategy."); }
-            finally { dom.dashboard.saveBtn.textContent = 'Save Strategy'; }
-        };
-
-        const showProjectsPage = async () => {
-            if (!state.currentUser) return;
-            showPage('projects');
-            dom.projectsList.innerHTML = '<p>Loading projects...</p>';
-            try {
-                const projectsRef = collection(db, `users/${state.currentUser.uid}/projects`);
-                const q = query(projectsRef, orderBy("savedAt", "desc"));
-                const querySnapshot = await getDocs(q);
-                dom.projectsList.innerHTML = '';
-                if (querySnapshot.empty) {
-                    dom.projectsList.innerHTML = '<p>You have no saved projects yet.</p>';
-                } else {
-                    querySnapshot.forEach((docSnap) => {
-                        const project = docSnap.data();
-                        const card = document.createElement('div');
-                        card.className = 'bg-white p-4 rounded-lg shadow cursor-pointer hover:shadow-lg';
-                        card.innerHTML = `<h3 class="font-bold">${project.eventName}</h3><p class="text-sm text-slate-500">Saved: ${project.savedAt.toDate().toLocaleDateString()}</p>`;
-                        card.addEventListener('click', () => renderDashboard(project.strategy));
-                        dom.projectsList.appendChild(card);
-                    });
-                }
-            } catch (error) { console.error("Error fetching projects:", error); dom.projectsList.innerHTML = '<p class="text-red-500">Could not load projects.</p>'; }
-        };
-        
-        const setupChatbot = () => {
-            dom.chat.bubble.addEventListener('click', () => {
-                dom.chat.window.style.display = 'flex';
-                dom.chat.bubble.style.display = 'none';
-            });
-            dom.chat.close.addEventListener('click', () => {
-                dom.chat.window.style.display = 'none';
-                dom.chat.bubble.style.display = 'flex';
-            });
-        };
-
-        dom.logoBtn.addEventListener('click', () => showPage('homepage'));
-        dom.newProjectBtn.addEventListener('click', () => showPage('homepage'));
-        dom.closeModalBtn.addEventListener('click', () => dom.messageModal.style.display = 'none');
-        setupChatbot();
+          }
+        }
+      }
     </script>
-</body>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body { font-family: 'Figtree', sans-serif; background-color: #F5F6F8; color: #323338; }
+      .monday-shadow { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+      .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #D0D4E4; border-radius: 10px; }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #A1A9C3; }
+      
+      /* Markdown Styles */
+      .prose h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #323338; }
+      .prose h2 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #323338; border-bottom: 1px solid #D0D4E4; padding-bottom: 0.5rem; }
+      .prose h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; color: #323338; }
+      .prose p { margin-bottom: 1rem; line-height: 1.6; color: #323338; }
+      .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #323338; }
+      .prose li { margin-bottom: 0.5rem; }
+      .prose strong { font-weight: 700; color: #1F2937; }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js",
+    "uuid": "https://aistudiocdn.com/uuid@^13.0.0",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+  }
+}
+</script>
+  </head>
+  <body class="text-slate-900 antialiased">
+    <div id="root"></div>
+  </body>
 </html>
-
